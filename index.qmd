@@ -1,0 +1,50 @@
+---
+# title: "Laszlo Szabo"
+# listing:
+#   contents: posts
+#   sort: "date desc"
+#   type: default
+#   categories: true
+#   sort-ui: false
+#   filter-ui: false
+# page-layout: full
+# title-block-banner: true
+
+# date: last-modified
+format: 
+  html: default
+  # pdf: default
+title: "Laszlo Szabo"
+image: images/profile_pic.jpeg
+
+about:
+  template: trestles
+  image-shape: rounded
+  image-width: 20em
+  links:
+    - icon: twitter
+      text: Twitter
+      href: https://twitter.com/drszabolaszlo
+    - icon: linkedin
+      text: LinkedIn
+      href: https://www.linkedin.com/in/drszabolaszlo/
+    - icon: github
+      text: Github
+      href: https://github.com/Laszlo75
+    - icon: envelope
+      text: Contact Me
+      href: mailto:Laszlo.Szabo@wales.nhs.uk
+      
+# bibliography: publications-2023-04.bib
+  
+# nocite: |
+#   @*
+
+toc: true
+toc-depth: 2.0
+---
+
+
+
+
+

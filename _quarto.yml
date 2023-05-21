@@ -1,0 +1,63 @@
+project:
+  type: website
+
+bibliography: publications-2023-04.bib
+# csl: 
+
+
+# github-url: "https://github.com/andrewheiss/ath-quarto"
+# 
+# pgp:
+#   key: pgp_ath.asc.txt
+#   fingerprint: 4AA2 FA83 A8B2 05A4 E30F<br /> 610D 1382 6216 9178 36AB
+# 
+# years: "2007–2022"
+
+website:
+  google-analytics: "G-B84ES4BRHJ"
+  title: "Laszlo Szabo"
+  favicon: images/profile_pic.jpeg
+  
+  navbar:
+    left: 
+      - text: About
+        href: index.qmd
+      - text: CV
+        href: resume.qmd
+      - text: Research
+        href: publications.qmd
+      - text: Posts
+        href: posts.qmd
+    
+    right:
+      
+      - icon: github
+        href: https://github.com/
+      - text: "{{< fa brands orcid >}}"
+        href: https://orcid.org/0000-0002-6881-1542
+      - icon: linkedin
+        href: https://www.linkedin.com/in/drszabolaszlo/
+      - icon: twitter
+        href: https://twitter.com/drszabolaszlo
+      - icon: envelope
+        aria-label: email
+        href: "mailto:laszlo.szabo@wales.nhs.uk"
+
+  page-footer: 
+    left: <span class="faux-block">Made with {{< fa brands r-project >}} and [Quarto](https://quarto.org/)</span>
+        
+    center: <span class="faux-block">{{< fa brands orcid >}} <strong>ORCID</strong> [{{< var orcid >}}](https://orcid.org/{{< var orcid >}})</span>
+    
+    right: 
+      - icon: github
+        text: "Code Repo"
+      
+   # background: "#2780e3"
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+
+editor: visual
+

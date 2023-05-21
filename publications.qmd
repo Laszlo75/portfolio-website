@@ -1,0 +1,15 @@
+---
+title: "Publications"
+# bibliography: publications-2023-04.bib
+nocite: |
+  @*
+  
+title-block-banner: true
+
+format: html
+# toc: true
+# toc-depth: 2.0
+---
+
+::: {#refs}
+:::

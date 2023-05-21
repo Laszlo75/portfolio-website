@@ -1,0 +1,25 @@
+---
+title: "Welcome To My Blog"
+author: "Laszlo Szabo"
+date: 2023-05-10
+categories: [news, site improvement]
+---
+Hello!
+
+This is my first blog post here.
+
+I will summarise here my plan how to construct this site and how to improve it in the future. 
+
+I will post regular updates, as I am making or not making progress.
+
+This will be an interesting journey.
+
+Enjoy!
+
+
+## Useful links for Quarto
+
+[Building a blog with Quarto](https://www.youtube.com/watch?v=CVcvXfRyfE0)
+
+[Publish a blog in 100 sec](https://www.youtube.com/watch?v=t8qtcDyCRFA)
+
