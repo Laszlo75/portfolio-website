@@ -32,7 +32,7 @@ website:
     right:
       
       - icon: github
-        href: https://github.com/
+        href: https://github.com/Laszlo75
       - text: "{{< fa brands orcid >}}"
         href: https://orcid.org/0000-0002-6881-1542
       - icon: linkedin
@@ -51,6 +51,7 @@ website:
     right: 
       - icon: github
         text: "Code Repo"
+       
       
    # background: "#2780e3"
 

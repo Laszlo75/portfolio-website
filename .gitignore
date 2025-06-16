@@ -10,3 +10,5 @@
 .html
 
 .DS_Store
+
+/.luarc.json
