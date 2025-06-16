@@ -117,4 +117,4 @@ This project is licensed under the [MIT License](LICENSE) - see the LICENSE file
 
 ---
 
-*This website showcases the professional work and research contributions of Dr. Laszlo Szabo in the field of transplant surgery and medical research.*
+*This website showcases the professional work and research contributions of Mr. Laszlo Szabo in the field of transplant surgery and medical research.*
