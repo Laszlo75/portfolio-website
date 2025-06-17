@@ -11,7 +11,7 @@ about:
       text: LinkedIn
       href: https://linkedin.com/in/drszabolaszlo
     - icon: github
-      text: Github
+      text: GitHub
       href: https://github.com/laszlo75
     - icon: envelope
       text: Contact
