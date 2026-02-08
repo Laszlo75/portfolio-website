@@ -1,45 +1,42 @@
 ---
-# title: "Laszlo Szabo"
-# listing:
-#   contents: posts
-#   sort: "date desc"
-#   type: default
-#   categories: true
-#   sort-ui: false
-#   filter-ui: false
-# page-layout: full
-# title-block-banner: true
-
-# date: last-modified
-format: 
-  html: default
-  # pdf: default
 title: "Laszlo Szabo"
 image: images/profile_pic.jpeg
-
+format:
+  html: default
 about:
   template: trestles
-  image-shape: rounded
-  image-width: 20em
+  image-shape: round
+  image-width: 18em
   links:
     - icon: twitter
-      text: Twitter
-      href: https://twitter.com/drszabolaszlo
+      text: X / Twitter
+      href: https://x.com/drszabolaszlo
     - icon: linkedin
       text: LinkedIn
       href: https://www.linkedin.com/in/drszabolaszlo/
     - icon: github
       text: GitHub
       href: https://github.com/Laszlo75
+    - text: "{{< fa brands orcid >}} ORCID"
+      href: https://orcid.org/0000-0002-6881-1542
     - icon: envelope
-      text: Contact Me
-      href: mailto:Laszlo.Szabo@wales.nhs.uk
-      
-# bibliography: publications-2023-04.bib
-  
-# nocite: |
-#   @*
-
-toc: true
-toc-depth: 2.0
+      text: Contact
+      href: mailto:laszlo.szabo@wales.nhs.uk
+toc: false
 ---
+
+I am a Consultant Transplant Surgeon at the **Cardiff Transplant Unit** with a clinical and research focus on kidney and pancreas transplantation, organ retrieval, organ utilisation, and perioperative outcomes.
+
+I lead initiatives aimed at improving access to transplantation, and optimising post-transplant care. I collaborate with national programmes to improve organ utilisation policy and contribute to multicentre clinical studies.
+
+## Research Interests
+
+-   Kidney and pancreas transplantation outcomes
+-   Organ preservation and machine perfusion
+-   Donor risk stratification and organ utilisation
+-   Vascular access for haemodialysis
+-   Data science applied to transplant decision-making
+
+## Current Work
+
+I am increasingly interested in applying R and data science methods to clinical transplant questions — from survival modelling and risk prediction to improving how we use national organ offering data.

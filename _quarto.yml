@@ -57,7 +57,7 @@ website:
 
 format:
   html:
-    theme: cosmo
+    theme: flatly
     css: styles.css
 
 editor: visual
