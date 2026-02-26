@@ -6,6 +6,7 @@ project:
     - "!resume-old.qmd"
   resources:
     - robots.txt
+    - llms.txt
 
 bibliography: assets/my-publication-list.bib
 
@@ -14,7 +15,7 @@ website:
   # google-analytics: "G-B84ES4BRHJ"
   title: "Laszlo Szabo"
   description: "Academic portfolio of Laszlo Szabo, Consultant Transplant Surgeon at Cardiff Transplant Unit. Research in kidney and pancreas transplantation, organ utilisation, and data science."
-  favicon: images/profile_pic.jpeg
+  favicon: images/favicon.svg
 
   open-graph: true
   twitter-card:
@@ -60,6 +61,7 @@ format:
   html:
     theme: flatly
     css: styles.css
+    include-after-body: assets/cloudflare-analytics.html
 
 editor: source
 
