@@ -36,23 +36,25 @@ website:
         href: https://github.com/Laszlo75
       - text: "{{< fa brands orcid >}}"
         href: https://orcid.org/0000-0002-6881-1542
+        aria-label: ORCID
       - icon: linkedin
         href: https://www.linkedin.com/in/drszabolaszlo/
-      - icon: twitter
-        href: https://twitter.com/drszabolaszlo
+      - text: "{{< fa brands x-twitter >}}"
+        href: https://x.com/drszabolaszlo
+        aria-label: X
       - icon: envelope
         aria-label: email
         href: "mailto:laszlo.szabo@wales.nhs.uk"
 
   page-footer:
-    left: "&copy; 2026 Laszlo Szabo"
+    left: "&copy; 2026 Laszlo Szabo · [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)"
 
     center: <span class="faux-block">{{< fa brands orcid >}} [{{< var orcid >}}](https://orcid.org/{{< var orcid >}})</span>
 
     right:
       - icon: github
         text: "Source"
-        href: https://github.com/Laszlo75
+        href: https://github.com/Laszlo75/portfolio-website
        
       
    # background: "#2780e3"
