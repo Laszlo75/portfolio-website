@@ -1,8 +1,13 @@
 ---
 title: "Laszlo Szabo"
+subtitle: "Consultant Transplant Surgeon"
+description: "Laszlo Szabo is a Consultant Transplant Surgeon at Cardiff Transplant Unit, specialising in kidney and pancreas transplantation, organ utilisation, and clinical data science."
 image: images/profile_pic.jpeg
+image-alt: "Photo of Laszlo Szabo, Consultant Transplant Surgeon"
 format:
-  html: default
+  html:
+    pagetitle: "Consultant Transplant Surgeon, Cardiff"
+    include-in-header: assets/schema-person.html
 about:
   template: trestles
   image-shape: round
@@ -31,12 +36,18 @@ I lead initiatives aimed at improving access to transplantation, and optimising 
 
 ## Research Interests
 
--   Kidney and pancreas transplantation outcomes
--   Organ preservation and machine perfusion
--   Donor risk stratification and organ utilisation
--   Vascular access for haemodialysis
--   Data science applied to transplant decision-making
+::: {.research-pills}
+[Kidney and pancreas transplantation outcomes]{.pill}
+[Organ preservation and machine perfusion]{.pill}
+[Donor risk stratification and organ utilisation]{.pill}
+[Vascular access for haemodialysis]{.pill}
+[Data science applied to transplant decision-making]{.pill}
+:::
 
 ## Current Work
 
+::: {.highlight-block}
+I helped establish and now run the **Normothermic Regional Perfusion (NRP) programme** at Cardiff, improving organ quality assessment and expanding the use of DCD donor organs for transplantation.
+
 I am increasingly interested in applying R and data science methods to clinical transplant questions — from survival modelling and risk prediction to improving how we use national organ offering data.
+:::

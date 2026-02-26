@@ -1,24 +1,34 @@
 ---
-title: "Welcome To My Blog"
+title: "Hello World - Why I Built This Site"
+description: "First post on my new academic portfolio — why I built this site with Quarto and R, and what to expect from a transplant surgeon who codes."
 author: "Laszlo Szabo"
-date: 2023-05-10
+date: 2026-02-08
 categories: [news, site improvement]
+format:
+  html:
+    include-in-header: ../../assets/schema-blogposting.html
 ---
 
-Hello!
+So I finally did it. After years of thinking "I should really have a website," here it is. Built with [Quarto](https://quarto.org/) and R -because if I'm going to procrastinate on something, I might as well learn a new tool while doing it.
 
-This is my first blog post here.
+By day, I'm a transplant surgeon in Cardiff. By night (and the occasional weekend), I'm increasingly obsessed with data science, R, and finding better ways to answer clinical questions with code rather than gut feeling. This site is where those two worlds collide.
 
-I will summarise here my plan how to construct this site and how to improve it in the future.
+## What to expect here
 
-I will post regular updates, as I am making or not making progress.
+I plan to write about things I find genuinely interesting -which, fair warning, mostly involves organ transplantation and wrangling data in R. Topics might include:
 
-This will be an interesting journey.
+-   Lessons learned building clinical datasets (and all the messy bits nobody tells you about)
+-   R tips and tricks I stumble across
+-   Thoughts on how data science can actually make a difference in transplant surgery
+-   The occasional rant about PDF forms and NHS IT systems
 
-Enjoy!
+I'll try to post regularly. Whether that means weekly or "whenever I have a spare evening" remains to be seen. Transplant surgery has a habit of rearranging your calendar at short notice.
 
-## Useful links for Quarto
+## Why Quarto?
 
-[Building a blog with Quarto](https://www.youtube.com/watch?v=CVcvXfRyfE0)
+I wanted something I could write in plain text, render with R code, and publish without fighting a CMS. Quarto ticks all those boxes. If you're thinking of building your own academic site, these got me started:
 
-[Publish a blog in 100 sec](https://www.youtube.com/watch?v=t8qtcDyCRFA)
+-   [Building a blog with Quarto](https://www.youtube.com/watch?v=CVcvXfRyfE0)
+-   [Publish a blog in 100 seconds](https://www.youtube.com/watch?v=t8qtcDyCRFA)
+
+Right, that's enough for a first post. Time to go and actually write something worth reading.

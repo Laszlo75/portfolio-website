@@ -1,27 +1,27 @@
 project:
   type: website
+  render:
+    - "*.qmd"
+    - "!cv.qmd"
+    - "!resume-old.qmd"
+  resources:
+    - robots.txt
 
-bibliography: publications-2023-04.bib
-# csl: 
-
-
-# github-url: "https://github.com/andrewheiss/ath-quarto"
-# 
-# pgp:
-#   key: pgp_ath.asc.txt
-#   fingerprint: 4AA2 FA83 A8B2 05A4 E30F<br /> 610D 1382 6216 9178 36AB
-# 
-# years: "2007–2022"
+bibliography: assets/my-publication-list.bib
 
 website:
+  site-url: "https://lszabo.me"
   google-analytics: "G-B84ES4BRHJ"
   title: "Laszlo Szabo"
+  description: "Academic portfolio of Laszlo Szabo, Consultant Transplant Surgeon at Cardiff Transplant Unit. Research in kidney and pancreas transplantation, organ utilisation, and data science."
   favicon: images/profile_pic.jpeg
+
+  open-graph: true
+  twitter-card:
+    site: "@drszabolaszlo"
   
   navbar:
-    left: 
-      - text: About
-        href: index.qmd
+    left:
       - text: CV
         href: resume.qmd
       - text: Research
@@ -43,14 +43,15 @@ website:
         aria-label: email
         href: "mailto:laszlo.szabo@wales.nhs.uk"
 
-  page-footer: 
-    left: <span class="faux-block">Made with {{< fa brands r-project >}} and [Quarto](https://quarto.org/)</span>
-        
-    center: <span class="faux-block">{{< fa brands orcid >}} <strong>ORCID</strong> [{{< var orcid >}}](https://orcid.org/{{< var orcid >}})</span>
-    
-    right: 
+  page-footer:
+    left: "&copy; 2026 Laszlo Szabo"
+
+    center: <span class="faux-block">{{< fa brands orcid >}} [{{< var orcid >}}](https://orcid.org/{{< var orcid >}})</span>
+
+    right:
       - icon: github
-        text: "Code Repo"
+        text: "Source"
+        href: https://github.com/Laszlo75
        
       
    # background: "#2780e3"
@@ -60,5 +61,5 @@ format:
     theme: flatly
     css: styles.css
 
-editor: visual
+editor: source
 

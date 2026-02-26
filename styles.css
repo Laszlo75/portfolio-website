@@ -1,0 +1,555 @@
+/* ============================================
+   Laszlo Szabo – Academic Site Custom Styles
+   Base theme: flatly
+   ============================================ */
+
+/* --- Typography --- */
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+:root {
+  --heading-color: #1a2332;
+  --body-color: #374151;
+  --accent: #1a7a8a;
+  --accent-hover: #145f6d;
+  --accent-light: rgba(26, 122, 138, 0.08);
+  --accent-lighter: rgba(26, 122, 138, 0.04);
+  --light-bg: #f7f8fa;
+  --border-light: #e2e5ea;
+  --text-muted: #6b7280;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.10);
+  --radius: 8px;
+  --radius-lg: 12px;
+}
+
+body {
+  font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: var(--body-color);
+  font-size: 1.02rem;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* --- Headings --- */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+  color: var(--heading-color);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+h1 { font-size: 1.9rem; }
+h2 { font-size: 1.4rem; margin-top: 2rem; margin-bottom: 0.8rem; }
+h3 { font-size: 1.15rem; }
+
+/* --- Links --- */
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--accent-hover);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* --- Navbar (frosted glass) --- */
+.navbar {
+  border-bottom: 1px solid var(--border-light);
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  background-color: rgba(255, 255, 255, 0.92) !important;
+}
+
+.navbar-title {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 700;
+  font-size: 1.2rem;
+  letter-spacing: -0.02em;
+  color: var(--heading-color) !important;
+}
+
+.navbar .navbar-brand {
+  color: var(--heading-color) !important;
+}
+
+.navbar .navbar-nav .nav-link {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  position: relative;
+  transition: color 0.2s ease;
+  color: var(--heading-color) !important;
+}
+
+.navbar .navbar-nav .nav-link:hover {
+  color: var(--accent) !important;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 2px;
+  text-decoration-color: var(--accent);
+}
+
+/* Navbar social icons (right side) */
+.navbar .navbar-nav .nav-link .bi,
+.navbar .navbar-nav .nav-link i {
+  color: var(--heading-color) !important;
+}
+
+.navbar .navbar-nav .nav-link:hover .bi,
+.navbar .navbar-nav .nav-link:hover i {
+  color: var(--accent) !important;
+}
+
+/* --- About page (trestles template) --- */
+.about-entity .about-image {
+  box-shadow: var(--shadow-lg);
+  border: 3px solid white;
+  transition: box-shadow 0.3s ease;
+}
+
+.about-entity .about-image:hover {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.14);
+}
+
+.about-links .about-link {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--body-color) !important;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  transition: all 0.25s ease;
+  padding: 0.45rem 1rem;
+}
+
+.about-links .about-link:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background-color: var(--accent-light);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+  text-decoration: none;
+}
+
+/* About content area */
+div.about-contents {
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+/* Lead paragraph */
+div.about-contents > p:first-of-type {
+  font-size: 1.08rem;
+  line-height: 1.75;
+  color: var(--heading-color);
+}
+
+/* Section headings within about content */
+div.about-contents h2 {
+  font-size: 1.25rem;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 2px solid var(--accent);
+  display: inline-block;
+}
+
+/* Research interests: compact tag pills */
+.research-pills {
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+.research-pills p {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 0;
+}
+
+.research-pills .pill {
+  display: inline-block;
+  background-color: var(--accent-light);
+  color: var(--heading-color);
+  padding: 0.3rem 0.75rem;
+  border-radius: 2rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  border: 1px solid rgba(26, 122, 138, 0.15);
+  transition: all 0.2s ease;
+}
+
+.research-pills .pill:hover {
+  background-color: var(--accent);
+  color: #ffffff;
+  border-color: var(--accent);
+}
+
+/* Highlight block (Current Work) */
+.highlight-block {
+  background: linear-gradient(135deg, var(--accent-lighter), var(--accent-light));
+  border-left: 3px solid var(--accent);
+  padding: 1.2rem 1.5rem;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  margin: 1.5rem 0;
+}
+
+/* --- Page title --- */
+.quarto-title h1.title,
+#title-block-header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--heading-color);
+}
+
+/* About page name and subtitle */
+.quarto-about-trestles .quarto-title h1.title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--heading-color) !important;
+}
+
+.quarto-about-trestles .subtitle {
+  color: var(--body-color) !important;
+}
+
+/* --- Title block banner (dark gradient) --- */
+.quarto-title-banner {
+  background: linear-gradient(135deg, var(--heading-color) 0%, #2d4a5e 100%) !important;
+  padding-top: 3rem !important;
+  padding-bottom: 3rem !important;
+}
+
+.quarto-title-banner h1 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+#title-block-header.quarto-title-block {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.quarto-title-banner h1,
+.quarto-title-banner .quarto-title .title {
+  color: #ffffff !important;
+}
+
+.quarto-title-banner .description,
+.quarto-title-banner .quarto-categories {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* --- Footer (dark) --- */
+.nav-footer {
+  border-top: 2px solid var(--accent);
+  background-color: var(--heading-color) !important;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.nav-footer a {
+  color: rgba(255, 255, 255, 0.8);
+  transition: color 0.2s ease;
+}
+
+.nav-footer a:hover {
+  color: #ffffff;
+}
+
+/* --- Content area --- */
+.content {
+  max-width: 52rem;
+}
+
+/* --- Publication list --- */
+#refs {
+  line-height: 1.65;
+}
+
+#refs .csl-entry {
+  margin-bottom: 0;
+  padding: 1rem 0 1rem 0.5rem;
+  border-bottom: 1px solid var(--border-light);
+  transition: background-color 0.2s ease;
+  border-radius: var(--radius);
+}
+
+#refs .csl-entry:last-child {
+  border-bottom: none;
+}
+
+#refs .csl-entry:hover {
+  background-color: var(--accent-lighter);
+}
+
+/* --- Blog listing --- */
+.quarto-listing .list-group-item {
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  padding: 1.2rem;
+  margin-bottom: 0.75rem;
+  transition: all 0.25s ease;
+}
+
+.quarto-listing .list-group-item:hover {
+  border-color: var(--accent);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.quarto-listing .listing-title {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 600;
+  font-size: 1.15rem;
+  color: var(--heading-color);
+}
+
+.quarto-listing .listing-description {
+  color: var(--body-color);
+}
+
+.quarto-listing .listing-date {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.quarto-listing .listing-categories .listing-category {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  background-color: var(--accent-light);
+  color: var(--accent);
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+}
+
+/* --- CV page (original resume.qmd) --- */
+.btn-cv-download {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  padding: 0.6rem 1.4rem;
+  font-size: 0.92rem;
+  font-weight: 600;
+  background-color: var(--accent);
+  border: 2px solid var(--accent);
+  color: #ffffff;
+  border-radius: var(--radius);
+  transition: all 0.25s ease;
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-cv-download:hover {
+  background-color: transparent;
+  color: var(--accent);
+  text-decoration: none;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+/* CV definition lists (the : entries) */
+dd {
+  margin-left: 1rem;
+  margin-bottom: 0.2rem;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+dt {
+  margin-top: 0.8rem;
+}
+
+/* --- CV v2 Timeline Entries --- */
+.cv-entry {
+  position: relative;
+  padding: 1rem 0 1rem 1.5rem;
+  border-left: 2px solid var(--border-light);
+  margin-left: 0.5rem;
+  transition: border-color 0.2s ease;
+}
+
+.cv-entry:hover {
+  border-left-color: var(--accent);
+}
+
+.cv-entry::before {
+  content: '';
+  position: absolute;
+  left: -5px;
+  top: 1.35rem;
+  width: 8px;
+  height: 8px;
+  background-color: var(--accent);
+  border-radius: 50%;
+  border: 2px solid white;
+  box-shadow: var(--shadow-sm);
+}
+
+.cv-entry-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.cv-entry-title {
+  font-weight: 600;
+  color: var(--heading-color);
+  font-size: 1rem;
+}
+
+.cv-entry-date {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.cv-entry-subtitle {
+  color: var(--body-color);
+  font-size: 0.95rem;
+  margin-top: 0.2rem;
+}
+
+.cv-entry-location {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 0.15rem;
+}
+
+.cv-entry-location i {
+  color: var(--accent);
+  margin-right: 0.3rem;
+  font-size: 0.8rem;
+}
+
+.cv-entry-details {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-top: 0.3rem;
+  font-style: italic;
+}
+
+/* CV v2 Skills rows */
+.skill-row {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.skill-row:last-child {
+  border-bottom: none;
+}
+
+.skill-category {
+  font-weight: 600;
+  color: var(--heading-color);
+  min-width: 10rem;
+  font-size: 0.92rem;
+}
+
+.skill-items {
+  color: var(--body-color);
+  font-size: 0.92rem;
+}
+
+/* CV v2 Research entries */
+.research-entry {
+  padding: 0.4rem 0;
+}
+
+.research-acronym {
+  font-weight: 700;
+  color: var(--accent);
+  font-size: 0.92rem;
+}
+
+.research-title {
+  color: var(--body-color);
+  font-size: 0.92rem;
+}
+
+/* --- Animations --- */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+#quarto-content {
+  animation: fadeInUp 0.4s ease-out;
+}
+
+/* Animated link underline */
+a:not(.nav-link):not(.about-link):not(.btn-cv-download):not(.navbar-brand) {
+  background-image: linear-gradient(var(--accent), var(--accent));
+  background-size: 0% 1px;
+  background-position: left bottom;
+  background-repeat: no-repeat;
+  transition: background-size 0.3s ease, color 0.2s ease;
+}
+
+a:not(.nav-link):not(.about-link):not(.btn-cv-download):not(.navbar-brand):hover {
+  background-size: 100% 1px;
+  text-decoration: none;
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* --- Responsive refinements --- */
+@media (max-width: 768px) {
+  h1 { font-size: 1.6rem; }
+  h2 { font-size: 1.2rem; }
+
+  .about-entity .about-image {
+    max-width: 12em;
+  }
+
+  .cv-entry-header {
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .skill-row {
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .skill-category {
+    min-width: unset;
+  }
+}

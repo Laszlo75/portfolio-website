@@ -1,9 +1,9 @@
 ---
 title: "Publications"
-# bibliography: publications-2023-04.bib
+description: "Peer-reviewed publications by Laszlo Szabo on kidney and pancreas transplantation, organ preservation, donor risk stratification, and surgical outcomes."
 nocite: |
   @*
-  
+
 title-block-banner: true
 
 format: html

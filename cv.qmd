@@ -1,0 +1,135 @@
+---
+title: "Laszlo Szabo's CV"
+author:
+  firstname: Laszlo
+  lastname: Szabo
+  address: "Cardiff and Vale University HB, Cardiff, UK"
+  position: Consultant Transplant Surgeon
+  contacts:
+    - icon: fa envelope
+      text: Laszlo.Szabo@wales.nhs.uk
+      url: "mailto:Laszlo.Szabo@wales.nhs.uk"
+    - icon: fa brands orcid
+      text: 0000-0002-6881-1542
+      url: https://orcid.org/0000-0002-6881-1542
+    - icon: fa brands github
+      text: Laszlo75
+      url: https://github.com/Laszlo75
+    - icon: fa brands linkedin
+      text: drszabolaszlo
+      url: https://linkedin.com/in/drszabolaszlo
+style:
+   color-accent: "005EB8"
+   font-header: "SF Pro Text"
+   font-text: "SF Pro Text"
+format: awesomecv-typst
+
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+```{r}
+#| label: load-packages
+library(typstcv)
+```
+
+## Education
+
+```{r}
+#| label: education
+#| output: asis
+
+education <- read.csv("data/education.csv")
+
+# typstcv needs Date columns for format_date()
+education$start <- as.Date(paste0(education$start, "-01-01"))
+education$end <- as.Date(paste0(education$end, "-01-01"))
+
+education |>
+  format_date(end = "end", date_format = "%Y", sort_by = "end") |>
+  resume_entry()
+```
+
+## Qualifications
+
+```{r}
+#| label: qualifications
+#| output: asis
+
+qualifications <- read.csv("data/qualifications.csv")
+
+qualifications |>
+  resume_entry(details = "detail")
+```
+
+## Work Experience
+
+```{r}
+#| label: work-experience
+#| output: asis
+
+work <- read.csv("data/work.csv")
+
+# Convert to Date for format_date(); "present" becomes NA (shown as "Present")
+work$start <- as.Date(paste0(work$start, "-01-01"))
+work$end <- as.Date(ifelse(work$end == "present", NA, paste0(work$end, "-01-01")))
+
+work |>
+  format_date(end = "end", date_format = "%Y", sort_by = "start") |>
+  resume_entry()
+```
+
+## Leadership Roles
+
+```{r}
+#| label: roles
+#| output: asis
+
+roles <- read.csv("data/roles.csv")
+
+# Rename to match typstcv expected columns
+names(roles)[names(roles) == "organisation"] <- "description"
+
+resume_entry(roles)
+```
+
+\newpage
+
+## Research
+
+**Principal Investigator**
+
+```{r}
+#| label: research
+#| output: asis
+
+research <- read.csv("data/research.csv")
+
+# Rename to match typstcv expected columns (order matters!)
+names(research)[names(research) == "title"] <- "description"
+names(research)[names(research) == "acronym"] <- "title"
+
+resume_entry(research)
+```
+
+## Skills
+
+```{r}
+#| label: skills
+#| output: asis
+
+skills <- read.csv("data/skills.csv")
+
+# Rename to match typstcv expected columns
+names(skills)[names(skills) == "category"] <- "title"
+
+resume_entry(skills)
+```
+
+\newpage
+
+```{=typst}
+#bibliography("assets/my-publication-list.bib", title: "Publications", full: true, style: "/assets/apa-cv.csl")
+```

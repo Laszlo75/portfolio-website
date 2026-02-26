@@ -1,3 +1,129 @@
-<iframe width="800" height="1200" src="images/CV short 2023-04.pdf">
+---
+title: "Curriculum Vitae"
+description: "CV of Laszlo Szabo — education, qualifications, work experience, leadership roles, and research in transplant surgery and data science."
+title-block-banner: true
+toc: true
+toc-depth: 2
+execute:
+  echo: false
+  warning: false
+  message: false
+---
 
-</iframe>
+```{r}
+#| label: setup
+library(glue)
+
+# Helper: render a CV entry as styled HTML
+cv_entry_html <- function(
+  title,
+  subtitle = NULL,
+  location = NULL,
+  date = NULL,
+  details = NULL
+) {
+  out <- '<div class="cv-entry">\n'
+  out <- paste0(out, '<div class="cv-entry-header">\n')
+  out <- paste0(out, glue('<span class="cv-entry-title">{title}</span>\n'))
+  if (!is.null(date) && date != "") {
+    out <- paste0(out, glue('<span class="cv-entry-date">{date}</span>\n'))
+  }
+  out <- paste0(out, '</div>\n')
+  if (!is.null(subtitle) && subtitle != "") {
+    out <- paste0(out, glue('<div class="cv-entry-subtitle">{subtitle}</div>\n'))
+  }
+  if (!is.null(location) && location != "") {
+    out <- paste0(out, glue('<div class="cv-entry-location"><i class="fa-solid fa-location-dot"></i> {location}</div>\n'))
+  }
+  if (!is.null(details) && details != "") {
+    out <- paste0(out, glue('<div class="cv-entry-details">{details}</div>\n'))
+  }
+  out <- paste0(out, '</div>\n\n')
+  out
+}
+```
+
+<a href="images/cv.pdf" class="btn btn-primary btn-cv-download" target="_blank" rel="noopener">
+{{< fa file-pdf >}} Download PDF
+</a>
+
+## Education
+
+```{r}
+#| label: education
+#| output: asis
+education <- read.csv("data/education.csv")
+education <- education[order(as.numeric(education$end), decreasing = TRUE), ]
+for (i in seq_len(nrow(education))) {
+  row <- education[i, ]
+  date_str <- paste(row$start, "\u2013", row$end)
+  cat(cv_entry_html(row$title, row$description, row$location, date_str))
+}
+```
+
+## Qualifications
+
+```{r}
+#| label: qualifications
+#| output: asis
+qualifications <- read.csv("data/qualifications.csv")
+qualifications <- qualifications[order(as.numeric(qualifications$date), decreasing = TRUE), ]
+for (i in seq_len(nrow(qualifications))) {
+  row <- qualifications[i, ]
+  cat(cv_entry_html(row$title, row$description, row$location, row$date, row$detail))
+}
+```
+
+## Work Experience
+
+```{r}
+#| label: work
+#| output: asis
+work <- read.csv("data/work.csv")
+work$sort_year <- ifelse(work$end == "present", 9999, as.numeric(work$end))
+work <- work[order(work$sort_year, decreasing = TRUE), ]
+for (i in seq_len(nrow(work))) {
+  row <- work[i, ]
+  end_label <- ifelse(row$end == "present", "Present", row$end)
+  date_str <- paste(row$start, "\u2013", end_label)
+  cat(cv_entry_html(row$title, row$description, row$location, date_str))
+}
+```
+
+## Leadership Roles
+
+```{r}
+#| label: roles
+#| output: asis
+roles <- read.csv("data/roles.csv")
+for (i in seq_len(nrow(roles))) {
+  row <- roles[i, ]
+  cat(cv_entry_html(row$title, row$organisation, date = row$date))
+}
+```
+
+## Research
+
+**Principal Investigator**
+
+```{r}
+#| label: research
+#| output: asis
+research <- read.csv("data/research.csv")
+for (i in seq_len(nrow(research))) {
+  row <- research[i, ]
+  cat(glue('<div class="research-entry"><span class="research-acronym">{row$acronym}</span> &mdash; <span class="research-title">{row$title}</span></div>\n'))
+}
+```
+
+## Skills
+
+```{r}
+#| label: skills
+#| output: asis
+skills <- read.csv("data/skills.csv")
+for (i in seq_len(nrow(skills))) {
+  row <- skills[i, ]
+  cat(glue('<div class="skill-row"><span class="skill-category">{row$category}</span><span class="skill-items">{row$description}</span></div>\n'))
+}
+```

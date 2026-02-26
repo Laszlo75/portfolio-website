@@ -1,0 +1,125 @@
+---
+title: "Curriculum Vitae"
+title-block-banner: true
+toc: true
+toc-depth: 2
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+```{r}
+#| label: setup
+library(glue)
+
+# Helper: render a CV entry as HTML
+cv_entry <- function(
+  title,
+  subtitle = NULL,
+  location = NULL,
+  date = NULL,
+  details = NULL
+) {
+  out <- glue("**{title}**")
+  parts <- c()
+  if (!is.null(location) && location != "") {
+    parts <- c(parts, location)
+  }
+  if (!is.null(date) && date != "") {
+    parts <- c(parts, date)
+  }
+  if (length(parts) > 0) {
+    out <- glue("{out} | {paste(parts, collapse = ' | ')}")
+  }
+  out <- paste0(out, "\n")
+  if (!is.null(subtitle) && subtitle != "") {
+    out <- paste0(out, glue(": {subtitle}\n"))
+  }
+  if (!is.null(details) && details != "") {
+    out <- paste0(out, glue(": {details}\n"))
+  }
+  out <- paste0(out, "\n")
+  out
+}
+```
+
+<a href="images/cv.pdf" class="btn btn-primary btn-cv-download" target="_blank" rel="noopener">
+{{< fa file-pdf >}} View PDF
+</a>
+
+## Education
+
+```{r}
+#| label: education
+#| output: asis
+education <- read.csv("data/education.csv")
+for (i in seq_len(nrow(education))) {
+  row <- education[i, ]
+  date_str <- paste(row$start, "-", row$end)
+  cat(cv_entry(row$title, row$description, row$location, date_str))
+}
+```
+
+## Qualifications
+
+```{r}
+#| label: qualifications
+#| output: asis
+qualifications <- read.csv("data/qualifications.csv")
+for (i in seq_len(nrow(qualifications))) {
+  row <- qualifications[i, ]
+  cat(cv_entry(row$title, row$description, row$location, row$date, row$detail))
+}
+```
+
+## Work Experience
+
+```{r}
+#| label: work
+#| output: asis
+work <- read.csv("data/work.csv")
+for (i in seq_len(nrow(work))) {
+  row <- work[i, ]
+  date_str <- paste(row$start, "-", row$end)
+  cat(cv_entry(row$title, row$description, row$location, date_str))
+}
+```
+
+## Leadership Roles
+
+```{r}
+#| label: roles
+#| output: asis
+roles <- read.csv("data/roles.csv")
+for (i in seq_len(nrow(roles))) {
+  row <- roles[i, ]
+  cat(cv_entry(row$title, row$organisation, date = row$date))
+}
+```
+
+## Research
+
+**Principal Investigator**
+
+```{r}
+#| label: research
+#| output: asis
+research <- read.csv("data/research.csv")
+for (i in seq_len(nrow(research))) {
+  row <- research[i, ]
+  cat(glue("- **{row$acronym}** - {row$title}\n"))
+}
+```
+
+## Skills
+
+```{r}
+#| label: skills
+#| output: asis
+skills <- read.csv("data/skills.csv")
+for (i in seq_len(nrow(skills))) {
+  row <- skills[i, ]
+  cat(glue("**{row$category}** | {row$description}\n\n"))
+}
+```
