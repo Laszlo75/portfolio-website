@@ -1,12 +1,13 @@
 ---
 title: "Publications"
-description: "Peer-reviewed publications by Laszlo Szabo on kidney and pancreas transplantation, organ preservation, donor risk stratification, and surgical outcomes."
 nocite: |
   @*
 
 title-block-banner: true
 
-format: html
+format:
+  html:
+    description: "Peer-reviewed publications by Laszlo Szabo on kidney and pancreas transplantation, organ preservation, donor risk stratification, and surgical outcomes."
 # toc: true
 # toc-depth: 2.0
 ---

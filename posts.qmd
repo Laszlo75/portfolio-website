@@ -1,6 +1,5 @@
 ---
 title: "Blog"
-description: "Posts by Laszlo Szabo on transplant surgery, clinical data science, R programming, and building tools for better surgical decision-making."
 listing:
   contents: posts
   sort: "date desc"
@@ -10,4 +9,7 @@ listing:
   filter-ui: false
 page-layout: full
 title-block-banner: true
+format:
+  html:
+    description: "Posts by Laszlo Szabo on transplant surgery, clinical data science, R programming, and building tools for better surgical decision-making."
 ---
