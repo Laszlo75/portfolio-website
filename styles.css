@@ -248,7 +248,10 @@ div.about-contents h2 {
   color: #ffffff !important;
 }
 
-.quarto-title-banner .description,
+.quarto-title-banner .description {
+  display: none;
+}
+
 .quarto-title-banner .quarto-categories {
   color: rgba(255, 255, 255, 0.85);
 }

@@ -1,9 +1,7 @@
 ---
 title: "Curriculum Vitae"
+description: "CV of Laszlo Szabo — education, qualifications, work experience, leadership roles, and research in transplant surgery and data science."
 title-block-banner: true
-format:
-  html:
-    description: "CV of Laszlo Szabo — education, qualifications, work experience, leadership roles, and research in transplant surgery and data science."
 toc: true
 toc-depth: 2
 execute:
