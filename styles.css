@@ -106,10 +106,10 @@ a:hover {
   color: var(--heading-color) !important;
 }
 
-/* Match Font Awesome shortcode icons to Bootstrap Icon size */
+/* Size Font Awesome navbar icons consistently */
 .navbar .navbar-nav .nav-link svg.fa {
-  height: 1em;
-  width: 1em;
+  height: 1.15em;
+  width: 1.15em;
   vertical-align: -0.125em;
 }
 

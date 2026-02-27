@@ -30,20 +30,24 @@ website:
         href: posts.qmd
     
     right:
-      
-      - icon: github
+      - text: "{{< fa brands github >}}"
         href: https://github.com/Laszlo75
+        aria-label: GitHub
       - text: "{{< fa brands orcid >}}"
         href: https://orcid.org/0000-0002-6881-1542
         aria-label: ORCID
-      - icon: linkedin
+      - text: "{{< fa brands researchgate >}}"
+        href: https://www.researchgate.net/profile/Laszlo-Szabo-8
+        aria-label: ResearchGate
+      - text: "{{< fa brands linkedin >}}"
         href: https://www.linkedin.com/in/drszabolaszlo/
+        aria-label: LinkedIn
       - text: "{{< fa brands x-twitter >}}"
         href: https://x.com/drszabolaszlo
         aria-label: X
-      - icon: envelope
-        aria-label: email
+      - text: "{{< fa solid envelope >}}"
         href: "mailto:laszlo.szabo@wales.nhs.uk"
+        aria-label: Email
 
   page-footer:
     left: "&copy; 2026 Laszlo Szabo · [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)"
