@@ -519,7 +519,7 @@ dt {
 }
 
 /* Animated link underline */
-a:not(.nav-link):not(.about-link):not(.btn-cv-download):not(.navbar-brand) {
+a:not(.nav-link):not(.about-link):not(.btn-cv-download):not(.navbar-brand):not(.pub-btn) {
   background-image: linear-gradient(var(--accent), var(--accent));
   background-size: 0% 1px;
   background-position: left bottom;
@@ -527,7 +527,7 @@ a:not(.nav-link):not(.about-link):not(.btn-cv-download):not(.navbar-brand) {
   transition: background-size 0.3s ease, color 0.2s ease;
 }
 
-a:not(.nav-link):not(.about-link):not(.btn-cv-download):not(.navbar-brand):hover {
+a:not(.nav-link):not(.about-link):not(.btn-cv-download):not(.navbar-brand):not(.pub-btn):hover {
   background-size: 100% 1px;
   text-decoration: none;
 }
@@ -540,6 +540,147 @@ a:not(.nav-link):not(.about-link):not(.btn-cv-download):not(.navbar-brand):hover
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* --- Publication Cards --- */
+.pub-year-heading {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--heading-color);
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 2px solid var(--accent);
+  display: block;
+  width: fit-content;
+}
+
+
+.pub-card {
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--border-light);
+  transition: background-color 0.2s ease;
+}
+
+.pub-card:last-of-type {
+  border-bottom: none;
+}
+
+.pub-card:hover {
+  background-color: var(--accent-lighter);
+  border-radius: var(--radius);
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  margin-left: -0.75rem;
+  margin-right: -0.75rem;
+}
+
+.pub-title {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--heading-color);
+  margin-bottom: 0.3rem;
+  line-height: 1.45;
+}
+
+.pub-authors {
+  font-size: 0.9rem;
+  color: var(--body-color);
+  margin-bottom: 0.25rem;
+  line-height: 1.5;
+}
+
+.pub-authors .pub-author-self {
+  font-weight: 700;
+  color: var(--heading-color);
+}
+
+.pub-meta {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.pub-meta em {
+  font-style: italic;
+  color: var(--body-color);
+}
+
+.pub-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.5rem;
+}
+
+.pub-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.2rem 0.65rem;
+  border: 1px solid var(--border-light);
+  border-radius: 2rem;
+  color: var(--body-color);
+  background-color: transparent;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.pub-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background-color: var(--accent-light);
+  text-decoration: none;
+}
+
+.pub-btn-zotero:hover {
+  border-color: #c1272d;
+  color: #c1272d;
+  background-color: rgba(193, 39, 45, 0.06);
+}
+
+.pub-abstract-details {
+  display: inline-flex;
+  flex-wrap: wrap;
+  margin: 0;
+  vertical-align: middle;
+}
+
+.pub-abstract-details > summary {
+  cursor: pointer;
+  list-style: none;
+}
+
+.pub-abstract-details > summary::-webkit-details-marker {
+  display: none;
+}
+
+.pub-abstract-body {
+  margin-top: 0.75rem;
+  padding: 0.85rem 1rem;
+  background-color: var(--accent-lighter);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  font-size: 0.88rem;
+  color: var(--body-color);
+  line-height: 1.65;
+  width: 100%;
+  flex-basis: 100%;
+}
+
+.pub-abstract-details[open] > summary.pub-btn {
+  border-color: var(--accent);
+  color: var(--accent);
+  background-color: var(--accent-light);
 }
 
 /* --- Responsive refinements --- */
@@ -563,5 +704,12 @@ a:not(.nav-link):not(.about-link):not(.btn-cv-download):not(.navbar-brand):hover
 
   .skill-category {
     min-width: unset;
+  }
+
+  .pub-card:hover {
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: 0;
+    margin-right: 0;
   }
 }

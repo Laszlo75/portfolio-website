@@ -1,15 +1,132 @@
 ---
 title: "Publications"
 description: "Peer-reviewed publications by Laszlo Szabo on kidney and pancreas transplantation, organ preservation, donor risk stratification, and surgical outcomes."
-nocite: |
-  @*
-
 title-block-banner: true
-
 format: html
-# toc: true
-# toc-depth: 2.0
+execute:
+  echo: false
+  warning: false
+  message: false
 ---
 
-::: {#refs}
-:::
+```{r}
+#| label: setup
+
+library(bibtex)
+
+clean_latex <- function(txt) {
+  if (is.null(txt) || txt == "") return(NULL)
+  txt <- gsub("\\{\\{|\\}\\}", "", txt)
+  txt <- gsub("\\{\\$<\\$\\}", "&lt;", txt)
+  txt <- gsub("\\{\\$>\\$\\}", "&gt;", txt)
+  txt <- gsub("\\\\%", "%", txt)
+  txt <- gsub("\\{\\$\\\\cdot\\$\\}", "&middot;", txt)
+  txt <- gsub("\\$\\\\cdot\\$", "&middot;", txt)
+  txt <- gsub("\\{\\\\textpm\\}", "&plusmn;", txt)
+  txt <- gsub("\\\\textpm", "&plusmn;", txt)
+  txt <- gsub("\\{\\\\textendash\\}", "&ndash;", txt)
+  txt <- gsub("\\\\textendash", "&ndash;", txt)
+  txt <- gsub("\\{\\\\textemdash\\}", "&mdash;", txt)
+  txt <- gsub("\\\\textemdash", "&mdash;", txt)
+  txt <- gsub("\\\\'\\{([a-zA-Z])\\}", "\\1", txt)
+  txt <- gsub("\\\\`\\{([a-zA-Z])\\}", "\\1", txt)
+  txt <- gsub("\\\\\\^\\{([a-zA-Z])\\}", "\\1", txt)
+  txt <- gsub("\\\\\"\\{([a-zA-Z])\\}", "\\1", txt)
+  txt <- gsub("\\{([^}]*)\\}", "\\1", txt)
+  txt <- gsub("\\\\[a-zA-Z]+", "", txt)
+  txt
+}
+
+pub_card_html <- function(title, authors, meta, doi, pmid, abstract) {
+  actions <- ""
+
+  if (!is.null(doi) && doi != "") {
+    actions <- paste0(actions,
+      '<a href="https://doi.org/', doi, '" class="pub-btn" ',
+      'target="_blank" rel="noopener">DOI</a>\n')
+  }
+
+  if (!is.null(pmid) && pmid != "") {
+    actions <- paste0(actions,
+      '<a href="https://pubmed.ncbi.nlm.nih.gov/', pmid, '/" class="pub-btn" ',
+      'target="_blank" rel="noopener">PubMed</a>\n')
+  }
+
+  if (!is.null(doi) && doi != "") {
+    actions <- paste0(actions,
+      '<a href="https://www.zotero.org/save?type=doi&q=', doi, '" ',
+      'class="pub-btn pub-btn-zotero" target="_blank" rel="noopener">Add to Zotero</a>\n')
+  }
+
+  if (!is.null(abstract) && abstract != "") {
+    actions <- paste0(actions,
+      '<details class="pub-abstract-details">\n',
+      '<summary class="pub-btn pub-btn-abstract">Abstract</summary>\n',
+      '<div class="pub-abstract-body">', abstract, '</div>\n',
+      '</details>\n')
+  }
+
+  paste0(
+    '<div class="pub-card">\n',
+    '<p class="pub-title">', title, '</p>\n',
+    '<p class="pub-authors">', authors, '</p>\n',
+    '<p class="pub-meta">', meta, '</p>\n',
+    '<div class="pub-actions">\n', actions, '</div>\n',
+    '</div>\n\n'
+  )
+}
+```
+
+```{r}
+#| label: publications
+#| output: asis
+
+bib <- suppressWarnings(suppressMessages(read.bib("assets/my-publication-list.bib")))
+years_vec <- as.integer(sapply(bib, function(e) e$year))
+bib_sorted <- bib[order(years_vec, decreasing = TRUE)]
+years_sorted <- as.integer(sapply(bib_sorted, function(e) e$year))
+unique_years <- unique(years_sorted)
+
+for (yr in unique_years) {
+  cat(paste0('<div class="pub-year-heading" role="heading" aria-level="2">', yr, '</div>\n\n'))
+
+  indices <- which(years_sorted == yr)
+
+  for (i in indices) {
+    e <- bib_sorted[[i]]
+
+    title <- gsub("[{}]", "", e$title)
+
+    if (length(e$author) > 6) {
+      authors_str <- paste(
+        sapply(1:6, function(j) format(e$author[j])),
+        collapse = ", "
+      )
+      authors_str <- paste0(authors_str, ", <em>et al.</em>")
+    } else {
+      authors_str <- paste(
+        sapply(seq_along(e$author), function(j) format(e$author[j])),
+        collapse = ", "
+      )
+    }
+    authors_str <- gsub(
+      "(L[aá]szl[oó]\\s+Szab[oó]|L\\.\\s+Szab[oó])",
+      '<strong class="pub-author-self">\\1</strong>',
+      authors_str
+    )
+
+    meta_parts <- c()
+    if (!is.null(e$journal)) meta_parts <- c(meta_parts, paste0("<em>", e$journal, "</em>"))
+    if (!is.null(e$volume))  meta_parts <- c(meta_parts, e$volume)
+    if (!is.null(e$number))  meta_parts <- c(meta_parts, paste0("(", e$number, ")"))
+    if (!is.null(e$pages))   meta_parts <- c(meta_parts, gsub("--", "\u2013", e$pages))
+    meta <- paste(meta_parts, collapse = " ")
+
+    doi      <- if (!is.null(e$doi))      e$doi      else NULL
+    pmid     <- if (!is.null(e$pmid))     e$pmid     else NULL
+    abstract <- clean_latex(e$abstract)
+
+    cat(pub_card_html(title, authors_str, meta, doi, pmid, abstract))
+  }
+}
+```

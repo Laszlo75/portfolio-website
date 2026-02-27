@@ -8,7 +8,6 @@ project:
     - robots.txt
     - llms.txt
 
-bibliography: assets/my-publication-list.bib
 
 website:
   site-url: "https://lszabo.me"

@@ -10,7 +10,7 @@ format:
     include-in-header: assets/schema-person.html
 about:
   template: trestles
-  image-shape: round
+  image-shape: rectangle
   image-width: 18em
   links:
     - icon: twitter
