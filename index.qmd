@@ -1,7 +1,7 @@
 ---
 title: "Laszlo Szabo"
 subtitle: "Consultant Transplant Surgeon at Cardiff Transplant Unit"
-description: ""
+description: "Academic portfolio of Laszlo Szabo, Consultant Transplant Surgeon at Cardiff Transplant Unit. Research in kidney and pancreas transplantation, organ preservation, and clinical data science."
 image: images/profile_pic.jpeg
 image-alt: "Photo of Laszlo Szabo, Consultant Transplant Surgeon"
 format:
@@ -51,3 +51,17 @@ I helped establish and now lead the **Normothermic Regional Perfusion (NRP) prog
 
 I apply R and data science methods to clinical transplant questions, from survival modelling and risk prediction to making better use of national organ offering data. I am also deeply enthusiastic about AI and its potential in medicine, and use **Claude** extensively in my research and analytical workflows.
 :::
+
+<!-- ## FAQ
+
+### What is normothermic regional perfusion (NRP)?
+
+Normothermic regional perfusion is a technique used after circulatory death (DCD) donation in which the donor's abdominal circulation is restored using an extracorporeal circuit, allowing organs to be assessed and reconditioned at body temperature before retrieval. NRP improves organ quality and viability, expanding the pool of usable organs. Cardiff is one of the UK centres running an established NRP programme.
+
+### What does the Cardiff Transplant Unit do?
+
+The Cardiff Transplant Unit at University Hospital of Wales performs kidney and pancreas transplants, organ retrievals, and vascular access surgery for patients across Wales and beyond. It collaborates with NHS Blood and Transplant (NHSBT) on national organ utilisation and allocation policy.
+
+### What research does Laszlo Szabo lead?
+
+My research focuses on improving transplant outcomes through better organ selection, preservation, and risk stratification. I am Principal Investigator on several multicentre studies, including PITHIA (pre-implantation kidney biopsy), POWAR (wound infection prophylaxis), and the COPE programme (oxygenated machine perfusion). I also work on data science methods applied to national organ offering data. -->

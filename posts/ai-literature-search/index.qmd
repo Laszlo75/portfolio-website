@@ -6,7 +6,7 @@ date: 2026-03-03
 categories: [AI, research methods, literature search]
 format:
   html:
-    include-in-header: ../../assets/schema-blogposting.html
+    include-in-header: ../../assets/schema-blogpost-ai.html
 ---
 
 Large language models like [Claude](https://claude.ai) are transforming how clinicians and researchers interact with the medical literature. But with great power comes a well-known hazard: **hallucination** — the confident generation of plausible-sounding but entirely fabricated citations, statistics, or clinical claims. For a transplant surgeon relying on accurate evidence to inform practice or prepare a manuscript, a hallucinated NEJM paper with a fictitious p-value is worse than useless. It is dangerous.

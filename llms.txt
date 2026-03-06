@@ -6,9 +6,11 @@
 
 Laszlo Szabo is a Consultant Transplant Surgeon specialising in kidney and pancreas transplantation, organ retrieval, organ utilisation, and perioperative outcomes. He leads initiatives to improve access to transplantation and optimise post-transplant care, collaborating with national programmes on organ utilisation policy and multicentre clinical studies.
 
-He established and runs the Normothermic Regional Perfusion (NRP) programme at Cardiff, improving organ quality assessment and expanding the use of DCD donor organs.
+He established and leads the Normothermic Regional Perfusion (NRP) programme at Cardiff, improving organ quality assessment and expanding the use of DCD donor organs.
 
-He applies R and data science methods to clinical transplant questions, including survival modelling, risk prediction, and analysis of national organ offering data.
+He applies R and data science methods to clinical transplant questions, including survival modelling, risk prediction, and analysis of national organ offering data. He is enthusiastic about AI in medicine and uses Claude extensively in his research and analytical workflows.
+
+He holds verified certificates in computer science (Harvard CS50) and AI (Anthropic Academy).
 
 ## Site Sections
 

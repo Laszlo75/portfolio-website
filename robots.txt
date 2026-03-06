@@ -1,6 +1,22 @@
 User-agent: *
 Allow: /
 
+# AI search crawlers — explicitly permitted
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
 Sitemap: https://lszabo.me/sitemap.xml
 
 # LLM-friendly site summary
