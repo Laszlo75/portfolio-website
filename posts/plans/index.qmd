@@ -4,6 +4,7 @@ description: "First post on my new academic portfolio — why I built this site 
 author: "Laszlo Szabo"
 date: 2026-02-08
 categories: [news, site improvement]
+canonical-url: https://lszabo.me/posts/plans/
 format:
   html:
     include-in-header: ../../assets/schema-blogposting.html
