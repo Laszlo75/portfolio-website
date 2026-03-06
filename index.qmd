@@ -1,7 +1,7 @@
 ---
 title: "Laszlo Szabo"
-subtitle: "Consultant Transplant Surgeon"
-description: "Laszlo Szabo is a Consultant Transplant Surgeon at Cardiff Transplant Unit, specialising in kidney and pancreas transplantation, organ utilisation, and clinical data science."
+subtitle: "Consultant Transplant Surgeon at Cardiff Transplant Unit"
+description: ""
 image: images/profile_pic.jpeg
 image-alt: "Photo of Laszlo Szabo, Consultant Transplant Surgeon"
 format:
@@ -30,9 +30,9 @@ about:
 toc: false
 ---
 
-I am a Consultant Transplant Surgeon at the **Cardiff Transplant Unit** with a clinical and research focus on kidney and pancreas transplantation, organ retrieval, organ utilisation, and perioperative outcomes.
+I am a Consultant Transplant Surgeon at the **Cardiff Transplant Unit**, specialising in kidney and pancreas transplantation, organ retrieval, organ utilisation, and perioperative outcomes.
 
-I lead initiatives aimed at improving access to transplantation, and optimising post-transplant care. I collaborate with national programmes to improve organ utilisation policy and contribute to multicentre clinical studies.
+My work sits at the intersection of surgery, data, and policy. I lead initiatives to improve access to transplantation and optimise post-transplant care, collaborating with national programmes on organ utilisation policy and contributing to multicentre clinical studies.
 
 ## Research Interests
 
@@ -47,7 +47,7 @@ I lead initiatives aimed at improving access to transplantation, and optimising 
 ## Current Work
 
 ::: {.highlight-block}
-I helped establish and now run the **Normothermic Regional Perfusion (NRP) programme** at Cardiff, improving organ quality assessment and expanding the use of DCD donor organs for transplantation.
+I helped establish and now lead the **Normothermic Regional Perfusion (NRP) programme** at Cardiff — improving organ quality assessment and expanding the use of DCD donor organs for transplantation.
 
-I am increasingly interested in applying R and data science methods to clinical transplant questions — from survival modelling and risk prediction to improving how we use national organ offering data.
+I apply R and data science methods to clinical transplant questions, from survival modelling and risk prediction to making better use of national organ offering data. I am also deeply enthusiastic about AI and its potential in medicine, and use **Claude** extensively in my research and analytical workflows.
 :::

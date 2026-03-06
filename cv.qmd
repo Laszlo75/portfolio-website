@@ -64,6 +64,54 @@ qualifications |>
   resume_entry(details = "detail")
 ```
 
+## Certificates
+
+```{r}
+#| label: certificates
+#| output: asis
+
+certs <- read.csv("data/certificates.csv")
+certs <- certs[order(as.numeric(certs$date), decreasing = TRUE), ]
+
+# Write raw Typst inside a passthrough block so Pandoc doesn't touch it.
+# Content blocks [] allow #link() to be evaluated (strings "" do not).
+lines <- c("```{=typst}")
+for (i in seq_len(nrow(certs))) {
+  row <- certs[i, ]
+  if (!is.na(row$url) && row$url != "") {
+    lines <- c(
+      lines,
+      paste0(
+        '#resume-entry(title: "',
+        row$title,
+        '", date: "',
+        row$date,
+        '", description: [',
+        row$issuer,
+        ' #link("',
+        row$url,
+        '")[\u2197]])'
+      )
+    )
+  } else {
+    lines <- c(
+      lines,
+      paste0(
+        '#resume-entry(title: "',
+        row$title,
+        '", date: "',
+        row$date,
+        '", description: "',
+        row$issuer,
+        '")'
+      )
+    )
+  }
+}
+lines <- c(lines, "```")
+cat(paste(lines, collapse = "\n"), "\n")
+```
+
 ## Work Experience
 
 ```{r}
@@ -74,12 +122,18 @@ work <- read.csv("data/work.csv")
 
 # Convert to Date for format_date(); "present" becomes NA (shown as "Present")
 work$start <- as.Date(paste0(work$start, "-01-01"))
-work$end <- as.Date(ifelse(work$end == "present", NA, paste0(work$end, "-01-01")))
+work$end <- as.Date(ifelse(
+  work$end == "present",
+  NA,
+  paste0(work$end, "-01-01")
+))
 
 work |>
   format_date(end = "end", date_format = "%Y", sort_by = "start") |>
   resume_entry()
 ```
+
+\newpage
 
 ## Leadership Roles
 
@@ -94,8 +148,6 @@ names(roles)[names(roles) == "organisation"] <- "description"
 
 resume_entry(roles)
 ```
-
-\newpage
 
 ## Research
 

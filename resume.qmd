@@ -20,11 +20,19 @@ cv_entry_html <- function(
   subtitle = NULL,
   location = NULL,
   date = NULL,
-  details = NULL
+  details = NULL,
+  url = NULL
 ) {
   out <- '<div class="cv-entry">\n'
   out <- paste0(out, '<div class="cv-entry-header">\n')
-  out <- paste0(out, glue('<span class="cv-entry-title">{title}</span>\n'))
+  if (!is.null(url) && url != "") {
+    out <- paste0(out, '<span class="cv-entry-title-group">\n')
+    out <- paste0(out, glue('<span class="cv-entry-title">{title}</span>\n'))
+    out <- paste0(out, glue('<a href="{url}" class="cv-cert-badge" target="_blank" rel="noopener">Verified &#8599;</a>\n'))
+    out <- paste0(out, '</span>\n')
+  } else {
+    out <- paste0(out, glue('<span class="cv-entry-title">{title}</span>\n'))
+  }
   if (!is.null(date) && date != "") {
     out <- paste0(out, glue('<span class="cv-entry-date">{date}</span>\n'))
   }
@@ -71,6 +79,19 @@ qualifications <- qualifications[order(as.numeric(qualifications$date), decreasi
 for (i in seq_len(nrow(qualifications))) {
   row <- qualifications[i, ]
   cat(cv_entry_html(row$title, row$description, row$location, row$date, row$detail))
+}
+```
+
+## Certificates
+
+```{r}
+#| label: certificates
+#| output: asis
+certs <- read.csv("data/certificates.csv")
+certs <- certs[order(as.numeric(certs$date), decreasing = TRUE), ]
+for (i in seq_len(nrow(certs))) {
+  row <- certs[i, ]
+  cat(cv_entry_html(row$title, row$issuer, date = row$date, url = row$url))
 }
 ```
 

@@ -461,6 +461,32 @@ dt {
   font-style: italic;
 }
 
+/* Certificate title + badge group */
+.cv-entry-title-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+/* Certificate verified badge */
+.cv-cert-badge {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.15em 0.55em;
+  border-radius: 4px;
+  background: var(--accent);
+  color: #fff;
+  text-decoration: none;
+  margin-left: 0.5em;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.cv-cert-badge:hover {
+  opacity: 0.82;
+  color: #fff;
+}
+
 /* CV v2 Skills rows */
 .skill-row {
   display: flex;
