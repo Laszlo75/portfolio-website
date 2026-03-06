@@ -21,4 +21,4 @@ Sitemap: https://lszabo.me/sitemap.xml
 
 # LLM-friendly site summary
 # See https://llmstxt.org/
-llms.txt: https://lszabo.me/llms.txt
+# llms.txt: https://lszabo.me/llms.txt
