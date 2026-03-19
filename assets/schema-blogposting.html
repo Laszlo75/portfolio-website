@@ -1,23 +1,81 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "Hello World - Why I Built This Site",
-  "description": "First post on my new academic portfolio — why I built this site with Quarto and R, and what to expect from a transplant surgeon who codes.",
-  "datePublished": "2026-02-08",
-  "author": {
-    "@type": "Person",
-    "name": "Laszlo Szabo",
-    "jobTitle": "Consultant Transplant Surgeon",
-    "url": "https://lszabo.me/"
-  },
-  "publisher": {
-    "@type": "Person",
-    "name": "Laszlo Szabo"
-  },
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://lszabo.me/posts/plans/"
-  }
+  "@graph": [
+    {
+      "@type": "BlogPosting",
+      "@id": "https://lszabo.me/posts/plans/#article",
+      "headline": "Why a Transplant Surgeon Built an Academic Site with Quarto",
+      "description": "A transplant surgeon explains why he built an academic portfolio with Quarto and R, and what to expect from this blog.",
+      "datePublished": "2026-02-08",
+      "dateModified": "2026-03-19",
+      "author": {
+        "@id": "https://lszabo.me/#person"
+      },
+      "publisher": {
+        "@id": "https://lszabo.me/#person"
+      },
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://lszabo.me/posts/plans/hero.jpg",
+        "width": 1200,
+        "height": 675,
+        "caption": "A desk workspace with a laptop showing data visualizations next to a stethoscope, representing medicine meets data science",
+        "creditText": "AI-generated image via Gemini"
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://lszabo.me/posts/plans/"
+      },
+      "wordCount": 768,
+      "articleSection": "News",
+      "keywords": ["Quarto", "R", "academic portfolio", "transplant surgery", "data science", "NHS"],
+      "inLanguage": "en-GB"
+    },
+    {
+      "@type": "Person",
+      "@id": "https://lszabo.me/#person",
+      "name": "Laszlo Szabo",
+      "jobTitle": "Consultant Transplant Surgeon",
+      "url": "https://lszabo.me/",
+      "sameAs": [
+        "https://orcid.org/0000-0002-6881-1542",
+        "https://www.linkedin.com/in/drszabolaszlo/",
+        "https://x.com/drszabolaszlo",
+        "https://github.com/Laszlo75",
+        "https://www.researchgate.net/profile/Laszlo-Szabo-8"
+      ],
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Cardiff Transplant Unit",
+        "url": "https://cavuhb.nhs.wales/"
+      },
+      "knowsAbout": ["kidney transplantation", "pancreas transplantation", "organ utilisation", "data science", "R programming"]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://lszabo.me/posts/plans/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://lszabo.me/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Posts",
+          "item": "https://lszabo.me/posts.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Why a Transplant Surgeon Built an Academic Site with Quarto",
+          "item": "https://lszabo.me/posts/plans/"
+        }
+      ]
+    }
+  ]
 }
 </script>

@@ -1,24 +1,40 @@
 ---
-title: "Using Claude for Medical Literature Search: A Practical Guide to Avoiding Hallucinations"
-description: "How to use Claude effectively for medical literature search — prompt engineering, PubMed connectors, and habits that prevent hallucinated citations."
+title: "Claude for Medical Literature Search: Avoid Hallucinations"
+description: "5 habits that prevent hallucinated citations when using Claude for medical literature search, with PubMed connector setup and a complete workflow guide."
 author: "Laszlo Szabo"
 date: 2026-03-03
+date-modified: 2026-03-19
 categories: [AI, research methods, literature search]
 canonical-url: https://lszabo.me/posts/ai-literature-search/
+image: hero.jpg
 format:
   html:
     include-in-header: ../../assets/schema-blogpost-ai.html
 ---
 
-Large language models like [Claude](https://claude.ai) are transforming how clinicians and researchers interact with the medical literature. But with great power comes a well-known hazard: **hallucination** — the confident generation of plausible-sounding but entirely fabricated citations, statistics, or clinical claims. For a transplant surgeon relying on accurate evidence to inform practice or prepare a manuscript, a hallucinated NEJM paper with a fictitious p-value is worse than useless. It is dangerous.
+![Photo by [National Cancer Institute](https://unsplash.com/@nci) on [Unsplash](https://unsplash.com).](hero.jpg){fig-alt="Medical professional typing on a laptop computer with a stethoscope resting on the desk, representing AI-assisted medical literature search"}
 
-This post is a practical guide to using Claude effectively and safely for medical literature search — covering prompt engineering principles, direct [PubMed](https://pubmed.ncbi.nlm.nih.gov) integration via Claude's connectors, and a set of habits that make the difference between a reliable research assistant and a confident confabulator.
+Large language models like [Claude](https://claude.ai) are transforming how [clinicians and researchers](/resume.qmd) interact with the medical literature. But with great power comes a well-known hazard: **hallucination**, the confident generation of plausible-sounding but entirely fabricated citations, statistics, or clinical claims. For a [transplant surgeon](/posts/plans/) relying on accurate evidence to inform practice or prepare a manuscript, a hallucinated NEJM paper with a fictitious p-value is worse than useless. It is dangerous.
 
-## Why LLMs Hallucinate Medical Citations
+I learned this the hard way. Early in my experiments with AI-assisted literature work, the model confidently produced a "systematic review" on machine perfusion outcomes, complete with a DOI, author list, and sample size. It looked perfect. It did not exist. That experience shaped every habit in this guide.
+
+This post is a practical guide to using Claude effectively and safely for medical literature search, covering prompt engineering principles, direct [PubMed](https://pubmed.ncbi.nlm.nih.gov) integration via the model's connectors, and a set of habits that make the difference between a reliable research assistant and a confident confabulator.
+
+:::{.callout-tip}
+## Key Takeaways
+
+1. **Never ask Claude to recall citations from memory.** Use Claude to build search strategies and synthesize evidence; let [PubMed](https://pubmed.ncbi.nlm.nih.gov) do the retrieving.
+2. **Enable the PubMed MCP connector** on [claude.ai](https://claude.ai) for real-time, verified database searches.
+3. **Frame questions in PICO format** to get precise, comprehensive Boolean search strings.
+4. **Paste abstracts in** rather than asking Claude to summarize papers from memory.
+5. **Always verify PMIDs and statistics** before citing anything in your work.
+:::
+
+## Why Do LLMs Hallucinate Medical Citations?
 
 Understanding the mechanism helps you design better safeguards.
 
-Claude and other LLMs were trained on large corpora of text, including abstracts, preprints, and biomedical articles. The model learned statistical patterns across this corpus — but it does not have a live database connection, nor does it have an indexed, verifiable list of every paper ever published. When asked to recall a specific citation, the model is performing **pattern completion**, not database retrieval. It "knows" that papers about tacrolimus nephrotoxicity exist and roughly what they look like, so it generates one — sometimes real, sometimes a convincing chimera of several real papers fused together.
+LLMs like Claude were trained on large corpora of text, including abstracts, preprints, and biomedical articles. The model learned statistical patterns across this corpus, but it does not have a live database connection, nor does it have an indexed, verifiable list of every paper ever published. When asked to recall a specific citation, the model is performing **pattern completion**, not database retrieval. It "knows" that papers about tacrolimus nephrotoxicity exist and roughly what they look like, so it generates one: sometimes real, sometimes a convincing chimera of several real papers fused together.
 
 The three most common failure modes are:
 
@@ -28,46 +44,46 @@ The three most common failure modes are:
 
 The good news: all three are largely preventable with the right workflow.
 
-## The Golden Rule: Separate Generation from Retrieval
+## What Is the Golden Rule for AI Literature Search?
 
 The single most important principle is this:
 
-> **Never ask Claude to retrieve citations from memory. Use Claude to help you search, interpret, and synthesise — but let verified databases do the retrieving.**
+> **Never ask Claude to retrieve citations from memory. Use Claude to help you search, interpret, and synthesise, but let verified databases do the retrieving.**
 
 Instead of:
 
 ```
-❌ "What are the key papers on pancreas transplant outcomes in the UK?"
+"What are the key papers on pancreas transplant outcomes in the UK?"
 ```
 
 Use:
 
 ```
-✓ "Help me construct a PubMed search string to find papers on pancreas
-   transplant outcomes in the UK, published in the last 10 years, focusing
-   on graft survival and patient-reported outcomes."
+"Help me construct a PubMed search string to find papers on pancreas
+ transplant outcomes in the UK, published in the last 10 years, focusing
+ on graft survival and patient-reported outcomes."
 ```
 
-The first prompt invites Claude to reach into its weights and produce citations it cannot verify. The second uses Claude's genuine strength — reasoning about search strategy — while keeping actual retrieval in [PubMed](https://pubmed.ncbi.nlm.nih.gov) where it belongs.
+The first prompt invites Claude to reach into its weights and produce citations it cannot verify. The second uses Claude's genuine strength, reasoning about search strategy, while keeping actual retrieval in [PubMed](https://pubmed.ncbi.nlm.nih.gov) where it belongs.
 
-## What Is PICO Format?
+## What Is PICO Format and Why Does It Matter?
 
-Before diving into prompting techniques, it is worth explaining a framework that underpins good literature searching: **PICO**.
+Before getting into prompting techniques, it is worth explaining a framework that underpins good literature searching: **PICO**.
 
 PICO is a structure from evidence-based medicine that forces you to be precise about your clinical question before you start searching. It stands for:
 
-- **P — Population/Patient/Problem** — Who are you asking the question about? e.g. *adult kidney transplant recipients with delayed graft function*
-- **I — Intervention** — What treatment, exposure, or factor are you interested in? e.g. *extended-release tacrolimus*
-- **C — Comparison** — What is the alternative or control? e.g. *immediate-release tacrolimus* (sometimes omitted if there is no comparator)
-- **O — Outcome** — What are you trying to measure? e.g. *graft survival at 12 months, eGFR, rejection rate*
+- **P -- Population/Patient/Problem** — Who are you asking the question about? e.g. *adult kidney transplant recipients with delayed graft function*
+- **I -- Intervention** — What treatment, exposure, or factor are you interested in? e.g. *extended-release tacrolimus*
+- **C -- Comparison** — What is the alternative or control? e.g. *immediate-release tacrolimus* (sometimes omitted if there is no comparator)
+- **O -- Outcome** — What are you trying to measure? e.g. *graft survival at 12 months, eGFR, rejection rate*
 
-Each element maps naturally onto search terms: your P and I give you the core MeSH terms and keywords, your C narrows the results, and your O helps you filter for relevance. It forces precision before you start searching — which prevents the common mistake of running broad, unfocused queries that return thousands of irrelevant results.
+Each element maps naturally onto search terms: your P and I give you the core MeSH terms and keywords, your C narrows the results, and your O helps you filter for relevance. It forces precision before you start searching, which prevents the common mistake of running broad, unfocused queries that return thousands of irrelevant results.
 
-There is also an extended version, **PICOS**, which adds **S — Study design** (e.g. RCTs only, cohort studies, systematic reviews) — useful when you want to filter by level of evidence from the outset. The [Cochrane Handbook](https://training.cochrane.org/handbook) has an excellent primer on PICO for those wanting to go deeper.
+There is also an extended version, **PICOS**, which adds **S -- Study design** (e.g. RCTs only, cohort studies, systematic reviews), useful when you want to filter by level of evidence from the outset. The [Cochrane Handbook](https://training.cochrane.org/handbook) has an excellent primer on PICO for those wanting to go deeper.
 
-PICO is the perfect input format for Claude. A well-formed PICO question gives Claude exactly what it needs to generate a high-quality, comprehensive Boolean search string — as you will see below.
+PICO is the perfect input format for an LLM. A well-formed PICO question gives the model exactly what it needs to generate a high-quality, comprehensive Boolean search string, as you will see below.
 
-## Prompt Engineering for Literature Search
+## How Should You Prompt Claude for Literature Search?
 
 ### 1. Be Explicit About the Task Boundary
 
@@ -100,9 +116,11 @@ This produces something like:
 
 ```
 ("tacrolimus"[MeSH Terms] OR "tacrolimus"[tiab])
-AND ("delayed-action preparations"[MeSH Terms] OR "extended release"[tiab] OR "Advagraf"[tiab])
+AND ("delayed-action preparations"[MeSH Terms] OR "extended release"[tiab]
+     OR "Advagraf"[tiab])
 AND ("kidney transplantation"[MeSH Terms])
-AND ("graft survival"[MeSH Terms] OR "glomerular filtration rate"[tiab] OR "renal function"[tiab])
+AND ("graft survival"[MeSH Terms] OR "glomerular filtration rate"[tiab]
+     OR "renal function"[tiab])
 ```
 
 You paste this directly into [PubMed](https://pubmed.ncbi.nlm.nih.gov). Claude built the strategy; PubMed does the retrieval.
@@ -112,9 +130,9 @@ You paste this directly into [PubMed](https://pubmed.ncbi.nlm.nih.gov). Claude b
 When you have real search results, paste the abstracts in. This eliminates hallucination risk entirely for the material Claude is working with:
 
 ```
-Here are abstracts of 5 papers I found on PubMed. Please summarise the key findings
-on graft survival outcomes, note methodological differences, and highlight
-contradictory findings between studies.
+Here are abstracts of 5 papers I found on PubMed. Please summarise the key
+findings on graft survival outcomes, note methodological differences, and
+highlight contradictory findings between studies.
 
 [PASTE ABSTRACTS HERE]
 ```
@@ -123,7 +141,7 @@ Treat Claude like a fast, well-read colleague you have handed a stack of papers.
 
 ### 4. Ask Claude to Flag Uncertainty
 
-Claude is capable of calibrated uncertainty — but you have to ask for it:
+Claude is capable of calibrated uncertainty, but you have to ask for it:
 
 ```
 When summarising these papers, explicitly flag:
@@ -135,7 +153,7 @@ Use phrases like "based on this abstract alone..." or
 "I cannot confirm this from the text provided..."
 ```
 
-### 5. Structured Output for Systematic Reviews
+### 5. How Can Claude Help with Systematic Reviews?
 
 For [PRISMA](https://www.prisma-statement.org)-style work, ask for structured summaries you can feed into [Rayyan](https://www.rayyan.ai) or [Covidence](https://www.covidence.org):
 
@@ -151,15 +169,15 @@ For each abstract I paste, produce a structured summary with:
 Return as a markdown table.
 ```
 
-## Using Claude's Native Connectors: PubMed, Scholar Gateway & bioRxiv
+## How Do Claude's PubMed, Scholar Gateway and bioRxiv Connectors Work?
 
-This is where the workflow becomes genuinely powerful. [Claude](https://claude.ai) on claude.ai supports native integrations through **MCP (Model Context Protocol) connectors** — giving Claude real-time tool access to external databases. The connectors relevant to medical literature search are:
+This is where the workflow becomes genuinely powerful. [Claude](https://claude.ai) on claude.ai supports native integrations through **MCP (Model Context Protocol) connectors**, giving Claude real-time tool access to external databases. The connectors relevant to medical literature search are:
 
 ### PubMed Connector
 
-When enabled, Claude can **directly query [PubMed](https://pubmed.ncbi.nlm.nih.gov)** and return verified results — real PMIDs, real abstracts, real author lists. This fundamentally closes the hallucination loop for citation retrieval.
+When enabled, Claude can **directly query [PubMed](https://pubmed.ncbi.nlm.nih.gov)** and return verified results: real PMIDs, real abstracts, real author lists. This fundamentally closes the hallucination loop for citation retrieval.
 
-**To enable:** [Claude.ai](https://claude.ai) → **Settings → Connectors** → enable **PubMed**
+**To enable:** [Claude.ai](https://claude.ai) -> **Settings -> Connectors** -> enable **PubMed**
 
 With the connector active:
 
@@ -169,54 +187,59 @@ inhibitors in kidney transplant recipients, published since 2018. Return titles,
 PMIDs, and a one-sentence summary of each.
 ```
 
-Claude executes the search against the live PubMed API. Because citations come from the database — not from Claude's weights — they are verifiable and real.
+Claude executes the search against the live PubMed API. Because citations come from the database, not from Claude's weights, they are verifiable and real.
 
 **Best practice with the connector:**
 
-- Always request PMIDs alongside every citation — they are your verification handle
+- Always request PMIDs alongside every citation; they are your verification handle
 - Follow up with: *"Retrieve the abstract for each paper and summarise the primary outcome"*
 - Cross-check key statistics: *"What does the abstract specifically say about [outcome]? Quote directly"*
 
 ### Scholar Gateway Connector
 
-[Scholar Gateway](https://scholargateway.com) provides access to broader peer-reviewed literature beyond [MEDLINE](https://www.nlm.nih.gov/medline/index.html)'s scope — useful for health economics, implementation science, or social determinants questions. Enable it alongside PubMed:
+[Scholar Gateway](https://scholargateway.com) provides access to broader peer-reviewed literature beyond [MEDLINE](https://www.nlm.nih.gov/medline/index.html)'s scope, useful for health economics, implementation science, or social determinants questions. Enable it alongside PubMed:
 
 ```
 Search both PubMed (clinical trials and systematic reviews) and Scholar Gateway
-(health policy and economic analyses) on the cost-effectiveness of SPK transplantation
-versus kidney-alone transplantation.
+(health policy and economic analyses) on the cost-effectiveness of SPK
+transplantation versus kidney-alone transplantation.
 ```
 
 ### bioRxiv/medRxiv Connector
 
-The [bioRxiv](https://www.biorxiv.org) / [medRxiv](https://www.medrxiv.org) connector gives Claude access to preprints — a double-edged tool. You get cutting-edge work before peer review, but findings may change substantially. Always flag preprint status:
+The [bioRxiv](https://www.biorxiv.org) / [medRxiv](https://www.medrxiv.org) connector gives the model access to preprints, a double-edged tool. You get the latest work before peer review, but findings may change substantially. Always flag preprint status:
 
 ```
-Search medRxiv for recent preprints on machine learning models for deceased donor
-kidney quality scoring. Mark each result clearly as [PREPRINT — not peer reviewed]
-and note the submission date.
+Search medRxiv for recent preprints on machine learning models for deceased
+donor kidney quality scoring. Mark each result clearly as
+[PREPRINT - not peer reviewed] and note the submission date.
 ```
 
-## A Complete Workflow: Grant Background Section on DCD Outcomes
+## What Does a Complete Literature Search Workflow Look Like?
 
-**Step 1 — Frame the question**
+Here is the five-step workflow I now use for every [literature-heavy writing task](/publications.qmd). This example covers a grant background section on DCD versus DBD kidney transplantation outcomes, but the pattern works for any clinical question.
+
+![Five-step safe literature search workflow with Claude: frame your question, build the search strategy, execute in PubMed, synthesize with Claude, and verify before citing.](workflow-diagram.svg){fig-alt="Workflow diagram showing five steps for safe AI-assisted literature search: 1. Frame your question using PICO format, 2. Build search strategy with Claude generating Boolean and MeSH terms, 3. Execute in PubMed for database retrieval, 4. Synthesize with Claude by pasting abstracts for structured output, 5. Verify before citing by checking PMIDs and confirming statistics"}
+
+**Step 1 -- Frame the question**
 
 ```
-I am preparing a grant background section on DCD versus DBD kidney transplantation.
-Key outcomes: delayed graft function, 1-year graft survival, eGFR at 12 months.
-Time frame: 2015-2025. Study types: RCTs, cohorts n>100, systematic reviews.
+I am preparing a grant background section on DCD versus DBD kidney
+transplantation. Key outcomes: delayed graft function, 1-year graft survival,
+eGFR at 12 months. Time frame: 2015-2025. Study types: RCTs, cohorts n>100,
+systematic reviews.
 ```
 
-**Step 2 — Generate the search strategy**
+**Step 2 -- Generate the search strategy**
 
 ```
 Generate a PubMed Boolean search string. Include MeSH terms for DCD and DBD.
 Suggest date and publication type filters.
 ```
 
-**Step 3 — Execute** (via connector, or run in [PubMed](https://pubmed.ncbi.nlm.nih.gov) and paste results)
+**Step 3 -- Execute** (via connector, or run in [PubMed](https://pubmed.ncbi.nlm.nih.gov) and paste results)
 
-**Step 4 — Structured synthesis**
+**Step 4 -- Structured synthesis**
 
 ```
 Here are 12 abstracts from my search. Please produce:
@@ -227,14 +250,14 @@ Here are 12 abstracts from my search. Please produce:
     Do not add citations from memory.
 ```
 
-**Step 5 — Verify before you cite.** For every paper entering your final document: look up the PMID on [PubMed](https://pubmed.ncbi.nlm.nih.gov), confirm author list and journal, check that the statistic Claude quoted matches the abstract. Thirty seconds per paper.
+**Step 5 -- Verify before you cite.** For every paper entering your final document: look up the PMID on [PubMed](https://pubmed.ncbi.nlm.nih.gov), confirm author list and journal, check that the statistic Claude quoted matches the abstract. Thirty seconds per paper.
 
-## Red Flags: When to Be Extra Cautious
+## What Are the Red Flags for Hallucinated Citations?
 
 Watch for these warning signs:
 
 - Claude produces a citation without a PMID, or the PMID returns no results in [PubMed](https://pubmed.ncbi.nlm.nih.gov)
-- A journal name sounds plausible but unfamiliar — check it in the [NLM catalogue](https://www.ncbi.nlm.nih.gov/nlmcatalog)
+- A journal name sounds plausible but unfamiliar. Check it in the [NLM catalogue](https://www.ncbi.nlm.nih.gov/nlmcatalog)
 - Statistics are precisely stated but not sourced from a pasted abstract
 - Claude answers a specific clinical question confidently without invoking a connector
 
@@ -252,24 +275,46 @@ Apply the simple test: **"What PMID supports that?"** If Claude cannot produce a
 
 ## Further Reading and Tools
 
-- [Claude.ai](https://claude.ai) — Anthropic's interface, where connectors are configured
-- [Anthropic prompt engineering guide](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview) — official documentation on getting the best from Claude
-- [PubMed](https://pubmed.ncbi.nlm.nih.gov) — NLM's biomedical literature database
-- [MeSH Browser](https://meshb.nlm.nih.gov) — find the right controlled vocabulary terms for your search
-- [PRISMA Statement](https://www.prisma-statement.org) — reporting guidelines for systematic reviews and meta-analyses
-- [Cochrane Handbook](https://training.cochrane.org/handbook) — the definitive guide to systematic review methodology, including PICO
-- [Cochrane Library](https://www.cochranelibrary.com) — high-quality systematic reviews and meta-analyses
-- [Rayyan](https://www.rayyan.ai) — free tool for screening abstracts in systematic reviews
-- [Covidence](https://www.covidence.org) — systematic review management platform
-- [bioRxiv](https://www.biorxiv.org) / [medRxiv](https://www.medrxiv.org) — preprint servers for biology and health sciences
-- [NLM Journal Catalogue](https://www.ncbi.nlm.nih.gov/nlmcatalog) — verify that a journal actually exists before citing it
+- [Claude.ai](https://claude.ai) -- Anthropic's interface, where connectors are configured
+- [Anthropic prompt engineering guide](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview) -- official documentation on getting the best from Claude
+- [PubMed](https://pubmed.ncbi.nlm.nih.gov) -- NLM's biomedical literature database
+- [MeSH Browser](https://meshb.nlm.nih.gov) -- find the right controlled vocabulary terms for your search
+- [PRISMA Statement](https://www.prisma-statement.org) -- reporting guidelines for systematic reviews and meta-analyses
+- [Cochrane Handbook](https://training.cochrane.org/handbook) -- the definitive guide to systematic review methodology, including PICO
+- [Cochrane Library](https://www.cochranelibrary.com) -- high-quality systematic reviews and meta-analyses
+- [Rayyan](https://www.rayyan.ai) -- free tool for screening abstracts in systematic reviews
+- [Covidence](https://www.covidence.org) -- systematic review management platform
+- [bioRxiv](https://www.biorxiv.org) / [medRxiv](https://www.medrxiv.org) -- preprint servers for biology and health sciences
+- [NLM Journal Catalogue](https://www.ncbi.nlm.nih.gov/nlmcatalog) -- verify that a journal actually exists before citing it
+
+## Frequently Asked Questions {#faq}
+
+**Can Claude replace PubMed for literature searching?**
+
+No. Claude is not a citation database. It cannot guarantee that any reference it generates from memory is real. Use Claude to build search strategies, interpret abstracts, and synthesize findings. Let [PubMed](https://pubmed.ncbi.nlm.nih.gov) and other verified databases handle the actual retrieval. The PubMed MCP connector bridges this gap by giving Claude live access to the database.
+
+**How do I enable the PubMed connector on Claude?**
+
+Go to [claude.ai](https://claude.ai), open **Settings**, then **Connectors**, and toggle on **PubMed**. Once enabled, Claude can query PubMed directly during your conversation and return verified PMIDs, titles, and abstracts. You can also enable Scholar Gateway and bioRxiv/medRxiv connectors from the same settings page.
+
+**What is the best prompt format for medical literature search?**
+
+Frame your clinical question using the **PICO format** (Population, Intervention, Comparison, Outcome), then ask Claude to generate a PubMed Boolean search string with MeSH terms. This produces precise, comprehensive queries that you can paste directly into PubMed. Adding a study design filter (PICOS) narrows results to your preferred level of evidence.
+
+**How can I tell if Claude has hallucinated a citation?**
+
+Ask for the PMID. If Claude cannot provide one, or the PMID returns no results on [PubMed](https://pubmed.ncbi.nlm.nih.gov), the citation is likely fabricated. Other red flags: unfamiliar journal names (check the [NLM catalogue](https://www.ncbi.nlm.nih.gov/nlmcatalog)), precisely stated statistics not sourced from a pasted abstract, and confident clinical answers given without using a connector.
+
+**Is Claude useful for systematic reviews?**
+
+Yes, at specific stages. Claude can help build search strategies, screen abstracts for relevance, extract structured data from pasted papers, identify evidence gaps, and draft narrative summaries. It cannot replace the systematic review methodology itself. Use it alongside tools like [Rayyan](https://www.rayyan.ai) or [Covidence](https://www.covidence.org) for abstract screening, and always follow [PRISMA](https://www.prisma-statement.org) guidelines.
 
 ## Final Thought
 
-Claude is not a replacement for [PubMed](https://pubmed.ncbi.nlm.nih.gov), [Cochrane](https://www.cochranelibrary.com), or your own critical appraisal skills. It is an exceptionally capable research assistant that can compress hours of search strategy, abstract screening, and evidence synthesis into minutes — but only if you structure the interaction to play to its strengths while guarding against its failure modes.
+No AI model is a replacement for [PubMed](https://pubmed.ncbi.nlm.nih.gov), [Cochrane](https://www.cochranelibrary.com), or your own critical appraisal skills. But Claude is an exceptionally capable research assistant that can compress hours of search strategy, abstract screening, and evidence synthesis into minutes, provided you structure the interaction to play to its strengths while guarding against its failure modes.
 
 Used well, it changes how you work. Used naively, it will invent a landmark trial you will spend 20 minutes trying to find.
 
-The MCP connectors — particularly the native PubMed integration — are the real game-changer. They transform Claude from a pattern-completion engine into a grounded, database-backed research tool. Enable them, use them, and combine them with the prompt discipline above.
+The MCP connectors, particularly the native PubMed integration, are what make the difference. They transform an LLM from a pattern-completion engine into a grounded, database-backed research tool. Enable them, use them, and combine them with the prompt discipline above.
 
-Your systematic reviews will thank you.
+Your [publications](/publications.qmd) and systematic reviews will thank you.

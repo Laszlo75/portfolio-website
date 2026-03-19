@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 320" role="img" aria-label="Five-step workflow for using Claude in medical literature search: Frame your question, build search strategy, execute in PubMed, synthesize with Claude, verify before citing">
+  <style>
+    .step-box { rx: 12; ry: 12; stroke-width: 2; }
+    .step-text { font-family: 'Source Sans 3', 'Source Sans Pro', system-ui, sans-serif; font-size: 14px; font-weight: 600; text-anchor: middle; }
+    .step-sub { font-family: 'Source Sans 3', 'Source Sans Pro', system-ui, sans-serif; font-size: 11px; text-anchor: middle; opacity: 0.8; }
+    .step-num { font-family: 'Source Serif 4', 'Source Serif Pro', Georgia, serif; font-size: 22px; font-weight: 700; text-anchor: middle; }
+    .arrow { stroke-width: 2.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .title-text { font-family: 'Source Serif 4', 'Source Serif Pro', Georgia, serif; font-size: 18px; font-weight: 700; text-anchor: middle; }
+    .tool-badge { rx: 8; ry: 8; }
+    .badge-text { font-family: 'Source Sans 3', 'Source Sans Pro', system-ui, sans-serif; font-size: 10px; font-weight: 600; text-anchor: middle; }
+  </style>
+
+  <!-- Background -->
+  <rect width="900" height="320" fill="transparent" />
+
+  <!-- Title -->
+  <text x="450" y="32" class="title-text" fill="#2c3e50">Safe Literature Search Workflow with Claude</text>
+
+  <!-- Step 1: Frame Question -->
+  <rect x="20" y="60" width="150" height="120" class="step-box" fill="#e8f4f8" stroke="#1a7a8a" />
+  <text x="95" y="90" class="step-num" fill="#1a7a8a">1</text>
+  <text x="95" y="112" class="step-text" fill="#2c3e50">Frame Your</text>
+  <text x="95" y="128" class="step-text" fill="#2c3e50">Question</text>
+  <text x="95" y="150" class="step-sub" fill="#555">Use PICO format</text>
+  <text x="95" y="164" class="step-sub" fill="#555">to define scope</text>
+
+  <!-- Arrow 1→2 -->
+  <path d="M 170 120 L 192 120" class="arrow" stroke="#1a7a8a" />
+  <polygon points="192,115 202,120 192,125" fill="#1a7a8a" />
+
+  <!-- Step 2: Build Strategy -->
+  <rect x="202" y="60" width="150" height="120" class="step-box" fill="#e8f4f8" stroke="#1a7a8a" />
+  <text x="277" y="90" class="step-num" fill="#1a7a8a">2</text>
+  <text x="277" y="112" class="step-text" fill="#2c3e50">Build Search</text>
+  <text x="277" y="128" class="step-text" fill="#2c3e50">Strategy</text>
+  <text x="277" y="150" class="step-sub" fill="#555">Claude generates</text>
+  <text x="277" y="164" class="step-sub" fill="#555">Boolean + MeSH</text>
+
+  <!-- Arrow 2→3 -->
+  <path d="M 352 120 L 374 120" class="arrow" stroke="#1a7a8a" />
+  <polygon points="374,115 384,120 374,125" fill="#1a7a8a" />
+
+  <!-- Step 3: Execute in PubMed -->
+  <rect x="384" y="60" width="150" height="120" class="step-box" fill="#d4edda" stroke="#28a745" />
+  <text x="459" y="90" class="step-num" fill="#28a745">3</text>
+  <text x="459" y="112" class="step-text" fill="#2c3e50">Execute in</text>
+  <text x="459" y="128" class="step-text" fill="#2c3e50">PubMed</text>
+  <text x="459" y="150" class="step-sub" fill="#555">Database retrieval,</text>
+  <text x="459" y="164" class="step-sub" fill="#555">not model memory</text>
+
+  <!-- Arrow 3→4 -->
+  <path d="M 534 120 L 556 120" class="arrow" stroke="#1a7a8a" />
+  <polygon points="556,115 566,120 556,125" fill="#1a7a8a" />
+
+  <!-- Step 4: Synthesize -->
+  <rect x="566" y="60" width="150" height="120" class="step-box" fill="#e8f4f8" stroke="#1a7a8a" />
+  <text x="641" y="90" class="step-num" fill="#1a7a8a">4</text>
+  <text x="641" y="112" class="step-text" fill="#2c3e50">Synthesize</text>
+  <text x="641" y="128" class="step-text" fill="#2c3e50">with Claude</text>
+  <text x="641" y="150" class="step-sub" fill="#555">Paste abstracts,</text>
+  <text x="641" y="164" class="step-sub" fill="#555">get structured output</text>
+
+  <!-- Arrow 4→5 -->
+  <path d="M 716 120 L 738 120" class="arrow" stroke="#1a7a8a" />
+  <polygon points="738,115 748,120 738,125" fill="#1a7a8a" />
+
+  <!-- Step 5: Verify -->
+  <rect x="748" y="60" width="132" height="120" class="step-box" fill="#fff3cd" stroke="#d4a017" />
+  <text x="814" y="90" class="step-num" fill="#d4a017">5</text>
+  <text x="814" y="112" class="step-text" fill="#2c3e50">Verify Before</text>
+  <text x="814" y="128" class="step-text" fill="#2c3e50">Citing</text>
+  <text x="814" y="150" class="step-sub" fill="#555">Check PMIDs,</text>
+  <text x="814" y="164" class="step-sub" fill="#555">confirm statistics</text>
+
+  <!-- Tool badges -->
+  <rect x="52" y="195" width="86" height="24" class="tool-badge" fill="#1a7a8a" />
+  <text x="95" y="211" class="badge-text" fill="#fff">You + PICO</text>
+
+  <rect x="234" y="195" width="86" height="24" class="tool-badge" fill="#1a7a8a" />
+  <text x="277" y="211" class="badge-text" fill="#fff">Claude AI</text>
+
+  <rect x="404" y="195" width="110" height="24" class="tool-badge" fill="#28a745" />
+  <text x="459" y="211" class="badge-text" fill="#fff">PubMed / MCP</text>
+
+  <rect x="598" y="195" width="86" height="24" class="tool-badge" fill="#1a7a8a" />
+  <text x="641" y="211" class="badge-text" fill="#fff">Claude AI</text>
+
+  <rect x="771" y="195" width="86" height="24" class="tool-badge" fill="#d4a017" />
+  <text x="814" y="211" class="badge-text" fill="#fff">You + PMID</text>
+
+  <!-- Legend -->
+  <rect x="210" y="250" width="16" height="16" rx="3" fill="#e8f4f8" stroke="#1a7a8a" stroke-width="1.5" />
+  <text x="232" y="263" class="step-sub" fill="#555" style="text-anchor: start;">Claude assists</text>
+  <rect x="370" y="250" width="16" height="16" rx="3" fill="#d4edda" stroke="#28a745" stroke-width="1.5" />
+  <text x="392" y="263" class="step-sub" fill="#555" style="text-anchor: start;">Database retrieval</text>
+  <rect x="560" y="250" width="16" height="16" rx="3" fill="#fff3cd" stroke="#d4a017" stroke-width="1.5" />
+  <text x="582" y="263" class="step-sub" fill="#555" style="text-anchor: start;">Human verification</text>
+
+  <!-- Key message -->
+  <text x="450" y="300" class="step-sub" fill="#888" style="font-style: italic;">The key principle: Claude reasons and synthesizes; verified databases retrieve; you verify.</text>
+</svg>

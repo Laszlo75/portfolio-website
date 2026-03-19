@@ -1,35 +1,72 @@
 ---
-title: "Hello World - Why I Built This Site"
-description: "First post on my new academic portfolio — why I built this site with Quarto and R, and what to expect from a transplant surgeon who codes."
+title: "Why a Transplant Surgeon Built an Academic Site with Quarto"
+description: "A transplant surgeon explains why he built an academic portfolio with Quarto and R, and what to expect from this blog."
 author: "Laszlo Szabo"
 date: 2026-02-08
-categories: [news, site improvement]
+date-modified: 2026-03-19
+categories: [news, site improvement, Quarto, R]
 canonical-url: https://lszabo.me/posts/plans/
+image: hero.jpg
 format:
   html:
     include-in-header: ../../assets/schema-blogposting.html
 ---
 
-So I finally did it. After years of thinking "I should really have a website," here it is. Built with [Quarto](https://quarto.org/) and R -because if I'm going to procrastinate on something, I might as well learn a new tool while doing it.
+![](hero.jpg){fig-alt="A modern desk workspace with a laptop displaying R-style data visualization charts alongside a stethoscope, medical textbooks, and a coffee mug, representing the intersection of medicine and data science"}
 
-By day, I'm a transplant surgeon in Cardiff. By night (and the occasional weekend), I'm increasingly obsessed with data science, R, and finding better ways to answer clinical questions with code rather than gut feeling. This site is where those two worlds collide.
+So I finally did it. After years of thinking "I should really have a website," here it is. Built with [Quarto](https://quarto.org/) and R, because if I'm going to procrastinate on something, I might as well learn a new tool while doing it.
 
-## What to expect here
+By day, I'm a [transplant surgeon in Cardiff](/resume.qmd). By night (and the occasional weekend), I'm increasingly obsessed with data science, R, and finding better ways to answer clinical questions with code rather than gut feeling. More recently, I've become equally obsessed with AI, particularly [Claude](https://claude.ai). It has quietly worked its way into how I search the literature, draft SOPs and policy documents, write code, and even plan my week. This site is where all of those worlds collide.
 
-I plan to write about things I find genuinely interesting -which, fair warning, mostly involves organ transplantation and wrangling data in R. Topics might include:
+:::{.callout-tip}
+## What You'll Find Here
 
--   Lessons learned building clinical datasets (and all the messy bits nobody tells you about)
--   R tips and tricks I stumble across
--   Thoughts on how data science can actually make a difference in transplant surgery
--   The occasional rant about PDF forms and NHS IT systems
+- Practical guides on [using AI tools for medical research](/posts/ai-literature-search/)
+- How I use Claude in my clinical and personal workflow
+- R tips for clinical data analysis
+- Lessons from building reproducible academic workflows
+- A transplant surgeon's perspective on data science in the NHS
+:::
+
+## How Did a Transplant Surgeon End Up Coding?
+
+It started with a spreadsheet. I was trying to answer a straightforward question about kidney transplant outcomes at our unit, and the data lived in six different systems, none of which talked to each other. I spent a weekend manually copying numbers into Excel, making pivot tables, and cursing every time I realised I had missed a column.
+
+There had to be a better way. Someone pointed me towards R. I installed RStudio, opened a blank script, and spent the next three hours failing to read a CSV file. But when I finally got it working, that first `ggplot` output felt like a small revelation. I could see patterns in our transplant data that had been invisible in the spreadsheet. I was hooked.
+
+Since then, R has become my tool of choice for anything involving clinical data: building datasets for [research projects](/publications.qmd), exploring outcomes, generating reproducible reports. The code does not lie, it does not forget a filter, and it runs the same way every time. That matters when you are making decisions about organ allocation.
+
+## What Will You Find on This Blog?
+
+I plan to write about things I find genuinely interesting, which, fair warning, mostly involves organ transplantation and wrangling data in R. Topics will include:
+
+- Lessons learned building clinical datasets (and all the messy bits nobody tells you about)
+- R tips and tricks I stumble across
+- Thoughts on how data science can actually make a difference in transplant surgery
+- How AI (especially [Claude](/posts/ai-literature-search/)) is changing how I work, from literature search to coding to everyday productivity
+- The occasional rant about PDF forms and NHS IT systems
 
 I'll try to post regularly. Whether that means weekly or "whenever I have a spare evening" remains to be seen. Transplant surgery has a habit of rearranging your calendar at short notice.
 
-## Why Quarto?
+## Why Did I Choose Quarto?
 
-I wanted something I could write in plain text, render with R code, and publish without fighting a CMS. Quarto ticks all those boxes. If you're thinking of building your own academic site, these got me started:
+I wanted something I could write in plain text, render with R code, and publish without fighting a CMS. [Quarto](https://quarto.org/) ticks all those boxes, and it does a few things that matter specifically for academics:
 
--   [Building a blog with Quarto](https://www.youtube.com/watch?v=CVcvXfRyfE0)
--   [Publish a blog in 100 seconds](https://www.youtube.com/watch?v=t8qtcDyCRFA)
+- **R integration**: I can embed live R code chunks that generate tables, plots, and statistics directly into blog posts and my CV. No copy-paste, no stale numbers.
+- **Multiple output formats**: The same source files produce this website, a [PDF CV](/resume.qmd) (via Typst), and an HTML CV, all from one set of CSV data files. Update the data once, render three outputs.
+- **Plain markdown**: Every page is a `.qmd` file I can version-control with Git. The [entire source](https://github.com/Laszlo75/portfolio-website) is on GitHub.
+- **No database, no CMS**: The site renders to static HTML. No WordPress updates, no plugins breaking overnight, no PHP.
 
-Right, that's enough for a first post. Time to go and actually write something worth reading.
+If you are thinking of building your own academic site, these resources got me started:
+
+- [Building a blog with Quarto](https://www.youtube.com/watch?v=CVcvXfRyfE0) (YouTube)
+- [Publish a blog in 100 seconds](https://www.youtube.com/watch?v=t8qtcDyCRFA) (YouTube)
+- [Quarto documentation](https://quarto.org/docs/websites/website-blog.html) (official docs)
+
+## What Makes This Site Different?
+
+The bit I'm most pleased with is the data-driven CV. Six CSV files in a `data/` folder contain my education, work history, qualifications, roles, research projects, and skills. Three different pages read those same CSVs and render them in different formats: an [HTML timeline CV](/resume.qmd), a clean [publications page](/publications.qmd) parsed from my Zotero bibliography, and a PDF CV for download. One source of truth, zero manual duplication.
+
+It is a small thing, but it solves a real problem. Every academic has had the experience of updating their CV in one place and forgetting to update it in three others. This approach makes that impossible.
+
+Right, that is enough for a first post. Time to go and actually write something worth reading.
