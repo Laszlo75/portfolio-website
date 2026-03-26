@@ -1,7 +1,9 @@
 ---
 title: "Why a Transplant Surgeon Built an Academic Site with Quarto"
 description: "A transplant surgeon explains why he built an academic portfolio with Quarto and R, and what to expect from this blog."
-author: "Laszlo Szabo"
+author:
+  - name: Laszlo Szabo
+    orcid: 0000-0002-6881-1542
 date: 2026-02-08
 date-modified: 2026-03-19
 categories: [news, site improvement, Quarto, R]
