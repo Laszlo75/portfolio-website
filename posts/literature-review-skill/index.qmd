@@ -1,0 +1,305 @@
+---
+title: "From Manual Search to Automated Evidence Pipeline"
+subtitle: "Building a Claude Skill for Verified Medical Literature Search"
+description: "56% of AI citations contain errors. How a transplant surgeon built a Claude skill for automated, verified clinical literature search."
+author:
+  - name: Laszlo Szabo
+    orcid: 0000-0002-6881-1542
+date: 2026-04-04
+date-modified: 2026-04-04
+categories: [AI, research methods, clinical governance, Claude]
+canonical-url: https://lszabo.me/posts/protocol-reviewer-1/
+image: hero.jpg
+draft: false
+format:
+  html:
+    include-in-header: ../../assets/schema-blogpost-protocol-1.html
+citation: true
+---
+
+![](hero.jpg){fig-alt="Vector illustration of scattered medical research papers in teal and coral funnelling into a hexagonal matrix prism, with a single verified document emerging on the right bearing a shield-checkmark badge"}
+
+Literature search is now the most common physician AI use case, with 35% of doctors using AI for this purpose ([Doximity, 2026](https://www.doximity.com/reports/state-of-ai-medicine-report/2026)). Yet when researchers tested GPT-4o on mental health literature reviews, 56% of citations were fabricated or contained errors --- wrong DOIs, wrong authors, or references to papers that do not exist ([Linardon et al., JMIR Mental Health, 2025](https://mental.jmir.org/2025/1/e80371)). The gap between enthusiasm and reliability is where careful engineering matters.
+
+In a [previous post](/posts/ai-literature-search/), I described a manual workflow for using Claude's PubMed connector to search the medical literature without hallucinating citations. That workflow relies on five habits --- PICO framing, retrieval-not-recall, paste-don't-summarise, structured synthesis, and verification. They work. But they depend on the clinician remembering every step, every time.
+
+This post describes how I codified that manual workflow into a reusable Claude skill that automates evidence gathering for medical literature search, with built-in safeguards that run whether you remember them or not.
+
+:::{.callout-tip}
+## Key Takeaways
+
+A Claude skill encodes the principles from manual AI-assisted literature search --- generation-vs-retrieval separation, dual-source searching, structured verification --- into a repeatable pipeline. With 81% of physicians now using AI ([AMA, 2026](https://www.ama-assn.org/practice-management/digital-health/augmented-intelligence-medicine)) but 71% citing accuracy concerns ([Doximity, 2026](https://www.doximity.com/reports/state-of-ai-medicine-report/2026)), the reference ledger and automated DOI verification are what make this approach safe for clinical use.
+:::
+
+
+## Why codify a manual workflow into a skill?
+
+Eighty-one percent of US physicians now use AI in clinical practice, more than double the 38% reported in 2023 ([AMA Physician Survey, 2026](https://www.ama-assn.org/practice-management/digital-health/augmented-intelligence-medicine)). Thirty-nine percent use it specifically for research summaries --- up 26 percentage points in a single year. AI adoption is no longer the question. Safety at scale is.
+
+The manual workflow from my [previous post](/posts/ai-literature-search/) works well for a single literature search. But it is a conversation each time. Nothing is codified. Nothing is auditable. Nothing is repeatable. The clinician must remember to frame questions in PICO format, to use retrieval rather than recall, to verify DOIs against PubMed metadata. Miss one step at the end of a long day, and you risk citing a paper that does not exist.
+
+A Claude skill solves this by encoding the workflow into a custom instruction set with enforced guardrails. Think of it as the difference between a checklist pinned to the wall and a checklist built into the system. The skill defines the search strategy, mandates dual-source searching, builds the reference ledger automatically, and runs verification before producing any output. The clinician's job shifts from remembering the process to appraising the results --- which is where clinical judgement should be spent.
+
+About half of clinical guidelines become outdated within 5.8 years ([Shekelle et al., JAMA](https://jamanetwork.com/journals/jama/fullarticle/194222)), so keeping up with the evidence is not a one-off task. A skill that can be run repeatedly, producing consistent and auditable output each time, is more valuable than a manual workflow that only works when the clinician has time and headspace to execute it perfectly.
+
+
+## What is a Claude Code skill?
+
+A [Claude Code](https://docs.anthropic.com/en/docs/claude-code) skill is a `SKILL.md` file that acts as a custom instruction set for a specific task. When you trigger the skill --- by typing something like "search for evidence on CMV prophylaxis" --- Claude Code loads the SKILL.md as its prompt and follows the workflow defined inside it.
+
+The file has two parts. The YAML frontmatter controls activation and model selection:
+
+```yaml
+---
+name: literature-search
+model: opus
+effort: max
+description: >
+  Search PubMed, Scholar Gateway, and national guideline websites
+  for current clinical evidence on a given topic...
+---
+```
+
+Setting `model: opus` forces the most capable model regardless of the user's default. Setting `effort: max` enables extended thinking, which matters for multi-step reasoning across dozens of papers. The `description` field doubles as a trigger matcher --- Claude Code reads it to decide when to activate the skill.
+
+The body of SKILL.md is the full prompt: the six-step workflow, the search strategy rules, the verification checklist, and the output format specification. It is not a configuration file. It is a detailed set of instructions, written in plain English, that the model follows step by step.
+
+Reference files --- a PubMed search guide, a document template --- live alongside SKILL.md but are not loaded automatically. The prompt tells the model when to read each one, so context stays lean until the information is actually needed.
+
+
+## How is the skill structured?
+
+The [repository](https://github.com/Laszlo75/literature-search) is intentionally small:
+
+```text
+literature-search/
+├── SKILL.md                           # The prompt — 6-step workflow
+├── references/
+│   ├── pubmed_strategy.md             # PubMed query construction guide
+│   └── evidence_summary_template.md   # Output document structure
+├── assets/
+│   └── reference.docx                 # Pandoc styling template
+└── evals/
+    └── evals.json                     # 7 test scenarios
+```
+
+**SKILL.md** is the orchestrator. It defines the entire workflow and coordinates when to read each reference file. During Step 3 (searching), it reads `pubmed_strategy.md` for guidance on constructing Boolean queries with MeSH terms and publication type filters. During Step 5 (writing), it reads `evidence_summary_template.md` for the exact document structure --- section headings, citation format, mandatory transparency disclaimer.
+
+**Reference files** are injected context, not configuration. The model calls the `Read` tool on them at the right moment. This keeps the initial prompt smaller and means each file is loaded only when its content is relevant to the current step.
+
+**The working ledger** (`_working_ledger.yaml`) is the skill's memory externalisation. After every PubMed API call, the model writes the returned metadata --- PMID, DOI, title, authors --- to this file immediately, in the same turn. Before generating any output, it re-reads the ledger from disk rather than relying on what it remembers from context. This was added in version 1.4.0 after a real failure where a DOI differed by three characters (`blood.2018894368` vs `blood.2018894618`) because the model wrote from memory instead of copying from the API response. Externalising memory to a file eliminates this class of error entirely.
+
+**Evals** (`evals.json`) contain seven test scenarios covering different clinical domains --- from transplant immunology to haematology to cardiology --- plus a scope guardrail test that checks the skill refuses overly broad topics like "cancer treatment" and asks the user to narrow down.
+
+
+## How does the dual-search architecture work?
+
+PubMed contains over 36.5 million citations and adds 1.57 million annually ([NLM, FY2023](https://www.nlm.nih.gov/bsd/medline_pubmed_production_stats.html)). No single search strategy catches everything relevant. The skill addresses this by using two complementary search engines with fundamentally different approaches.
+
+**PubMed MCP** is the structured engine. It searches using MeSH terms, Boolean operators, and publication type filters. When the skill needs to find randomised controlled trials on a specific drug regimen, it constructs a query like:
+
+```
+rituximab AND "ABO incompatible" AND (kidney OR renal) AND transplant
+AND (Review[pt] OR Meta-Analysis[pt] OR Randomized Controlled Trial[pt])
+```
+
+This returns precise, filterable results with full metadata --- PMIDs, DOIs, author lists, abstracts. PubMed is excellent at finding what you know to look for.
+
+**Scholar Gateway** is the semantic engine. Instead of keywords, it takes natural language clinical questions and searches full-text passages across peer-reviewed literature:
+
+```
+What is the optimal isoagglutinin titre target before
+ABO-incompatible kidney transplantation based on recent evidence?
+```
+
+Scholar Gateway returns the actual relevant text passages with DOIs and citations. It finds papers that keyword searches miss entirely --- particularly those that use different terminology or frame the question differently.
+
+This is not "search twice for the same thing." The skill formulates different query types for each engine. In a recent search, Scholar Gateway identified four papers the PubMed keyword search had missed, all directly relevant to the clinical question. The results are de-duplicated by DOI, so each paper appears once in the final reference list regardless of which engine found it.
+
+```{=html}
+<!-- Architecture diagram placeholder - replace with SVG -->
+<figure role="img" aria-label="Architecture diagram showing the dual-search evidence pipeline: a Clinical Question feeds into two parallel search paths (PubMed MCP for keyword/MeSH search and Scholar Gateway for semantic search), both feeding into a Reference Ledger, which passes through Verification before producing the final Output (review document, BibTeX, and PMID list).">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 320" style="width:100%;max-width:800px;height:auto;display:block;margin:2rem auto;">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 7" refX="10" refY="3.5" markerWidth="8" markerHeight="6" orient="auto-start-auto">
+      <path d="M 0 0 L 10 3.5 L 0 7 z" fill="#1a7a8a"/>
+    </marker>
+  </defs>
+  <style>
+    .box { fill: #f8f9fa; stroke: #1a7a8a; stroke-width: 2; rx: 8; }
+    .box-accent { fill: #e8f4f6; stroke: #1a7a8a; stroke-width: 2; rx: 8; }
+    .label { font-family: 'Source Sans 3', sans-serif; font-size: 13px; fill: #333; text-anchor: middle; }
+    .label-bold { font-family: 'Source Sans 3', sans-serif; font-size: 14px; fill: #1a7a8a; font-weight: 700; text-anchor: middle; }
+    .connector { stroke: #1a7a8a; stroke-width: 2; fill: none; marker-end: url(#arrow); }
+  </style>
+  <!-- Clinical Question -->
+  <rect class="box" x="20" y="130" width="120" height="60"/>
+  <text class="label-bold" x="80" y="155">Clinical</text>
+  <text class="label-bold" x="80" y="172">Question</text>
+  <!-- PubMed -->
+  <rect class="box-accent" x="220" y="50" width="150" height="60"/>
+  <text class="label-bold" x="295" y="75">PubMed MCP</text>
+  <text class="label" x="295" y="92">Keyword / MeSH</text>
+  <!-- Scholar -->
+  <rect class="box-accent" x="220" y="200" width="150" height="60"/>
+  <text class="label-bold" x="295" y="225">Scholar Gateway</text>
+  <text class="label" x="295" y="242">Semantic search</text>
+  <!-- Ledger -->
+  <rect class="box-accent" x="450" y="130" width="130" height="60"/>
+  <text class="label-bold" x="515" y="155">Reference</text>
+  <text class="label-bold" x="515" y="172">Ledger</text>
+  <!-- Verification -->
+  <rect class="box" x="650" y="50" width="130" height="60"/>
+  <text class="label-bold" x="715" y="75">Verification</text>
+  <text class="label" x="715" y="92">DOI spot-check</text>
+  <!-- Output -->
+  <rect class="box" x="650" y="200" width="130" height="60"/>
+  <text class="label-bold" x="715" y="225">Output</text>
+  <text class="label" x="715" y="242">.docx · .bib · .txt</text>
+  <!-- Connectors -->
+  <line class="connector" x1="140" y1="145" x2="218" y2="90"/>
+  <line class="connector" x1="140" y1="175" x2="218" y2="220"/>
+  <line class="connector" x1="370" y1="80" x2="448" y2="145"/>
+  <line class="connector" x1="370" y1="230" x2="448" y2="175"/>
+  <line class="connector" x1="580" y1="148" x2="648" y2="85"/>
+  <line class="connector" x1="580" y1="172" x2="648" y2="225"/>
+</svg>
+<figcaption style="text-align:center;font-size:0.85rem;color:#666;margin-top:0.5rem;">The dual-search evidence pipeline: structured and semantic searches feed a single reference ledger, verified before output.</figcaption>
+</figure>
+```
+
+
+## What is the reference ledger and why does it matter?
+
+When Deakin University researchers asked GPT-4o to write six literature reviews on mental health topics, 20% of the 176 citations were entirely fabricated and a further 45% of the real ones contained bibliographic errors --- wrong DOIs, incorrect dates, or invalid identifiers. Combined, 56% of all citations were fabricated or inaccurate. Worse, 64% of the fabricated DOIs resolved to real but completely unrelated papers --- a reader clicking the link would find an actual paper, just not the one being cited ([Linardon et al., JMIR Mental Health, 2025](https://mental.jmir.org/2025/1/e80371)). This is the most insidious form of hallucination: it looks correct even when you check.
+
+```{=html}
+<figure role="img" aria-label="Horizontal bar chart comparing Reference Hallucination Scores across five AI tools. ChatGPT 3.5 and Bing Chat both scored 11 out of 11 (highest hallucination), Perplexity scored 7 out of 11, while SciSpace and Elicit scored only 1 out of 11 (lowest hallucination). The score is a composite measure across six bibliographic accuracy items.">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 260" style="width:100%;max-width:600px;height:auto;display:block;margin:2rem auto;">
+  <style>
+    .chart-label { font-family: 'Source Sans 3', sans-serif; font-size: 13px; fill: #333; }
+    .chart-value { font-family: 'Source Sans 3', sans-serif; font-size: 12px; fill: #fff; font-weight: 700; }
+    .chart-value-dark { font-family: 'Source Sans 3', sans-serif; font-size: 12px; fill: #333; font-weight: 700; }
+    .chart-title { font-family: 'Source Serif 4', serif; font-size: 15px; fill: #1a7a8a; font-weight: 700; }
+    .chart-source { font-family: 'Source Sans 3', sans-serif; font-size: 10px; fill: #999; }
+  </style>
+  <text class="chart-title" x="10" y="22">Reference Hallucination Score by AI Tool (0-11)</text>
+  <!-- ChatGPT 3.5 -->
+  <text class="chart-label" x="120" y="62" text-anchor="end">ChatGPT 3.5</text>
+  <rect x="130" y="46" width="400" height="24" rx="4" fill="#c0392b"/>
+  <text class="chart-value" x="320" y="63">RHS: 11 / 11</text>
+  <!-- Bing Chat -->
+  <text class="chart-label" x="120" y="102" text-anchor="end">Bing Chat</text>
+  <rect x="130" y="86" width="400" height="24" rx="4" fill="#c0392b"/>
+  <text class="chart-value" x="320" y="103">RHS: 11 / 11</text>
+  <!-- Perplexity -->
+  <text class="chart-label" x="120" y="142" text-anchor="end">Perplexity</text>
+  <rect x="130" y="126" width="255" height="24" rx="4" fill="#e67e22"/>
+  <text class="chart-value" x="250" y="143">RHS: 7 / 11</text>
+  <!-- SciSpace -->
+  <text class="chart-label" x="120" y="182" text-anchor="end">SciSpace</text>
+  <rect x="130" y="166" width="36" height="24" rx="4" fill="#1a7a8a"/>
+  <text class="chart-value-dark" x="174" y="183">RHS: 1 / 11</text>
+  <!-- Elicit -->
+  <text class="chart-label" x="120" y="222" text-anchor="end">Elicit</text>
+  <rect x="130" y="206" width="36" height="24" rx="4" fill="#1a7a8a"/>
+  <text class="chart-value-dark" x="174" y="223">RHS: 1 / 11</text>
+  <!-- Source -->
+  <text class="chart-source" x="130" y="250">Source: JMIR Medical Informatics, 2024 (PMC 11325115)</text>
+</svg>
+<figcaption style="text-align:center;font-size:0.85rem;color:#666;margin-top:0.5rem;">Reference Hallucination Score (RHS): a composite measure across six bibliographic accuracy items (0 = no hallucination, 11 = maximum). Tools that retrieve from databases (SciSpace, Elicit) score far lower than those that generate from memory.</figcaption>
+</figure>
+```
+
+In the manual workflow, preventing this relies on discipline --- the five habits. In the skill, it is **structural**. The reference ledger is a data store built incrementally during the search phase. For every paper the skill plans to cite, it calls PubMed's `get_article_metadata` and records each field exactly as returned:
+
+```
+REF_ID:          12
+PMID:            38291047
+DOI:             10.1111/ajt.17235
+AUTHORS:         Scurt FG, Kühn E, Gröne F, et al.
+TITLE:           Clinical outcomes after ABO-incompatible kidney
+                 transplantation: a systematic review and meta-analysis
+JOURNAL:         American Journal of Transplantation
+YEAR:            2024
+KEY_FINDING:     No significant difference in 5-year graft survival
+                 between ABOi and ABOc transplants
+SEARCH_TOPIC:    ABO-incompatible kidney transplantation outcomes
+```
+
+The critical design decision: **the final reference list can only be generated from this ledger**. No ledger entry means no citation in the document. DOIs are opaque identifiers --- there is no way to guess or reconstruct one from a paper title. If the model writes a DOI from memory rather than copying it from PubMed metadata, it will almost certainly link to the wrong paper or a dead URL. The ledger eliminates this failure mode entirely.
+
+
+## How does full text retrieval add depth?
+
+Abstracts give headlines. They rarely include the methodology details, subgroup analyses, or dosing specifics needed to evaluate whether a paper actually supports a recommendation. The skill selectively retrieves full text for 5--10 key papers via PubMed Central's `get_full_text_article`.
+
+Full text retrieval is targeted, not exhaustive. The skill prioritises papers that directly support or contradict a key finding, systematic reviews where subgroup data matters, and studies where the abstract is ambiguous about sample size or effect size.
+
+When full text is not available --- many papers sit behind paywalls --- the skill falls back gracefully to the abstract combined with any relevant passages Scholar Gateway retrieved from indexed full text. Between these two sources, there is usually enough to assess the paper's relevance and quality.
+
+
+## How does automated verification prevent errors?
+
+Seventy-one percent of physicians cite accuracy and reliability as their top concern about AI tools ([Doximity, 2026](https://www.doximity.com/reports/state-of-ai-medicine-report/2026)). The manual workflow addresses this with a habit: "verify key statistics before citing." The skill formalises it as an enforced checklist that runs before any output is delivered.
+
+The verification step includes five checks:
+
+1. **DOI spot-check** --- re-query PubMed for at least five references and confirm the DOIs match exactly
+2. **Title-PMID consistency** --- verify that the title in the reference list matches what PubMed returns for that PMID
+3. **No fabricated references** --- every PubMed reference must have a real PMID retrieved during the search phase
+4. **DOI format validation** --- every DOI must start with `10.` and follow the standard pattern
+5. **Citation-reference mapping** --- every `[N]` in the text maps to entry N in the reference list, and every reference is cited at least once
+
+The difference between a best practice and an enforced safeguard is that the safeguard runs regardless of time pressure, fatigue, or the clinician's familiarity with the topic. A single broken DOI --- one that links to an unrelated paper or a dead URL --- can undermine the credibility of an entire literature review.
+
+
+## What does the skill produce?
+
+The evidence pipeline generates four output files for each search:
+
+| File | Purpose |
+|------|---------|
+| `*_Review.md` | Structured literature review in markdown, ready for editing |
+| `*_Review.docx` | Formatted Word document via pandoc, with clickable DOI links |
+| `*_References.yaml` | Machine-readable reference ledger with full metadata |
+| `*_References.bib` | BibTeX file for direct Zotero import |
+| `*_PMIDs.txt` | One PMID per line for Zotero bulk import |
+
+Every reference is traceable back to the search that found it and the PubMed metadata that verified it. The markdown-first approach means the review is written as structured text and converted to .docx via pandoc. The YAML file preserves the full reference ledger in a machine-readable format that other skills can consume --- for example, a protocol-reviewer skill can read the YAML directly instead of re-searching the literature. The .bib and PMIDs.txt files mean the [clinician's Zotero library](https://www.zotero.org/) stays in sync with the review's references.
+
+The skill is open source: [literature-search on GitHub](https://github.com/laszlo75/literature-search).
+
+
+## Frequently asked questions
+
+### How do I install and use the skill?
+
+Clone the repository into your Claude Code skills directory:
+
+```bash
+git clone https://github.com/Laszlo75/literature-search \
+  ~/.claude/skills/literature-search
+```
+
+You will need [Claude Code](https://docs.anthropic.com/en/docs/claude-code) with the PubMed MCP and Scholar Gateway MCP connectors configured. Once installed, trigger the skill with natural language: "search for evidence on rituximab dosing in ABO-incompatible kidney transplantation." See the [repository README](https://github.com/Laszlo75/literature-search) for full setup instructions and prerequisites.
+
+### Does this replace systematic review methodology?
+
+No. This is for rapid evidence gathering, not formal systematic reviews. Systematic reviews follow PRISMA guidelines with pre-registered protocols and exhaustive search strategies. This skill provides rigorous, verified literature search for practical clinical questions --- synthesising current evidence on a topic with full source traceability. The average systematic review takes 67.3 weeks ([Borah et al., 2017](https://doi.org/10.1136/bmjopen-2016-012545)); this skill completes an evidence gathering cycle in 15--30 minutes.
+
+### Can this work with tools other than Claude?
+
+The dual-search architecture --- structured keyword search plus semantic full-text search --- is model-agnostic in principle. The current implementation uses Claude's MCP ecosystem (PubMed connector and Scholar Gateway), but the core pattern applies regardless of which LLM you use: separate search from generation, build references from retrieved metadata, verify every citation before output.
+
+### What about papers behind paywalls?
+
+The skill retrieves full text only for open-access papers available through PubMed Central. For paywalled papers, it falls back to the abstract from `get_article_metadata` plus any relevant passages Scholar Gateway retrieved from indexed full text. This combination usually provides enough information to assess relevance and quality, though it limits methodology appraisal for some papers.
+
+### Is the reference ledger approach overkill?
+
+When tested on GPT-4o, 56% of AI-generated medical citations were fabricated or contained errors ([Linardon et al., JMIR Mental Health, 2025](https://mental.jmir.org/2025/1/e80371)), and 64% of fabricated DOIs linked to real but unrelated papers. In clinical governance, a single fabricated reference can invalidate an entire review and erode trust in AI-assisted workflows. The ledger takes seconds to build during the search phase and prevents the most damaging failure mode. It is the minimum viable safeguard, not overkill.
+
+### How do I know the output is trustworthy?
+
+Every review document includes a mandatory transparency disclaimer disclosing AI involvement. The reference ledger provides a complete audit trail: every citation maps to a specific PMID retrieved during the search phase and verified against PubMed metadata. The skill cannot cite a paper it did not retrieve, and it cannot fabricate a DOI. This makes the output auditable, reproducible, and defensible.
