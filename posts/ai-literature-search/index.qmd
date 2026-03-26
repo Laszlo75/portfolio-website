@@ -10,6 +10,7 @@ image: hero.jpg
 format:
   html:
     include-in-header: ../../assets/schema-blogpost-ai.html
+citation: true
 ---
 
 ![Photo by [National Cancer Institute](https://unsplash.com/@nci) on [Unsplash](https://unsplash.com).](hero.jpg){fig-alt="Medical professional typing on a laptop computer with a stethoscope resting on the desk, representing AI-assisted medical literature search"}
@@ -272,6 +273,8 @@ Apply the simple test: **"What PMID supports that?"** If Claude cannot produce a
 | Always request PMIDs | Gives you a verification handle |
 | Explicitly request uncertainty flags | Surfaces inference vs. evidence |
 | Verify key statistics before citing | Final safeguard before publication |
+
+These five habits work reliably for manual AI-assisted literature search. I have since codified them into a [reusable Claude skill for clinical protocol review](/posts/protocol-reviewer-1/), which enforces dual-source searching, a reference ledger, and automated DOI verification every time it runs.
 
 ## Further Reading and Tools
 
