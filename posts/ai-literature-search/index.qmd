@@ -1,19 +1,21 @@
 ---
 title: "Claude for Medical Literature Search: Avoid Hallucinations"
 description: "5 habits that prevent hallucinated citations when using Claude for medical literature search, with PubMed connector setup and a complete workflow guide."
-author: "Laszlo Szabo"
+author:
+  - name: Laszlo Szabo
+    orcid: 0000-0002-6881-1542
 date: 2026-03-03
 date-modified: 2026-03-19
 categories: [AI, research methods, literature search]
 canonical-url: https://lszabo.me/posts/ai-literature-search/
-image: hero.jpg
+image: hero.png
 format:
   html:
     include-in-header: ../../assets/schema-blogpost-ai.html
 citation: true
 ---
 
-![Photo by [National Cancer Institute](https://unsplash.com/@nci) on [Unsplash](https://unsplash.com).](hero.jpg){fig-alt="Medical professional typing on a laptop computer with a stethoscope resting on the desk, representing AI-assisted medical literature search"}
+![](hero.png){fig-alt="AI-generated photorealistic image of a desk workspace with a laptop displaying PubMed search results, connected by glowing data streams to a stack of clinical trial protocol documents with coloured tabs for methodology, objectives, safety, and endpoints"}
 
 Large language models like [Claude](https://claude.ai) are transforming how [clinicians and researchers](/resume.qmd) interact with the medical literature. But with great power comes a well-known hazard: **hallucination**, the confident generation of plausible-sounding but entirely fabricated citations, statistics, or clinical claims. For a [transplant surgeon](/posts/plans/) relying on accurate evidence to inform practice or prepare a manuscript, a hallucinated NEJM paper with a fictitious p-value is worse than useless. It is dangerous.
 
@@ -274,7 +276,7 @@ Apply the simple test: **"What PMID supports that?"** If Claude cannot produce a
 | Explicitly request uncertainty flags | Surfaces inference vs. evidence |
 | Verify key statistics before citing | Final safeguard before publication |
 
-These five habits work reliably for manual AI-assisted literature search. I have since codified them into a [reusable Claude skill for clinical protocol review](/posts/protocol-reviewer-1/), which enforces dual-source searching, a reference ledger, and automated DOI verification every time it runs.
+These five habits work reliably for manual AI-assisted literature search. I have since codified them into a [reusable Claude skill for clinical protocol review](/posts/literature-review-skill/), which enforces dual-source searching, a reference ledger, and automated DOI verification every time it runs.
 
 ## Further Reading and Tools
 

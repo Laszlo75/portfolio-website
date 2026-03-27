@@ -10,6 +10,7 @@ project:
 
 
 website:
+  drafts: visible
   site-url: "https://lszabo.me"
   # google-analytics: "G-B84ES4BRHJ"
   title: "Laszlo Szabo"

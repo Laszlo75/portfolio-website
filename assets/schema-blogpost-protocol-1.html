@@ -1,0 +1,129 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BlogPosting",
+      "@id": "https://lszabo.me/posts/literature-review-skill/#article",
+      "headline": "From Manual Search to Automated Evidence Pipeline",
+      "description": "56% of AI citations contain errors. How a transplant surgeon built a Claude skill for automated, verified clinical literature search.",
+      "datePublished": "2026-04-04",
+      "dateModified": "2026-04-04",
+      "author": {
+        "@id": "https://lszabo.me/#person"
+      },
+      "publisher": {
+        "@id": "https://lszabo.me/#person"
+      },
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://lszabo.me/posts/literature-review-skill/hero.jpg",
+        "width": 1200,
+        "height": 675
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://lszabo.me/posts/literature-review-skill/"
+      },
+      "wordCount": 2100,
+      "articleSection": "AI",
+      "keywords": ["AI", "Claude", "clinical protocol review", "PubMed", "MCP", "reference ledger", "hallucination prevention", "evidence synthesis", "clinical governance", "Scholar Gateway"],
+      "inLanguage": "en-GB",
+      "isPartOf": {
+        "@type": "BlogPosting",
+        "@id": "https://lszabo.me/posts/ai-literature-search/#article"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://lszabo.me/#person",
+      "name": "Laszlo Szabo",
+      "jobTitle": "Consultant Transplant Surgeon",
+      "url": "https://lszabo.me/",
+      "sameAs": [
+        "https://orcid.org/0000-0002-6881-1542",
+        "https://www.linkedin.com/in/drszabolaszlo/",
+        "https://x.com/drszabolaszlo",
+        "https://github.com/Laszlo75",
+        "https://www.researchgate.net/profile/Laszlo-Szabo-8"
+      ],
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Cardiff Transplant Unit",
+        "url": "https://cavuhb.nhs.wales/"
+      },
+      "knowsAbout": ["kidney transplantation", "pancreas transplantation", "organ utilisation", "data science", "R programming", "clinical AI governance"]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://lszabo.me/posts/literature-review-skill/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://lszabo.me/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Posts",
+          "item": "https://lszabo.me/posts.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "From Manual Search to Automated Evidence Pipeline",
+          "item": "https://lszabo.me/posts/literature-review-skill/"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://lszabo.me/posts/literature-review-skill/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Does an AI evidence pipeline replace systematic review methodology?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. This is for clinical protocol review, not formal systematic reviews. Systematic reviews follow PRISMA guidelines with pre-registered protocols and exhaustive search strategies. This skill provides rigorous evidence gathering for the practical task of checking whether a hospital protocol is still aligned with current guidelines and published evidence. The average systematic review takes 67.3 weeks; a protocol review with this skill completes the evidence gathering phase in 15-30 minutes."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can an AI evidence pipeline work with tools other than Claude?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The dual-search architecture — structured keyword search plus semantic full-text search — is model-agnostic in principle. The current implementation uses Claude's MCP ecosystem (PubMed connector and Scholar Gateway), but the core pattern applies regardless of which LLM you use: separate search from generation, build references from retrieved metadata, verify every citation before output."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What about papers behind paywalls in AI literature search?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The skill retrieves full text only for open-access papers available through PubMed Central. For paywalled papers, it falls back to the abstract from PubMed metadata plus any relevant passages Scholar Gateway retrieved from indexed full text. This combination usually provides enough information to assess relevance and quality."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is the reference ledger approach overkill for clinical protocol review?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "When tested on GPT-4o, 56% of AI-generated medical citations were fabricated or contained errors, and 64% of fabricated DOIs linked to real but unrelated papers. In clinical governance, a single fabricated reference can invalidate an entire review and erode trust in AI-assisted workflows. The ledger takes seconds to build during the search phase and prevents the most damaging failure mode. It is the minimum viable safeguard, not overkill."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does the AI protocol reviewer fit into clinical governance?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Every review document includes a mandatory transparency disclaimer disclosing AI involvement, the reviewing clinician's name and title, and AI system metadata including skill version, model identifier, and review date. A local evaluation register logs each review's outcomes and recommendation counts for ongoing quality monitoring and audit."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
