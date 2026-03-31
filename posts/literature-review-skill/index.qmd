@@ -215,15 +215,15 @@ In the manual workflow, preventing this relies on discipline --- the five habits
 
 ```
 REF_ID:          12
-PMID:            38291047
-DOI:             10.1111/ajt.17235
-AUTHORS:         Scurt FG, Kühn E, Gröne F, et al.
-TITLE:           Clinical outcomes after ABO-incompatible kidney
+PMID:            31006573
+DOI:             10.1016/S0140-6736(18)32091-9
+AUTHORS:         Scurt FG, Ewert L, Mertens PR, et al.
+TITLE:           Clinical outcomes after ABO-incompatible renal
                  transplantation: a systematic review and meta-analysis
-JOURNAL:         American Journal of Transplantation
-YEAR:            2024
-KEY_FINDING:     No significant difference in 5-year graft survival
-                 between ABOi and ABOc transplants
+JOURNAL:         Lancet
+YEAR:            2019
+KEY_FINDING:     Graft survival equivalent to ABO-compatible transplants
+                 after 5 years; early mortality elevated (OR 2.17 at 1 yr)
 SEARCH_TOPIC:    ABO-incompatible kidney transplantation outcomes
 ```
 
