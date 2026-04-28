@@ -1,0 +1,129 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BlogPosting",
+      "@id": "https://lszabo.me/posts/search-result-to-structured-doc/#article",
+      "headline": "From Search Results to Structured Document",
+      "description": "How a markdown-first approach turns verified evidence into professional Word documents with clickable DOIs, evidence grades, and Zotero-ready exports.",
+      "datePublished": "2026-04-04",
+      "dateModified": "2026-04-04",
+      "author": {
+        "@id": "https://lszabo.me/#person"
+      },
+      "publisher": {
+        "@id": "https://lszabo.me/#person"
+      },
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://lszabo.me/posts/search-result-to-structured-doc/hero.jpg",
+        "width": 1200,
+        "height": 675
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://lszabo.me/posts/search-result-to-structured-doc/"
+      },
+      "wordCount": 1900,
+      "articleSection": "AI",
+      "keywords": ["AI", "Claude", "protocol review", "pandoc", "markdown", "docx", "document generation", "evidence grades", "clinical governance", "Zotero"],
+      "inLanguage": "en-GB",
+      "isPartOf": {
+        "@type": "BlogPosting",
+        "@id": "https://lszabo.me/posts/literature-review-skill/#article"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://lszabo.me/#person",
+      "name": "Laszlo Szabo",
+      "jobTitle": "Consultant Transplant Surgeon",
+      "url": "https://lszabo.me/",
+      "sameAs": [
+        "https://orcid.org/0000-0002-6881-1542",
+        "https://www.linkedin.com/in/drszabolaszlo/",
+        "https://x.com/drszabolaszlo",
+        "https://github.com/Laszlo75",
+        "https://www.researchgate.net/profile/Laszlo-Szabo-8"
+      ],
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Cardiff Transplant Unit",
+        "url": "https://cavuhb.nhs.wales/"
+      },
+      "knowsAbout": ["kidney transplantation", "pancreas transplantation", "organ utilisation", "data science", "R programming", "clinical AI governance"]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://lszabo.me/posts/search-result-to-structured-doc/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://lszabo.me/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Posts",
+          "item": "https://lszabo.me/posts.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "From Search Results to Structured Document",
+          "item": "https://lszabo.me/posts/search-result-to-structured-doc/"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://lszabo.me/posts/search-result-to-structured-doc/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Can I customise the Word template for AI-generated protocol reviews?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. The reference.docx in the skill's assets directory is a standard Word document. Open it in Word, change the heading styles, fonts, colours, or page layout, and save. Pandoc will use your updated styles on the next conversion. The clinical content in the markdown is completely independent of the template styling."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What if I need to edit the protocol review document after generation?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Edit the .md source file, not the .docx. Markdown is plain text — open it in any editor, revise the recommendation, update a citation, and re-run the pandoc command. This avoids the formatting drift that happens when multiple people edit a Word document."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does the AI transparency disclaimer work in clinical protocol reviews?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Every review includes a section disclosing that AI was used for evidence synthesis, naming the specific model and skill version, and providing a 'Reviewed and approved by' line left blank for the clinician. The clinician fills in their name and title after reviewing the document. This creates an audit trail: any review can be traced back to the exact skill version and model that produced it."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long does an AI-assisted clinical protocol review take?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The evidence gathering phase typically completes in 15-30 minutes. The cross-referencing and document generation phase adds another 15-20 minutes. A complete protocol review takes 30-50 minutes of compute time plus clinician review time, compared to 1-2 days of manual work."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can the protocol review tool produce PDFs instead of Word documents?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Pandoc supports PDF output, so it is technically possible. However, protocol committees in the NHS universally work with Word documents for track changes, comments, and annotated circulation. Word is the practical output format. The markdown source can be converted to any format pandoc supports if needed."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>

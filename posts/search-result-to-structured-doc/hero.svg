@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Markdown to Word document conversion via pandoc pipeline">
+  <title>Markdown to Word: pandoc pipeline</title>
+
+  <defs>
+    <!-- Soft editorial drop shadow (light from upper-left) -->
+    <filter id="softShadow" x="-25%" y="-25%" width="150%" height="150%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="4"/>
+      <feOffset dx="3" dy="7" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.16"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Teal glow for pipeline -->
+    <filter id="pipeGlow" x="-15%" y="-100%" width="130%" height="300%">
+      <feGaussianBlur stdDeviation="6"/>
+    </filter>
+
+    <!-- Subtle badge shadow -->
+    <filter id="badgeShadow" x="-25%" y="-25%" width="150%" height="150%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="2.5"/>
+      <feOffset dx="1" dy="3" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.22"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- BACKGROUND -->
+  <rect width="1200" height="675" fill="#f8f5f0"/>
+
+  <!-- ============== BACKGROUND MOTIFS ============== -->
+
+  <!-- Faint vertical reference-list column on far right edge -->
+  <g opacity="0.18" transform="translate(1115, 90)">
+    <rect x="0" y="0" width="65" height="495" fill="none" stroke="#1a7a8a" stroke-width="1.5" rx="4"/>
+    <g fill="#1a7a8a">
+      <rect x="8" y="18" width="50" height="2.5" rx="1"/>
+      <rect x="8" y="26" width="42" height="2.5" rx="1"/>
+      <rect x="8" y="34" width="48" height="2.5" rx="1"/>
+
+      <rect x="8" y="55" width="50" height="2.5" rx="1"/>
+      <rect x="8" y="63" width="40" height="2.5" rx="1"/>
+      <rect x="8" y="71" width="46" height="2.5" rx="1"/>
+
+      <rect x="8" y="92" width="48" height="2.5" rx="1"/>
+      <rect x="8" y="100" width="42" height="2.5" rx="1"/>
+
+      <rect x="8" y="121" width="50" height="2.5" rx="1"/>
+      <rect x="8" y="129" width="44" height="2.5" rx="1"/>
+      <rect x="8" y="137" width="48" height="2.5" rx="1"/>
+
+      <rect x="8" y="158" width="46" height="2.5" rx="1"/>
+      <rect x="8" y="166" width="50" height="2.5" rx="1"/>
+
+      <rect x="8" y="187" width="48" height="2.5" rx="1"/>
+      <rect x="8" y="195" width="42" height="2.5" rx="1"/>
+      <rect x="8" y="203" width="46" height="2.5" rx="1"/>
+
+      <rect x="8" y="224" width="50" height="2.5" rx="1"/>
+      <rect x="8" y="232" width="44" height="2.5" rx="1"/>
+
+      <rect x="8" y="253" width="48" height="2.5" rx="1"/>
+      <rect x="8" y="261" width="42" height="2.5" rx="1"/>
+      <rect x="8" y="269" width="50" height="2.5" rx="1"/>
+
+      <rect x="8" y="290" width="46" height="2.5" rx="1"/>
+      <rect x="8" y="298" width="42" height="2.5" rx="1"/>
+
+      <rect x="8" y="319" width="50" height="2.5" rx="1"/>
+      <rect x="8" y="327" width="44" height="2.5" rx="1"/>
+      <rect x="8" y="335" width="48" height="2.5" rx="1"/>
+
+      <rect x="8" y="356" width="48" height="2.5" rx="1"/>
+      <rect x="8" y="364" width="42" height="2.5" rx="1"/>
+
+      <rect x="8" y="385" width="50" height="2.5" rx="1"/>
+      <rect x="8" y="393" width="46" height="2.5" rx="1"/>
+
+      <rect x="8" y="414" width="48" height="2.5" rx="1"/>
+      <rect x="8" y="422" width="42" height="2.5" rx="1"/>
+      <rect x="8" y="430" width="48" height="2.5" rx="1"/>
+
+      <rect x="8" y="451" width="46" height="2.5" rx="1"/>
+      <rect x="8" y="459" width="42" height="2.5" rx="1"/>
+    </g>
+  </g>
+
+  <!-- Tiny dotted line on far left edge for compositional balance -->
+  <g opacity="0.12">
+    <line x1="35" y1="90" x2="35" y2="585" stroke="#1a7a8a" stroke-width="1.5" stroke-dasharray="3 6"/>
+  </g>
+
+  <!-- ============== LEFT DOCUMENT — Markdown ============== -->
+  <g transform="rotate(-1.8 320 340)">
+    <!-- Paper depth offset behind -->
+    <rect x="184" y="146" width="295" height="395" fill="#e8e2d8" rx="3"/>
+    <!-- Front face -->
+    <rect x="180" y="140" width="295" height="395" fill="#ffffff" stroke="#c8c4ba" stroke-width="2" rx="3" filter="url(#softShadow)"/>
+
+    <!-- File tag .md (top-left corner) -->
+    <g transform="translate(200, 158)">
+      <rect x="0" y="0" width="58" height="20" fill="none" stroke="#9ca3af" stroke-width="1.5" rx="3"/>
+      <text x="29" y="14" font-family="ui-monospace, 'Menlo', 'Consolas', monospace" font-size="11" fill="#6b7280" text-anchor="middle" font-weight="600">.md</text>
+    </g>
+
+    <!-- Title line (slightly bolder grey) -->
+    <rect x="200" y="195" width="180" height="9" rx="2" fill="#4b5563"/>
+
+    <!-- Paragraph 1 -->
+    <g fill="#9ca3af">
+      <rect x="200" y="225" width="245" height="4" rx="1.5"/>
+      <rect x="200" y="237" width="230" height="4" rx="1.5"/>
+      <rect x="200" y="249" width="248" height="4" rx="1.5"/>
+      <rect x="200" y="261" width="170" height="4" rx="1.5"/>
+    </g>
+
+    <!-- List bullets (markdown list) -->
+    <g>
+      <circle cx="212" cy="295" r="3" fill="#9ca3af"/>
+      <rect x="222" y="293" width="195" height="4" rx="1.5" fill="#9ca3af"/>
+
+      <circle cx="212" cy="313" r="3" fill="#9ca3af"/>
+      <rect x="222" y="311" width="215" height="4" rx="1.5" fill="#9ca3af"/>
+
+      <circle cx="212" cy="331" r="3" fill="#9ca3af"/>
+      <rect x="222" y="329" width="170" height="4" rx="1.5" fill="#9ca3af"/>
+    </g>
+
+    <!-- Paragraph 2 -->
+    <g fill="#9ca3af">
+      <rect x="200" y="365" width="240" height="4" rx="1.5"/>
+      <rect x="200" y="377" width="245" height="4" rx="1.5"/>
+      <rect x="200" y="389" width="200" height="4" rx="1.5"/>
+    </g>
+
+    <!-- [DOI] fragment - coral tinted code-style chip -->
+    <g transform="translate(200, 415)">
+      <rect x="0" y="0" width="56" height="18" fill="#e07a5f" fill-opacity="0.13" stroke="#e07a5f" stroke-width="1.3" rx="3"/>
+      <text x="28" y="13" font-family="ui-monospace, 'Menlo', 'Consolas', monospace" font-size="10.5" fill="#c0593f" text-anchor="middle" font-weight="700">[DOI]</text>
+    </g>
+
+    <!-- Final paragraph -->
+    <g fill="#9ca3af">
+      <rect x="200" y="450" width="245" height="4" rx="1.5"/>
+      <rect x="200" y="462" width="230" height="4" rx="1.5"/>
+      <rect x="200" y="474" width="180" height="4" rx="1.5"/>
+    </g>
+
+    <!-- Page corner curl indicator (subtle 3D hint) -->
+    <path d="M 461 522 L 475 522 L 475 535 Z" fill="#e8e2d8"/>
+    <path d="M 461 522 L 475 535 L 467 528 Z" fill="#d4d0c8"/>
+  </g>
+
+  <!-- ============== PIPELINE — centre ============== -->
+  <g>
+    <!-- Outer glow halo (faint teal) -->
+    <rect x="476" y="316" width="248" height="58" rx="29" fill="#1a7a8a" opacity="0.13" filter="url(#pipeGlow)"/>
+
+    <!-- Pipe body -->
+    <rect x="480" y="320" width="240" height="50" rx="25" fill="#ffffff" stroke="#1a7a8a" stroke-width="2.5"/>
+
+    <!-- Inner teal glow fill -->
+    <rect x="486" y="326" width="228" height="38" rx="19" fill="#1a7a8a" fill-opacity="0.08"/>
+
+    <!-- Particles streaming from left doc INTO pipe -->
+    <g fill="#9ca3af">
+      <circle cx="463" cy="346" r="1.8" opacity="0.55"/>
+      <circle cx="471" cy="340" r="1.4" opacity="0.45"/>
+      <circle cx="476" cy="350" r="1.4" opacity="0.4"/>
+    </g>
+
+    <!-- Particles flowing through pipe (grey to teal to coral gradient via discrete colour shift) -->
+    <g>
+      <!-- Grey entering -->
+      <circle cx="498" cy="345" r="2" fill="#9ca3af" opacity="0.7"/>
+      <circle cx="514" cy="338" r="2.2" fill="#9ca3af" opacity="0.65"/>
+      <circle cx="530" cy="350" r="1.8" fill="#9ca3af" opacity="0.55"/>
+      <!-- Transitioning -->
+      <circle cx="548" cy="343" r="2" fill="#7a9ba5" opacity="0.7"/>
+      <circle cx="565" cy="349" r="2.2" fill="#5b8a98" opacity="0.75"/>
+      <!-- Mid pipe (teal, around the gear) -->
+      <circle cx="640" cy="338" r="2" fill="#1a7a8a" opacity="0.75"/>
+      <circle cx="655" cy="349" r="2.2" fill="#1a7a8a" opacity="0.8"/>
+      <circle cx="670" cy="343" r="2" fill="#1a7a8a" opacity="0.75"/>
+      <circle cx="685" cy="350" r="1.8" fill="#1a7a8a" opacity="0.65"/>
+      <!-- Coral emerging -->
+      <circle cx="700" cy="343" r="2.2" fill="#e07a5f" opacity="0.85"/>
+      <circle cx="713" cy="349" r="2" fill="#e07a5f" opacity="0.78"/>
+    </g>
+
+    <!-- Particles emerging from pipe AS STYLED TYPE on right doc -->
+    <g>
+      <circle cx="725" cy="345" r="2.2" fill="#e07a5f" opacity="0.85"/>
+      <circle cx="734" cy="339" r="1.8" fill="#e07a5f" opacity="0.72"/>
+      <circle cx="741" cy="350" r="1.6" fill="#1d3557" opacity="0.55"/>
+      <circle cx="752" cy="343" r="1.5" fill="#1d3557" opacity="0.5"/>
+
+      <!-- Stylised "type" emerging — small horizontal bars suggesting rendered words -->
+      <rect x="730" y="328" width="14" height="2.5" fill="#1d3557" opacity="0.58" rx="1"/>
+      <rect x="748" y="358" width="10" height="2.5" fill="#e07a5f" opacity="0.62" rx="1"/>
+      <rect x="735" y="365" width="8" height="2" fill="#1d3557" opacity="0.4" rx="1"/>
+    </g>
+
+    <!-- Pandoc gear at midpoint -->
+    <g transform="translate(600, 345)">
+      <!-- 8 gear teeth -->
+      <g fill="#1a7a8a">
+        <rect x="-3" y="-23" width="6" height="9" rx="1"/>
+        <rect x="-3" y="-23" width="6" height="9" rx="1" transform="rotate(45)"/>
+        <rect x="-3" y="-23" width="6" height="9" rx="1" transform="rotate(90)"/>
+        <rect x="-3" y="-23" width="6" height="9" rx="1" transform="rotate(135)"/>
+        <rect x="-3" y="-23" width="6" height="9" rx="1" transform="rotate(180)"/>
+        <rect x="-3" y="-23" width="6" height="9" rx="1" transform="rotate(225)"/>
+        <rect x="-3" y="-23" width="6" height="9" rx="1" transform="rotate(270)"/>
+        <rect x="-3" y="-23" width="6" height="9" rx="1" transform="rotate(315)"/>
+      </g>
+      <!-- Gear body -->
+      <circle r="15" fill="#1a7a8a"/>
+      <!-- Axle hole -->
+      <circle r="6" fill="#f8f5f0"/>
+
+      <!-- Label below gear -->
+      <g transform="translate(0, 50)">
+        <rect x="-32" y="-11" width="64" height="22" fill="#1a7a8a" rx="11" filter="url(#badgeShadow)"/>
+        <text x="0" y="4" font-family="Inter, 'SF Pro Display', system-ui, sans-serif" font-size="11.5" fill="#ffffff" text-anchor="middle" font-weight="700" letter-spacing="0.5">pandoc</text>
+      </g>
+    </g>
+
+    <!-- Faint horizontal flow indicator dots beneath pipe -->
+    <g fill="#1a7a8a" opacity="0.25">
+      <circle cx="488" cy="395" r="1.5"/>
+      <circle cx="498" cy="395" r="1.5"/>
+      <circle cx="508" cy="395" r="1.5"/>
+      <circle cx="692" cy="395" r="1.5"/>
+      <circle cx="702" cy="395" r="1.5"/>
+      <circle cx="712" cy="395" r="1.5"/>
+    </g>
+  </g>
+
+  <!-- ============== RIGHT DOCUMENT — Word/styled ============== -->
+  <g transform="rotate(1.8 880 340)">
+    <!-- Paper depth offset behind -->
+    <rect x="729" y="146" width="295" height="395" fill="#e8e2d8" rx="3"/>
+    <!-- Front face -->
+    <rect x="725" y="140" width="295" height="395" fill="#ffffff" stroke="#c8c4ba" stroke-width="2" rx="3" filter="url(#softShadow)"/>
+
+    <!-- File tag .docx (filled navy, indicating styled output) -->
+    <g transform="translate(745, 158)">
+      <rect x="0" y="0" width="62" height="20" fill="#1d3557" rx="3"/>
+      <text x="31" y="14" font-family="Inter, system-ui, sans-serif" font-size="10.5" fill="#ffffff" text-anchor="middle" font-weight="700">.docx</text>
+    </g>
+
+    <!-- Heading band 1 (large, navy) -->
+    <rect x="745" y="195" width="215" height="14" fill="#1d3557" rx="2"/>
+
+    <!-- Body lines -->
+    <g fill="#9ca3af">
+      <rect x="745" y="225" width="245" height="4" rx="1.5"/>
+      <rect x="745" y="237" width="230" height="4" rx="1.5"/>
+      <rect x="745" y="249" width="250" height="4" rx="1.5"/>
+      <rect x="745" y="261" width="180" height="4" rx="1.5"/>
+    </g>
+
+    <!-- Subheading band (smaller, navy) -->
+    <rect x="745" y="290" width="155" height="10" fill="#1d3557" rx="2"/>
+
+    <!-- Data table (2 rows × 3 cols) -->
+    <g transform="translate(745, 318)">
+      <!-- Outer frame -->
+      <rect x="0" y="0" width="245" height="48" fill="#ffffff" stroke="#1d3557" stroke-width="1.5" rx="2"/>
+      <!-- Header row tint -->
+      <rect x="0" y="0" width="245" height="20" fill="#1d3557" fill-opacity="0.1"/>
+      <!-- Vertical column dividers -->
+      <line x1="82" y1="0" x2="82" y2="48" stroke="#1d3557" stroke-width="1"/>
+      <line x1="163" y1="0" x2="163" y2="48" stroke="#1d3557" stroke-width="1"/>
+      <!-- Header/data row divider -->
+      <line x1="0" y1="20" x2="245" y2="20" stroke="#1d3557" stroke-width="1.2"/>
+      <!-- Header cell text representations (dark bands) -->
+      <rect x="14" y="8" width="46" height="4" rx="1" fill="#1d3557"/>
+      <rect x="96" y="8" width="48" height="4" rx="1" fill="#1d3557"/>
+      <rect x="177" y="8" width="44" height="4" rx="1" fill="#1d3557"/>
+      <!-- Data cell content (grey bands) -->
+      <rect x="14" y="32" width="40" height="3.5" rx="1" fill="#9ca3af"/>
+      <rect x="96" y="32" width="44" height="3.5" rx="1" fill="#9ca3af"/>
+      <rect x="177" y="32" width="38" height="3.5" rx="1" fill="#9ca3af"/>
+    </g>
+
+    <!-- More body lines after table -->
+    <g fill="#9ca3af">
+      <rect x="745" y="385" width="245" height="4" rx="1.5"/>
+      <rect x="745" y="397" width="230" height="4" rx="1.5"/>
+      <rect x="745" y="409" width="195" height="4" rx="1.5"/>
+    </g>
+
+    <!-- Coral underlined link -->
+    <g transform="translate(745, 433)">
+      <rect x="0" y="0" width="125" height="5" fill="#e07a5f" rx="1.5"/>
+      <line x1="0" y1="9" x2="125" y2="9" stroke="#e07a5f" stroke-width="1.5"/>
+    </g>
+
+    <!-- Final body block -->
+    <g fill="#9ca3af">
+      <rect x="745" y="458" width="240" height="4" rx="1.5"/>
+      <rect x="745" y="470" width="245" height="4" rx="1.5"/>
+      <rect x="745" y="482" width="200" height="4" rx="1.5"/>
+    </g>
+
+    <!-- Page corner curl indicator -->
+    <path d="M 1006 522 L 1020 522 L 1020 535 Z" fill="#e8e2d8"/>
+    <path d="M 1006 522 L 1020 535 L 1012 528 Z" fill="#d4d0c8"/>
+  </g>
+
+  <!-- ============== FLOATING BACKGROUND CHIPS ============== -->
+
+  <!-- Coral "Grade 1C" pill near output side -->
+  <g transform="translate(1058, 130)">
+    <rect x="-52" y="-16" width="104" height="32" fill="#e07a5f" rx="16" filter="url(#badgeShadow)"/>
+    <text x="0" y="5" font-family="Inter, system-ui, sans-serif" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="700" letter-spacing="0.6">Grade 1C</text>
+  </g>
+
+  <!-- Zotero citation tag chip (lower right area) -->
+  <g transform="translate(910, 590)">
+    <rect x="-58" y="-13" width="116" height="26" fill="#ffffff" stroke="#1a7a8a" stroke-width="1.5" rx="13" filter="url(#badgeShadow)"/>
+    <!-- Tag colour dot -->
+    <circle cx="-44" cy="0" r="4.5" fill="#e07a5f"/>
+    <!-- Citation key bands -->
+    <rect x="-32" y="-3.5" width="58" height="3" rx="1" fill="#1a7a8a"/>
+    <rect x="-32" y="3" width="38" height="2" rx="1" fill="#9ca3af"/>
+    <!-- Citation marker -->
+    <text x="40" y="3.5" font-family="Inter, system-ui, sans-serif" font-size="11" fill="#1a7a8a" text-anchor="middle" font-weight="700">@</text>
+  </g>
+
+</svg>
