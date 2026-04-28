@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verified AI Literature Search — Infographic</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #0a1628;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 20px;
+  }
+
+  .infographic {
+    width: 1080px;
+    min-height: 1920px;
+    background: #0d1f3c;
+    position: relative;
+    overflow: hidden;
+    font-family: 'Rajdhani', sans-serif;
+    color: #e0e8f0;
+  }
+
+  /* Grid overlay */
+  .infographic::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(37, 99, 235, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(37, 99, 235, 0.06) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Subtle blueprint border */
+  .infographic::after {
+    content: '';
+    position: absolute;
+    inset: 12px;
+    border: 1px solid rgba(37, 99, 235, 0.2);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .content { position: relative; z-index: 2; padding: 48px 56px; }
+
+  /* ─── HEADER ─── */
+  .header { text-align: center; margin-bottom: 36px; padding-bottom: 28px; border-bottom: 1px solid rgba(37, 99, 235, 0.3); }
+
+  .header-tag {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 14px;
+    color: #F59E0B;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .header h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 42px;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.2;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+  }
+
+  .header h1 span { color: #F59E0B; }
+
+  .header h2 {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: #8babc7;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  /* ─── PROBLEM SECTION ─── */
+  .problem-section {
+    background: linear-gradient(135deg, rgba(220, 38, 38, 0.08), rgba(220, 38, 38, 0.03));
+    border: 1px solid rgba(220, 38, 38, 0.25);
+    border-left: 3px solid #dc2626;
+    border-radius: 4px;
+    padding: 32px 36px;
+    margin-bottom: 28px;
+    position: relative;
+  }
+
+  .section-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .section-label.problem { color: #f87171; }
+  .section-label.architecture { color: #38bdf8; }
+  .section-label.solution { color: #4ade80; }
+  .section-label.verify { color: #F59E0B; }
+
+  .section-label::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .section-label.problem::before { background: #dc2626; box-shadow: 0 0 8px #dc2626; }
+  .section-label.architecture::before { background: #2563EB; box-shadow: 0 0 8px #2563EB; }
+  .section-label.solution::before { background: #22c55e; box-shadow: 0 0 8px #22c55e; }
+  .section-label.verify::before { background: #F59E0B; box-shadow: 0 0 8px #F59E0B; }
+
+  .big-stat {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 96px;
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .big-stat.red { color: #ef4444; text-shadow: 0 0 40px rgba(239, 68, 68, 0.3); }
+  .big-stat.green { color: #4ade80; text-shadow: 0 0 40px rgba(74, 222, 128, 0.3); }
+  .big-stat.amber { color: #F59E0B; text-shadow: 0 0 40px rgba(245, 158, 11, 0.3); }
+
+  .stat-label {
+    font-size: 20px;
+    font-weight: 500;
+    color: #cbd5e1;
+    margin-bottom: 20px;
+  }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    margin-top: 16px;
+  }
+
+  .stat-card {
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(220, 38, 38, 0.2);
+    border-radius: 4px;
+    padding: 16px;
+    text-align: center;
+  }
+
+  .stat-card .num {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: #f87171;
+    display: block;
+  }
+
+  .stat-card .desc {
+    font-size: 13px;
+    color: #94a3b8;
+    margin-top: 6px;
+    line-height: 1.3;
+  }
+
+  /* ─── ROOT CAUSE ─── */
+  .root-cause {
+    display: grid;
+    grid-template-columns: 1fr 60px 1fr;
+    gap: 0;
+    align-items: center;
+    margin-bottom: 28px;
+  }
+
+  .cause-box {
+    border-radius: 4px;
+    padding: 24px 20px;
+    text-align: center;
+    min-height: 140px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .cause-box.bad {
+    background: rgba(220, 38, 38, 0.06);
+    border: 1px solid rgba(220, 38, 38, 0.3);
+  }
+
+  .cause-box.good {
+    background: rgba(34, 197, 94, 0.06);
+    border: 1px solid rgba(34, 197, 94, 0.3);
+  }
+
+  .cause-icon {
+    font-size: 40px;
+    margin-bottom: 8px;
+  }
+
+  .cause-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .cause-box.bad .cause-title { color: #f87171; }
+  .cause-box.good .cause-title { color: #4ade80; }
+
+  .cause-desc { font-size: 14px; color: #94a3b8; line-height: 1.4; }
+
+  .vs-divider {
+    text-align: center;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #475569;
+  }
+
+  /* ─── ARCHITECTURE ─── */
+  .architecture-section {
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.06), rgba(37, 99, 235, 0.02));
+    border: 1px solid rgba(37, 99, 235, 0.25);
+    border-left: 3px solid #2563EB;
+    border-radius: 4px;
+    padding: 32px 36px;
+    margin-bottom: 28px;
+  }
+
+  .pipeline {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    margin-top: 16px;
+  }
+
+  .pipeline-node {
+    width: 100%;
+    max-width: 700px;
+    text-align: center;
+    position: relative;
+  }
+
+  .pipeline-box {
+    background: rgba(37, 99, 235, 0.1);
+    border: 1.5px solid rgba(37, 99, 235, 0.4);
+    border-radius: 6px;
+    padding: 16px 24px;
+    display: inline-block;
+  }
+
+  .pipeline-box.start {
+    background: rgba(37, 99, 235, 0.15);
+    border-color: rgba(37, 99, 235, 0.6);
+  }
+
+  .pipeline-box.ledger {
+    background: rgba(245, 158, 11, 0.1);
+    border: 2px solid rgba(245, 158, 11, 0.6);
+    box-shadow: 0 0 20px rgba(245, 158, 11, 0.1);
+  }
+
+  .pipeline-box .box-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: #60a5fa;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .pipeline-box.ledger .box-title { color: #F59E0B; }
+
+  .pipeline-box .box-desc {
+    font-size: 13px;
+    color: #8babc7;
+    margin-top: 4px;
+  }
+
+  .pipeline-box.ledger .box-desc { color: #fbbf24; }
+
+  .dual-search {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    width: 100%;
+    max-width: 700px;
+  }
+
+  .search-engine {
+    background: rgba(37, 99, 235, 0.08);
+    border: 1.5px solid rgba(37, 99, 235, 0.3);
+    border-radius: 6px;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .search-engine .engine-name {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: #38bdf8;
+    letter-spacing: 1px;
+  }
+
+  .search-engine .engine-type {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 12px;
+    color: #64748b;
+    margin-top: 4px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  .search-engine .engine-detail {
+    font-size: 13px;
+    color: #8babc7;
+    margin-top: 8px;
+    line-height: 1.4;
+  }
+
+  .pipeline-arrow {
+    width: 2px;
+    height: 28px;
+    background: linear-gradient(to bottom, rgba(37, 99, 235, 0.6), rgba(37, 99, 235, 0.3));
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .pipeline-arrow::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 7px solid rgba(37, 99, 235, 0.5);
+  }
+
+  .pipeline-arrow.amber {
+    background: linear-gradient(to bottom, rgba(245, 158, 11, 0.6), rgba(245, 158, 11, 0.3));
+  }
+  .pipeline-arrow.amber::after {
+    border-top-color: rgba(245, 158, 11, 0.5);
+  }
+
+  .pipeline-split {
+    width: 100%;
+    max-width: 700px;
+    height: 30px;
+    position: relative;
+  }
+
+  .pipeline-split::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 2px;
+    height: 10px;
+    background: rgba(37, 99, 235, 0.5);
+  }
+
+  .pipeline-split::after {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: calc(25% + 10px);
+    right: calc(25% + 10px);
+    height: 2px;
+    background: rgba(37, 99, 235, 0.3);
+  }
+
+  .split-legs {
+    position: absolute;
+    top: 10px;
+    left: calc(25% + 10px);
+    right: calc(25% + 10px);
+    height: 20px;
+  }
+
+  .split-legs::before, .split-legs::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 2px;
+    height: 20px;
+    background: rgba(37, 99, 235, 0.4);
+  }
+  .split-legs::before { left: 0; }
+  .split-legs::after { right: 0; }
+
+  .pipeline-merge {
+    width: 100%;
+    max-width: 700px;
+    height: 30px;
+    position: relative;
+  }
+
+  .merge-legs {
+    position: absolute;
+    top: 0;
+    left: calc(25% + 10px);
+    right: calc(25% + 10px);
+    height: 20px;
+  }
+
+  .merge-legs::before, .merge-legs::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 2px;
+    height: 10px;
+    background: rgba(37, 99, 235, 0.4);
+  }
+  .merge-legs::before { left: 0; }
+  .merge-legs::after { right: 0; }
+
+  .pipeline-merge::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: calc(25% + 10px);
+    right: calc(25% + 10px);
+    height: 2px;
+    background: rgba(37, 99, 235, 0.3);
+  }
+
+  .pipeline-merge::after {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    width: 2px;
+    height: 20px;
+    background: rgba(37, 99, 235, 0.5);
+    transform: translateX(-50%);
+  }
+
+  /* ─── VERIFICATION ─── */
+  .verify-section {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.06), rgba(245, 158, 11, 0.02));
+    border: 1px solid rgba(245, 158, 11, 0.25);
+    border-left: 3px solid #F59E0B;
+    border-radius: 4px;
+    padding: 28px 36px;
+    margin-bottom: 28px;
+  }
+
+  .checklist {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 20px;
+    margin-top: 14px;
+  }
+
+  .check-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 15px;
+    color: #cbd5e1;
+  }
+
+  .check-item:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .check-icon {
+    width: 22px;
+    height: 22px;
+    border: 2px solid #F59E0B;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #F59E0B;
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  /* ─── SOLUTION / IMPACT ─── */
+  .solution-section {
+    background: linear-gradient(135deg, rgba(34, 197, 94, 0.06), rgba(34, 197, 94, 0.02));
+    border: 1px solid rgba(34, 197, 94, 0.25);
+    border-left: 3px solid #22c55e;
+    border-radius: 4px;
+    padding: 32px 36px;
+    margin-bottom: 28px;
+  }
+
+  .impact-grid {
+    display: grid;
+    grid-template-columns: 1fr 60px 1fr;
+    align-items: center;
+    gap: 0;
+    margin-top: 16px;
+    margin-bottom: 20px;
+  }
+
+  .impact-box {
+    text-align: center;
+    padding: 20px;
+    border-radius: 6px;
+  }
+
+  .impact-box.before {
+    background: rgba(220, 38, 38, 0.06);
+    border: 1px solid rgba(220, 38, 38, 0.2);
+  }
+
+  .impact-box.after {
+    background: rgba(34, 197, 94, 0.08);
+    border: 1px solid rgba(34, 197, 94, 0.3);
+  }
+
+  .impact-box .time {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 36px;
+    font-weight: 800;
+    line-height: 1.1;
+  }
+
+  .impact-box.before .time { color: #f87171; text-decoration: line-through; text-decoration-thickness: 3px; }
+  .impact-box.after .time { color: #4ade80; text-shadow: 0 0 20px rgba(74, 222, 128, 0.3); }
+
+  .impact-box .time-label {
+    font-size: 14px;
+    color: #8babc7;
+    margin-top: 6px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .impact-arrow {
+    text-align: center;
+    font-size: 28px;
+    color: #4ade80;
+  }
+
+  .outputs-row {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .output-chip {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 13px;
+    color: #4ade80;
+    background: rgba(34, 197, 94, 0.08);
+    border: 1px solid rgba(34, 197, 94, 0.25);
+    border-radius: 3px;
+    padding: 6px 14px;
+    letter-spacing: 1px;
+  }
+
+  /* ─── FOOTER ─── */
+  .footer {
+    text-align: center;
+    padding-top: 24px;
+    border-top: 1px solid rgba(37, 99, 235, 0.2);
+  }
+
+  .footer-repo {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 16px;
+    color: #38bdf8;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+
+  .footer-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: #475569;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .footer-author {
+    font-size: 15px;
+    color: #8babc7;
+  }
+
+  /* ─── DIMENSION MARKS ─── */
+  .dim-mark {
+    position: absolute;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 9px;
+    color: rgba(37, 99, 235, 0.25);
+    letter-spacing: 2px;
+  }
+
+  .dim-tl { top: 20px; left: 20px; }
+  .dim-tr { top: 20px; right: 20px; }
+  .dim-bl { bottom: 20px; left: 20px; }
+  .dim-br { bottom: 20px; right: 20px; }
+
+  /* ─── KEY RULE CALLOUT ─── */
+  .key-rule {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #F59E0B;
+    text-align: center;
+    padding: 10px 20px;
+    border: 1px dashed rgba(245, 158, 11, 0.4);
+    border-radius: 4px;
+    background: rgba(245, 158, 11, 0.04);
+    margin-top: 12px;
+    letter-spacing: 2px;
+  }
+
+  .context-stats {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(37, 99, 235, 0.15);
+  }
+
+  .context-stat {
+    text-align: center;
+  }
+
+  .context-stat .num {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #60a5fa;
+  }
+
+  .context-stat .label {
+    font-size: 11px;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 2px;
+  }
+</style>
+</head>
+<body>
+<div class="infographic">
+  <!-- Blueprint dimension marks -->
+  <span class="dim-mark dim-tl">A1 · REV 1.0</span>
+  <span class="dim-mark dim-tr">1080 × 1920</span>
+  <span class="dim-mark dim-bl">LSZABO.ME</span>
+  <span class="dim-mark dim-br">2026-04</span>
+
+  <div class="content">
+
+    <!-- ═══ HEADER ═══ -->
+    <div class="header">
+      <div class="header-tag">/// Evidence Pipeline Architecture</div>
+      <h1>VERIFIED AI<br>LITERATURE <span>SEARCH</span></h1>
+      <h2>From 56% Error Rate to Structural Safety</h2>
+    </div>
+
+    <!-- ═══ PROBLEM ═══ -->
+    <div class="problem-section">
+      <div class="section-label problem">01 — The Problem</div>
+      <div class="big-stat red">56%</div>
+      <div class="stat-label">of AI-generated medical citations contain errors</div>
+      <div class="stat-grid">
+        <div class="stat-card">
+          <span class="num">20%</span>
+          <div class="desc">entirely<br>fabricated</div>
+        </div>
+        <div class="stat-card">
+          <span class="num">64%</span>
+          <div class="desc">fake DOIs link to real<br>but wrong papers</div>
+        </div>
+        <div class="stat-card">
+          <span class="num">71%</span>
+          <div class="desc">of physicians cite<br>accuracy concerns</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ ROOT CAUSE ═══ -->
+    <div class="root-cause">
+      <div class="cause-box bad">
+        <div class="cause-icon">&#x26A0;</div>
+        <div class="cause-title">Generate from Memory</div>
+        <div class="cause-desc">AI recalls papers that don't exist. DOIs are fabricated but look real.</div>
+      </div>
+      <div class="vs-divider">VS</div>
+      <div class="cause-box good">
+        <div class="cause-icon">&#x2713;</div>
+        <div class="cause-title">Retrieve from Database</div>
+        <div class="cause-desc">Search PubMed & Scholar Gateway directly. Only cite what exists.</div>
+      </div>
+    </div>
+
+    <!-- ═══ ARCHITECTURE ═══ -->
+    <div class="architecture-section">
+      <div class="section-label architecture">02 — The Architecture</div>
+
+      <div class="pipeline">
+        <!-- Clinical Question -->
+        <div class="pipeline-node">
+          <div class="pipeline-box start">
+            <div class="box-title">Clinical Question</div>
+            <div class="box-desc">PICO-framed research query</div>
+          </div>
+        </div>
+
+        <!-- Split arrow -->
+        <div class="pipeline-split">
+          <div class="split-legs"></div>
+        </div>
+
+        <!-- Dual search -->
+        <div class="dual-search">
+          <div class="search-engine">
+            <div class="engine-name">PubMed MCP</div>
+            <div class="engine-type">Keyword / MeSH</div>
+            <div class="engine-detail">Boolean queries, publication type filters, 36.5M+ citations</div>
+          </div>
+          <div class="search-engine">
+            <div class="engine-name">Scholar Gateway</div>
+            <div class="engine-type">Semantic Search</div>
+            <div class="engine-detail">Natural language queries across full-text passages</div>
+          </div>
+        </div>
+
+        <!-- Merge arrow -->
+        <div class="pipeline-merge">
+          <div class="merge-legs"></div>
+        </div>
+
+        <!-- Reference Ledger -->
+        <div class="pipeline-node">
+          <div class="pipeline-box ledger">
+            <div class="box-title">&#x1F6E1; Reference Ledger</div>
+            <div class="box-desc">PMID · DOI · Title · Authors — verified against PubMed metadata</div>
+          </div>
+        </div>
+
+        <div class="key-rule">NO LEDGER ENTRY = NO CITATION</div>
+
+        <div class="context-stats">
+          <div class="context-stat">
+            <div class="num">81%</div>
+            <div class="label">Physicians use AI</div>
+          </div>
+          <div class="context-stat">
+            <div class="num">35%</div>
+            <div class="label">Use AI for lit search</div>
+          </div>
+          <div class="context-stat">
+            <div class="num">36.5M+</div>
+            <div class="label">PubMed citations</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ VERIFICATION ═══ -->
+    <div class="verify-section">
+      <div class="section-label verify">03 — 5-Point Verification</div>
+      <div class="checklist">
+        <div class="check-item"><span class="check-icon">✓</span> DOI spot-check against PubMed</div>
+        <div class="check-item"><span class="check-icon">✓</span> Title–PMID consistency</div>
+        <div class="check-item"><span class="check-icon">✓</span> No fabricated references</div>
+        <div class="check-item"><span class="check-icon">✓</span> DOI format validation (10.xxxx)</div>
+        <div class="check-item"><span class="check-icon">✓</span> Citation ↔ reference mapping — every [N] verified</div>
+      </div>
+    </div>
+
+    <!-- ═══ SOLUTION / IMPACT ═══ -->
+    <div class="solution-section">
+      <div class="section-label solution">04 — The Impact</div>
+
+      <div class="impact-grid">
+        <div class="impact-box before">
+          <div class="time">67 WEEKS</div>
+          <div class="time-label">Manual systematic review</div>
+        </div>
+        <div class="impact-arrow">→</div>
+        <div class="impact-box after">
+          <div class="time">15–30 MIN</div>
+          <div class="time-label">Verified evidence gathering</div>
+        </div>
+      </div>
+
+      <div class="outputs-row">
+        <span class="output-chip">.docx</span>
+        <span class="output-chip">.bib</span>
+        <span class="output-chip">.yaml</span>
+        <span class="output-chip">PMIDs.txt</span>
+      </div>
+    </div>
+
+    <!-- ═══ FOOTER ═══ -->
+    <div class="footer">
+      <div class="footer-label">Open Source</div>
+      <div class="footer-repo">github.com/Laszlo75/literature-search</div>
+      <div class="footer-author">Laszlo Szabo · Consultant Transplant Surgeon</div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>
