@@ -1,5 +1,5 @@
 ---
-title: "Why a Transplant Surgeon Built an Academic Site with Quarto"
+title: "Why a transplant surgeon built an academic site with Quarto"
 description: "A transplant surgeon explains why he built an academic portfolio with Quarto and R, and what to expect from this blog."
 author:
   - name: Laszlo Szabo

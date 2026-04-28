@@ -1,6 +1,6 @@
 ---
-title: "From Manual Search to Automated Evidence Pipeline"
-subtitle: "Building a Claude Skill for Verified Medical Literature Search"
+title: "From manual search to automated evidence pipeline"
+subtitle: "Building a Claude skill for verified medical literature search"
 description: "56% of AI citations contain errors. How a transplant surgeon built a Claude skill for automated, verified clinical literature search."
 author:
   - name: Laszlo Szabo

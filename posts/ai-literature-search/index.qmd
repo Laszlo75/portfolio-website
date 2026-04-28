@@ -1,5 +1,5 @@
 ---
-title: "Claude for Medical Literature Search: Avoid Hallucinations"
+title: "Claude for medical literature search: Avoid hallucinations"
 description: "5 habits that prevent hallucinated citations when using Claude for medical literature search, with PubMed connector setup and a complete workflow guide."
 author:
   - name: Laszlo Szabo
