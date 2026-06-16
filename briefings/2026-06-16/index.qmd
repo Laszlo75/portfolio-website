@@ -1,0 +1,90 @@
+---
+title: "Transplant briefing: 16 June 2026"
+date: "2026-06-16"
+categories: [kidney, pancreas, weekly briefing]
+description: "Notable transplantation literature for the week of 16 June 2026."
+---
+
+::: {.callout-note appearance="simple"}
+AI-generated summary. Verify each item against the source before relying on it.
+:::
+
+## This week
+
+### [CAR T-cell desensitisation opens transplantation to the most highly sensitised candidates](https://doi.org/10.1056/NEJMoa2513428)
+
+*New England Journal of Medicine, 2026. PMID: 42235014.*
+
+In the safety run-in of a multicentre phase 1 study, two highly sensitised candidates (calculated panel-reactive antibody ≥99.9%) for whom conventional desensitisation usually fails were treated with combined CD19- and BCMA-directed CAR T cells to deplete the cells producing anti-HLA antibodies, then successfully received a kidney transplant.
+
+**Why it matters:** It signals a possible route to transplantation for patients who are effectively untransplantable with current desensitisation strategies.
+
+---
+
+### [Pancreas graft failure sharply raises death and kidney-loss risk after SPK](https://doi.org/10.1097/TXD.0000000000001942)
+
+*Transplantation Direct, 2026. PMID: 42245383.*
+
+Using 2013–2022 US SRTR data and treating pancreas death-censored graft failure as a time-dependent exposure, the authors found it occurred in 1013 recipients (5-year incidence 13.7%, mostly within the first year) and independently roughly doubled-to-trebled mortality (early HR 2.97, later HR 2.47) while also predicting kidney graft loss; subsequent kidney failure among 1-year survivors carried a striking 5-year mortality (HR 9.37), with younger recipients relatively more vulnerable.
+
+**Why it matters:** It argues for closer surveillance and active risk stratification of simultaneous pancreas–kidney recipients after pancreas graft loss.
+
+---
+
+### [Kidney transplantation still carries the highest unmet need despite decades of survival gains](https://doi.org/10.1097/XCS.0000000000001852)
+
+*Journal of the American College of Surgeons, 2026. PMID: 41925214.*
+
+This national UNOS cohort analysis of more than 1.4 million candidates listed between 1987 and 2024 used intention-to-treat survival to track system performance; one-year intention-to-treat and post-transplant survival improved across all organs, but kidney transplantation retained the highest and most persistent unmet need with little improvement since the mid-2010s, even as unmet need for pancreas and lung fell substantially.
+
+**Why it matters:** It quantifies that organ access, not post-transplant survival, remains the dominant bottleneck for kidney candidates.
+
+---
+
+### [How centres select type 2 diabetes patients for pancreas transplant: an international snapshot](https://doi.org/10.1097/TXD.0000000000001963)
+
+*Transplantation Direct, 2026. PMID: 42256091.*
+
+An International Pancreas and Islet Transplant Association survey of 37 transplant professionals found most programmes offer pancreas transplantation to patients with type 2 diabetes only when a kidney transplant is also indicated, with insulin requirement and BMI as the leading eligibility factors; C-peptide and BMI thresholds varied widely, and weight-optimisation strategies including GLP-1 agonists and bariatric surgery were commonly recommended.
+
+**Why it matters:** It documents broad but inconsistent practice and the absence of consensus criteria for selecting type 2 diabetes candidates.
+
+---
+
+### [Fungal infection after kidney transplant rarely announces itself with fever](https://doi.org/10.1186/s12879-026-13558-2)
+
+*BMC Infectious Diseases, 2026. PMID: 42260406.*
+
+In a German prospective multicentre cohort of 1258 kidney transplant recipients across five centres (2011–2022), the cumulative incidence of fungal infection was 6.7%, led by Candida albicans; fever was absent in roughly four in five episodes, pancreas–kidney transplantation was associated with non-albicans Candida (HR 5.0), and invasive aspergillosis carried the highest mortality (41.7%).
+
+**Why it matters:** It supports pathogen-specific, risk-adapted surveillance and a low threshold for suspecting fungal infection even without fever.
+
+---
+
+### [Peripheral nerve blocks cut opioid use after kidney transplant](https://doi.org/10.12659/AOT.952211)
+
+*Annals of Transplantation, 2026. PMID: 42298791.*
+
+This systematic review and meta-analysis pooled 10 studies and found peripheral nerve blocks reduced 24-hour opioid consumption by about 16 mg of intravenous morphine equivalents (95% CI −24.66 to −7.74) compared with control analgesia, with no signal of increased adverse events, though heterogeneity was very high.
+
+**Why it matters:** It supports peripheral nerve blocks as an opioid-sparing element of multimodal analgesia after kidney transplant, while flagging that the evidence base is still thin.
+
+---
+
+### [Women, especially premenopausal, clear tacrolimus faster](https://doi.org/10.1080/17425255.2026.2671063)
+
+*Expert Opinion on Drug Metabolism & Toxicology, 2026. PMID: 42112963.*
+
+A cross-sectional analysis of 818 stable kidney, lung and liver transplant recipients in the TransplantLines cohort found women had lower tacrolimus concentration-to-dose ratios than men (median 115 vs 150), and postmenopausal women had higher ratios than premenopausal women (127 vs 88), pointing to faster metabolism or lower bioavailability in women that attenuates after menopause.
+
+**Why it matters:** It suggests sex and menopausal status are worth weighing when individualising tacrolimus dosing.
+
+---
+
+### [A reproducible fully robotic technique for pancreas transplantation](https://doi.org/10.1186/s12893-026-03860-w)
+
+*BMC Surgery, 2026. PMID: 42271309.*
+
+This article describes a standardised fully robotic pancreas transplant technique applicable to simultaneous pancreas–kidney, pancreas-after-kidney and pancreas-transplant-alone, featuring back-table vascular construction, extraperitoneal graft placement and port positioning that mirrors robotic kidney transplantation; early high-volume-centre experience suggests feasibility, but the authors stress there are no comparative outcome or cost data yet.
+
+**Why it matters:** A minimally invasive approach could reduce the morbidity that has contributed to declining pancreas transplant utilisation, though outcomes remain unproven.
