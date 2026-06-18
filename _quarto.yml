@@ -29,7 +29,9 @@ website:
         href: publications.qmd
       - text: Posts
         href: posts.qmd
-    
+      - text: Kidney Watch
+        href: briefings.qmd
+
     right:
       - text: "{{< fa brands github >}}"
         href: https://github.com/Laszlo75
