@@ -1,0 +1,90 @@
+---
+title: "Kidney Watch: 18 June 2026"
+date: "2026-06-18"
+categories: [kidney, weekly briefing]
+description: "Notable kidney transplantation literature for the week of 18 June 2026."
+---
+
+::: {.callout-note appearance="simple"}
+AI-generated summary. Verify each item against the source before relying on it.
+:::
+
+## This week
+
+### [Regulatory T cells plus donor bone marrow induce chimerism after living-donor kidney transplant without irradiation](https://doi.org/10.1126/scitranslmed.aee6850)
+
+*Sci Transl Med, 2026. PMID: 42308328.*
+
+In a controlled phase 1/2a trial, six recipients of HLA-mismatched living-donor kidneys received their own polyclonal regulatory T cells plus donor bone marrow cells immediately after transplant, alongside immunosuppression with thymoglobulin, belatacept, sirolimus, steroids and short-course tocilizumab. Every treated patient developed donor leukocyte chimerism (up to about 4% in T cells) while none of the controls did (primary endpoint met, p=0.001), antidonor T-cell reactivity fell, and three of the six were weaned to belatacept monotherapy.
+
+**Why it matters:** A proof-of-concept route toward operational tolerance that avoids the toxicity of recipient irradiation, though the cohort is tiny and the approach remains experimental.
+
+---
+
+### [New European guideline standardises immunosuppression after paediatric kidney transplantation](https://doi.org/10.1097/TP.0000000000005772)
+
+*Transplantation, 2026. PMID: 42308432.*
+
+This evidence- and consensus-based guideline, developed between 2024 and 2025 by German and pan-European paediatric nephrology and transplant societies, sets out recommendations for immunosuppressive therapy in children and adolescents after kidney transplantation, an area where practice has been highly variable and newer individualised strategies are often not implemented. Where trial evidence is weak or inconclusive, recommendations rest on formal expert consensus.
+
+**Why it matters:** Gives UK paediatric transplant teams a current reference point for harmonising immunosuppression decisions and reducing unwarranted variation.
+
+---
+
+### [Reimbursing donors' lost wages did not raise living-donor kidney transplant rates](https://doi.org/10.1097/TP.0000000000005749)
+
+*Transplantation, 2026. PMID: 42308433.*
+
+This randomised trial assigned transplant candidates to encourage their social networks toward a lost-wage reimbursement scheme capped at either $1500 or $3000 for potential living donors, comparing them with matched historical controls. Neither access to reimbursement nor the higher cap significantly increased living-donor transplants or donor evaluations within a year (adjusted OR for any reimbursement 0.85), although an exploratory analysis extending follow-up past COVID-related shutdowns suggested a later benefit (adjusted OR 2.16).
+
+**Why it matters:** Indicates that neutralising lost wages alone is unlikely to expand living donation without wider supportive measures, relevant as the UK weighs donor-cost reimbursement.
+
+---
+
+### [Prolonged warm ischaemia need not exclude DCD kidneys when regional perfusion is used](https://doi.org/10.1097/TP.0000000000005792)
+
+*Transplantation, 2026. PMID: 42302729.*
+
+Drawing on Italy's national registry (2017–2021), this study analysed controlled and uncontrolled donation after circulatory death performed under a 20-minute no-touch rule with mandatory normothermic regional perfusion and, in most cases, ex situ machine perfusion. Mean functional warm ischaemia time in utilised controlled-DCD donors was 46 minutes (exceeding 60 minutes in 12.6%), yet one-year kidney graft survival reached 93.1%, comparable to donation after brain death; donor age over 60, obesity, pre-death ECMO and warm ischaemia beyond 45 minutes independently predicted organ discard.
+
+**Why it matters:** Supports accepting DCD kidneys with longer warm ischaemia where perfusion technology allows function assessment, directly relevant to expanding the UK DCD pool.
+
+---
+
+### [Endothelial HLA-F marks worse outcomes in antibody-mediated rejection](https://doi.org/10.1097/TP.0000000000005790)
+
+*Transplantation, 2026. PMID: 42302751.*
+
+Combining spatial transcriptomic profiling of the peritubular capillary niche with immunohistochemistry across 67 allograft biopsies (42 with antibody-mediated rejection), investigators identified an interferon-γ-driven transcriptional programme in which HLA-F stood out. HLA-F expression tracked with microvascular injury severity and donor-specific antibody positivity, and among patients with active antibody-mediated rejection, higher HLA-F predicted a steeper subsequent fall in graft function.
+
+**Why it matters:** A candidate prognostic biomarker that could help stratify rejection severity beyond standard histology, though it needs validation before any clinical use.
+
+---
+
+### [Complement C5b-9 deposition flags prolonged delayed graft function in DCD kidneys](https://doi.org/10.1097/TP.0000000000005815)
+
+*Transplantation, 2026. PMID: 42302715.*
+
+In day-10 protocol biopsies from 64 recipients of donation-after-circulatory-death kidneys, deposition of the terminal complement complex C5b-9 was higher in those with prolonged delayed graft function (median 8.1%) than in early or intermediate recovery (both around 5.6%), and was greater in expanded-criteria-donor kidneys. C4d and C3d deposition did not differ across groups, and C5b-9 was not captured by conventional Banff scoring.
+
+**Why it matters:** Points to terminal complement activation as an injury signal in DCD kidneys and a possible therapeutic target that current histological scoring misses.
+
+---
+
+### [Post-transplant diabetes affects roughly one in five kidney recipients](https://doi.org/10.3389/fendo.2026.1838424)
+
+*Front Endocrinol (Lausanne), 2026. PMID: 42267307.*
+
+Pooling 26 studies from 15 countries (8,727 participants), this systematic review and meta-analysis estimated the overall incidence of post-transplant diabetes mellitus at about 20%. Significant risk factors included older age, higher body mass index, raised fasting plasma glucose, hypertriglyceridaemia, family history of diabetes and hepatitis C infection, several of which are modifiable.
+
+**Why it matters:** Reinforces structured pre- and post-transplant metabolic screening and risk-factor modification to reduce diabetes after kidney transplantation.
+
+---
+
+### [Peripheral nerve blocks reduce opioid use after kidney transplant surgery](https://doi.org/10.12659/AOT.952211)
+
+*Ann Transplant, 2026. PMID: 42298791.*
+
+This systematic review and meta-analysis of 12 studies (10 pooled) found that peripheral nerve blocks lowered 24-hour postoperative opioid consumption after kidney transplantation by about 16 mg of intravenous morphine equivalents versus standard analgesia, with no reported increase in adverse events. Statistical heterogeneity was very high (I²=99%).
+
+**Why it matters:** Supports adding regional blocks to multimodal, opioid-sparing analgesia for transplant recipients, while better-designed comparative trials are still needed.
