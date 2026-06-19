@@ -83,17 +83,20 @@ Body (in this exact order):
 AI-generated summary. Verify each item against the source before relying on it.
 :::
 
-**Overview.** A 4–6 sentence thematic synthesis of this issue's papers: name the main
+::: {.kw-overview}
+A 4–6 sentence thematic synthesis of this issue's papers: name the main
 themes (e.g. immunosuppression minimisation, donor utilisation/DCD, rejection biomarkers,
 cardiovascular risk, infection prevention) and weave the selected papers together by
-theme rather than listing them. If no full texts were available this run, end the Overview
-with: "Note: no full texts were available via PubMed Central for the selected papers in
-this run, so every summary below is grounded strictly in the PubMed abstract."
+theme rather than listing them. Do NOT begin with a literal "Overview." label — the site
+adds a styled "In brief" eyebrow automatically. If no full texts were available this run,
+end with: "Note: no full texts were available via PubMed Central for the selected papers
+in this run, so every summary below is grounded strictly in the PubMed abstract."
+:::
 
 ---
 
 ### 1. [Exact article title, verbatim from PubMed](https://doi.org/DOI)
-**Reference:** Full author list. *Journal abbreviation*, YEAR. PMID: PMID.
+[Full author list. *Journal abbreviation*, YEAR. PMID: PMID.]{.kw-ref}
 
 A 6–10 sentence summary in your own words: the study design and population/setting; the
 databases and date range searched and the sample size where given; the main findings
@@ -102,7 +105,7 @@ follow-up duration; and any important caveats. Close with one sentence on the im
 for UK kidney transplant practice, woven into the prose (not a separate labelled line).
 
 ### 2. [Next article title, verbatim](https://doi.org/DOI)
-**Reference:** Full author list. *Journal abbreviation*, YEAR. PMID: PMID.
+[Full author list. *Journal abbreviation*, YEAR. PMID: PMID.]{.kw-ref}
 
 Summary as above.
 
@@ -115,6 +118,10 @@ metadata and abstracts.*
 
 Notes on layout (match exactly):
 
+- Wrap the Overview in a `::: {.kw-overview}` … `:::` fenced div, and put each reference
+  line in a `[ … ]{.kw-ref}` span (no literal "Overview." or "Reference:" labels). These
+  two classes drive the site's typography — the Overview renders as a serif lead with an
+  "In brief" eyebrow, the reference as small muted print — so keep them exactly.
 - A single `---` rule separates the Overview from the numbered entries, and a single `---`
   separates the last entry from the footer. Do **not** put `---` rules between consecutive
   entries — each new entry begins with its `### N.` heading.
