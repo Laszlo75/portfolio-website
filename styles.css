@@ -364,7 +364,7 @@ div.about-contents h2 {
 }
 
 .kw-overview::before {
-  content: "This week";
+  content: "In brief";
   display: block;
   font-family: 'Source Sans 3', sans-serif;
   font-size: 0.72rem;
@@ -373,6 +373,11 @@ div.about-contents h2 {
   text-transform: uppercase;
   color: var(--accent);
   margin-bottom: 0.45rem;
+}
+
+.kw-overview > p {
+  font-size: 1.18rem;
+  line-height: 1.6;
 }
 
 .kw-overview > p:last-child {

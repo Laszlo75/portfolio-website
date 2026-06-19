@@ -88,7 +88,7 @@ A 4–6 sentence thematic synthesis of this issue's papers: name the main
 themes (e.g. immunosuppression minimisation, donor utilisation/DCD, rejection biomarkers,
 cardiovascular risk, infection prevention) and weave the selected papers together by
 theme rather than listing them. Do NOT begin with a literal "Overview." label — the site
-adds a styled "This week" eyebrow automatically. If no full texts were available this run,
+adds a styled "In brief" eyebrow automatically. If no full texts were available this run,
 end with: "Note: no full texts were available via PubMed Central for the selected papers
 in this run, so every summary below is grounded strictly in the PubMed abstract."
 :::
@@ -120,8 +120,8 @@ Notes on layout (match exactly):
 
 - Wrap the Overview in a `::: {.kw-overview}` … `:::` fenced div, and put each reference
   line in a `[ … ]{.kw-ref}` span (no literal "Overview." or "Reference:" labels). These
-  two classes drive the site's typography — the Overview renders as a serif lead with a
-  "This week" eyebrow, the reference as small muted print — so keep them exactly.
+  two classes drive the site's typography — the Overview renders as a serif lead with an
+  "In brief" eyebrow, the reference as small muted print — so keep them exactly.
 - A single `---` rule separates the Overview from the numbered entries, and a single `---`
   separates the last entry from the footer. Do **not** put `---` rules between consecutive
   entries — each new entry begins with its `### N.` heading.
