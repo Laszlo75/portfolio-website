@@ -385,8 +385,9 @@ div.about-contents h2 {
 }
 
 .kw-ref {
+  display: block;
   font-size: 0.84rem;
-  line-height: 1.5;
+  line-height: 1.45;
   color: var(--text-muted);
 }
 
