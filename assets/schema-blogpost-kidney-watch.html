@@ -1,0 +1,129 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BlogPosting",
+      "@id": "https://lszabo.me/posts/automated-literature-watch/#article",
+      "headline": "From a literature-search skill to a self-running evidence digest",
+      "description": "How a weekly Claude cloud routine turns verified PubMed search into an automated kidney transplant digest, with every citation reviewed before publishing.",
+      "datePublished": "2026-06-19",
+      "dateModified": "2026-06-19",
+      "author": {
+        "@id": "https://lszabo.me/#person"
+      },
+      "publisher": {
+        "@id": "https://lszabo.me/#person"
+      },
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://lszabo.me/posts/automated-literature-watch/hero.png",
+        "width": 1200,
+        "height": 675
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://lszabo.me/posts/automated-literature-watch/"
+      },
+      "wordCount": 2300,
+      "articleSection": "AI",
+      "keywords": ["AI", "Claude", "literature surveillance", "automation", "kidney transplantation", "PubMed", "evidence digest", "clinical governance", "Quarto", "pull request"],
+      "inLanguage": "en-GB",
+      "isPartOf": {
+        "@type": "BlogPosting",
+        "@id": "https://lszabo.me/posts/search-result-to-structured-doc/#article"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://lszabo.me/#person",
+      "name": "Laszlo Szabo",
+      "jobTitle": "Consultant Transplant Surgeon",
+      "url": "https://lszabo.me/",
+      "sameAs": [
+        "https://orcid.org/0000-0002-6881-1542",
+        "https://www.linkedin.com/in/drszabolaszlo/",
+        "https://x.com/drszabolaszlo",
+        "https://github.com/Laszlo75",
+        "https://www.researchgate.net/profile/Laszlo-Szabo-8"
+      ],
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Cardiff Transplant Unit",
+        "url": "https://cavuhb.nhs.wales/"
+      },
+      "knowsAbout": ["kidney transplantation", "pancreas transplantation", "organ utilisation", "data science", "R programming", "clinical AI governance"]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://lszabo.me/posts/automated-literature-watch/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://lszabo.me/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Posts",
+          "item": "https://lszabo.me/posts.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "From a literature-search skill to a self-running evidence digest",
+          "item": "https://lszabo.me/posts/automated-literature-watch/"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://lszabo.me/posts/automated-literature-watch/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is Kidney Watch a substitute for reading the papers?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. It is a triage layer, not a verdict. Every issue carries a callout flagging it as AI-generated and asking readers to verify each item against the source, and PubMed is credited as the origin of all metadata. The digest helps a clinician decide what is worth reading this week; the clinical judgement stays with the reader and the primary source."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does it avoid hallucinated citations?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "By copying, not recalling. The PMID, DOI, title, authors, journal, and year are taken verbatim from PubMed metadata, never reconstructed from memory, and every summary statistic must be grounded in the abstract or full text retrieved that run. This matters because 56% of AI-generated medical citations in one study were fabricated or wrong (Linardon et al., JMIR Mental Health, 2025)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why a pull request instead of publishing automatically?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Because AI-generated medical content needs a human gate. Every issue is a GitHub pull request reviewed before merge, which is where a misread statistic, a mis-scoped paper, or an overstated finding gets caught before it is public. The automation can open a pull request but can never push to the live branch, so the worst case is a pull request someone closes."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Could this pattern work for other specialties?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Nothing in the architecture is kidney-specific. The scope, audience, and search terms all live in one version-controlled spec file, so adapting it to another sub-specialty means editing that Markdown spec rather than rebuilding the automation. The same verified-citation rules, deduplication state, and pull-request gate carry over unchanged."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does it avoid repeating papers week to week?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A small seen.json file records the PMID of every paper ever covered, and each run excludes everything already on that list. That lets the search use a deliberately overlapping 14-day window on a weekly cadence, so papers PubMed indexes late are still caught, without the overlap ever producing a duplicate in the published feed."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>

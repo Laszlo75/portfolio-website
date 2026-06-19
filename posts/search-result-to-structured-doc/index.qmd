@@ -160,7 +160,7 @@ Both the `.docx` and the `.md` source are preserved so the team can edit in whic
 
 The skill is open source: [protocol-reviewer on GitHub](https://github.com/Laszlo75/protocol-reviewer).
 
-<!-- **Next in this series:** Post 3 will cover the ISO 42001 governance framework --- how the transparency disclaimer, evaluation register, and audit trail fit into a formal AI governance structure for NHS clinical tools. -->
+**Next in this series:** the same verified-citation engine, running itself on a schedule. [From a literature-search skill to a self-running evidence digest](/posts/automated-literature-watch/) describes how Kidney Watch turns this workflow into an automated weekly digest that publishes to the web.
 
 
 

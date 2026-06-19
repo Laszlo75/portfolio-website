@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- TODO: replace placeholder hero. On-theme stand-in (1200x675) until final art is supplied. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675" role="img" aria-label="Placeholder hero: an automated weekly literature-surveillance pipeline. A clock feeds a spec file, which drives PubMed and Scholar Gateway searches into a verification step, then a human-reviewed pull request, then a published digest with an RSS feed.">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3f8f9"/>
+      <stop offset="1" stop-color="#e6f1f3"/>
+    </linearGradient>
+    <marker id="h-arrow" viewBox="0 0 10 7" refX="10" refY="3.5" markerWidth="9" markerHeight="7" orient="auto-start-auto">
+      <path d="M0 0 L10 3.5 L0 7 z" fill="#1a7a8a"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <text x="600" y="120" text-anchor="middle" font-family="'Source Serif 4', Georgia, serif" font-size="46" font-weight="700" fill="#1a4e57">A self-running evidence digest</text>
+  <text x="600" y="168" text-anchor="middle" font-family="'Source Sans 3', sans-serif" font-size="24" fill="#4a6c72">Verified literature search, on a weekly schedule</text>
+
+  <!-- clock -->
+  <circle cx="170" cy="380" r="58" fill="#ffffff" stroke="#1a7a8a" stroke-width="4"/>
+  <line x1="170" y1="380" x2="170" y2="342" stroke="#1a7a8a" stroke-width="5" stroke-linecap="round"/>
+  <line x1="170" y1="380" x2="198" y2="396" stroke="#1a7a8a" stroke-width="5" stroke-linecap="round"/>
+  <text x="170" y="478" text-anchor="middle" font-family="'Source Sans 3', sans-serif" font-size="20" font-weight="700" fill="#1a4e57">Weekly run</text>
+
+  <!-- spec -->
+  <rect x="330" y="338" width="120" height="84" rx="10" fill="#ffffff" stroke="#1a7a8a" stroke-width="4"/>
+  <line x1="352" y1="364" x2="428" y2="364" stroke="#1a7a8a" stroke-width="4"/>
+  <line x1="352" y1="382" x2="428" y2="382" stroke="#1a7a8a" stroke-width="4"/>
+  <line x1="352" y1="400" x2="404" y2="400" stroke="#1a7a8a" stroke-width="4"/>
+  <text x="390" y="478" text-anchor="middle" font-family="'Source Sans 3', sans-serif" font-size="20" font-weight="700" fill="#1a4e57">Spec in repo</text>
+
+  <!-- search -->
+  <circle cx="610" cy="380" r="48" fill="#ffffff" stroke="#1a7a8a" stroke-width="4"/>
+  <line x1="644" y1="414" x2="680" y2="450" stroke="#1a7a8a" stroke-width="6" stroke-linecap="round"/>
+  <text x="615" y="478" text-anchor="middle" font-family="'Source Sans 3', sans-serif" font-size="20" font-weight="700" fill="#1a4e57">PubMed + Scholar</text>
+
+  <!-- human review (coral gate): a verified reviewer (filled person + approval badge) -->
+  <rect x="810" y="338" width="120" height="84" rx="10" fill="#fdeee9" stroke="#e07a5f" stroke-width="4"/>
+  <circle cx="858" cy="367" r="12" fill="#c2512e"/>
+  <path d="M832 410 a26 26 0 0 1 52 0 Z" fill="#c2512e"/>
+  <circle cx="893" cy="400" r="13" fill="#c2512e" stroke="#fdeee9" stroke-width="3"/>
+  <path d="M887 400 l4 5 l9 -11" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="870" y="478" text-anchor="middle" font-family="'Source Sans 3', sans-serif" font-size="20" font-weight="700" fill="#c2512e">Human review</text>
+
+  <!-- publish + RSS: standard feed glyph (corner dot + two quarter arcs) -->
+  <rect x="1010" y="338" width="120" height="84" rx="10" fill="#ffffff" stroke="#1a7a8a" stroke-width="4"/>
+  <circle cx="1058" cy="396" r="5" fill="#1a7a8a"/>
+  <path d="M1058 382 A14 14 0 0 1 1072 396" fill="none" stroke="#1a7a8a" stroke-width="4" stroke-linecap="round"/>
+  <path d="M1058 370 A26 26 0 0 1 1084 396" fill="none" stroke="#1a7a8a" stroke-width="4" stroke-linecap="round"/>
+  <text x="1070" y="478" text-anchor="middle" font-family="'Source Sans 3', sans-serif" font-size="20" font-weight="700" fill="#1a4e57">Publish · RSS</text>
+
+  <!-- connectors -->
+  <line x1="232" y1="380" x2="322" y2="380" stroke="#1a7a8a" stroke-width="4" marker-end="url(#h-arrow)"/>
+  <line x1="454" y1="380" x2="556" y2="380" stroke="#1a7a8a" stroke-width="4" marker-end="url(#h-arrow)"/>
+  <line x1="662" y1="380" x2="802" y2="380" stroke="#1a7a8a" stroke-width="4" marker-end="url(#h-arrow)"/>
+  <line x1="934" y1="380" x2="1002" y2="380" stroke="#1a7a8a" stroke-width="4" marker-end="url(#h-arrow)"/>
+</svg>

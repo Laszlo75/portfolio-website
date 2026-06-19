@@ -270,6 +270,8 @@ Every reference is traceable back to the search that found it and the PubMed met
 
 The skill is open source: [literature-search on GitHub](https://github.com/laszlo75/literature-search).
 
+The same engine can run without a human starting each search. [Kidney Watch](/posts/automated-literature-watch/) puts this skill's verified-citation approach on a weekly schedule, publishing an automated literature digest behind a pull-request review gate.
+
 
 ## Frequently asked questions
 
