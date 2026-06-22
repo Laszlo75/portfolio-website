@@ -26,6 +26,8 @@ about:
       href: https://github.com/Laszlo75
     - text: "{{< fa brands orcid >}} ORCID"
       href: https://orcid.org/0000-0002-6881-1542
+    - text: "{{< fa brands google-scholar >}} Google Scholar"
+      href: https://scholar.google.com/citations?user=CTU8nq4AAAAJ
     - icon: envelope
       text: Contact
       href: mailto:laszlo.szabo@wales.nhs.uk
