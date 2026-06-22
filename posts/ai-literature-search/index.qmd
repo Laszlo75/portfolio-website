@@ -5,17 +5,17 @@ author:
   - name: Laszlo Szabo
     orcid: 0000-0002-6881-1542
 date: 2026-03-03
-date-modified: 2026-03-19
+date-modified: 2026-06-22
 categories: [AI, research methods, literature search]
 canonical-url: https://lszabo.me/posts/ai-literature-search/
-image: hero.png
+image: hero.jpg
 format:
   html:
     include-in-header: ../../assets/schema-blogpost-ai.html
 citation: true
 ---
 
-![](hero.png){fig-alt="AI-generated photorealistic image of a desk workspace with a laptop displaying PubMed search results, connected by glowing data streams to a stack of clinical trial protocol documents with coloured tabs for methodology, objectives, safety, and endpoints"}
+![](hero.jpg){fig-alt="AI-generated photorealistic image of a desk workspace with a laptop displaying PubMed search results, connected by glowing data streams to a stack of clinical trial protocol documents with coloured tabs for methodology, objectives, safety, and endpoints"}
 
 Large language models like [Claude](https://claude.ai) are transforming how [clinicians and researchers](/resume.qmd) interact with the medical literature. But with great power comes a well-known hazard: **hallucination**, the confident generation of plausible-sounding but entirely fabricated citations, statistics, or clinical claims. For a [transplant surgeon](/posts/plans/) relying on accurate evidence to inform practice or prepare a manuscript, a hallucinated NEJM paper with a fictitious p-value is worse than useless. It is dangerous.
 

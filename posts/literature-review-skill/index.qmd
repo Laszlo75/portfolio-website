@@ -6,7 +6,7 @@ author:
   - name: Laszlo Szabo
     orcid: 0000-0002-6881-1542
 date: 2026-04-04
-date-modified: 2026-04-04
+date-modified: 2026-06-22
 categories: [AI, research methods, clinical governance, Claude]
 canonical-url: https://lszabo.me/posts/literature-review-skill/
 image: hero.jpg

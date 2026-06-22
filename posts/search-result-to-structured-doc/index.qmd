@@ -6,10 +6,10 @@ author:
   - name: Laszlo Szabo
     orcid: 0000-0002-6881-1542
 date: 2026-04-28
-date-modified: 2026-04-28
+date-modified: 2026-06-22
 categories: [AI, research methods, Claude]
 canonical-url: https://lszabo.me/posts/search-result-to-structured-doc/
-image: hero.svg
+image: hero.png
 draft: false
 format:
   html:
@@ -17,7 +17,7 @@ format:
 citation: true
 ---
 
-![](hero.svg){fig-alt="Flat vector illustration of a markdown document on the left transforming through a pandoc conversion pipeline into a styled Word document on the right, with teal and coral accents showing evidence grades, clickable links, and a summary table"}
+![](hero.png){fig-alt="Flat vector illustration of a markdown document on the left transforming through a pandoc conversion pipeline into a styled Word document on the right, with teal and coral accents showing evidence grades, clickable links, and a summary table"}
 
 Clinical protocols age fast. A [2014 CMAJ analysis of guideline validity](https://doi.org/10.1503/cmaj.140547) tracked 113 recommendations from the Spanish national guideline programme and found that more than 1 in 5 were already outdated after 3 years; only 78% remained valid at year 4. An [earlier JAMA study](https://doi.org/10.1001/jama.286.12.1461) of 17 US Agency for Healthcare Research and Quality (AHRQ) guidelines reached the same conclusion from a different angle: more than three quarters needed updating, half had become obsolete by 5.8 years, and the authors recommended reassessing each guideline every 3 years. The picture is similar for the underlying systematic reviews: a [100-review cohort in *Annals of Internal Medicine*](https://doi.org/10.7326/0003-4819-147-4-200708210-00179) found that 23% needed updating within 2 years, and 7% were already out of date the moment they were published. Local NHS protocols inherit those clocks, and busy clinical teams struggle to keep the guidelines up to date.
 

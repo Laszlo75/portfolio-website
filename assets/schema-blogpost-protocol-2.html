@@ -7,8 +7,8 @@
       "@id": "https://lszabo.me/posts/search-result-to-structured-doc/#article",
       "headline": "From Search Results to Structured Document",
       "description": "How a markdown-first approach turns verified evidence into professional Word documents with clickable DOIs, evidence grades, and Zotero-ready exports.",
-      "datePublished": "2026-04-04",
-      "dateModified": "2026-04-04",
+      "datePublished": "2026-04-28",
+      "dateModified": "2026-06-22",
       "author": {
         "@id": "https://lszabo.me/#person"
       },
@@ -17,7 +17,7 @@
       },
       "image": {
         "@type": "ImageObject",
-        "url": "https://lszabo.me/posts/search-result-to-structured-doc/hero.jpg",
+        "url": "https://lszabo.me/posts/search-result-to-structured-doc/hero.png",
         "width": 1200,
         "height": 675
       },
@@ -84,7 +84,7 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "Can I customise the Word template for AI-generated protocol reviews?",
+          "name": "Can I customise the Word template?",
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Yes. The reference.docx in the skill's assets directory is a standard Word document. Open it in Word, change the heading styles, fonts, colours, or page layout, and save. Pandoc will use your updated styles on the next conversion. The clinical content in the markdown is completely independent of the template styling."
@@ -92,34 +92,26 @@
         },
         {
           "@type": "Question",
-          "name": "What if I need to edit the protocol review document after generation?",
+          "name": "What if I need to edit the document after generation?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Edit the .md source file, not the .docx. Markdown is plain text — open it in any editor, revise the recommendation, update a citation, and re-run the pandoc command. This avoids the formatting drift that happens when multiple people edit a Word document."
+            "text": "Either format works, so pick whichever suits the team. Most clinical committees edit the .docx directly in Word, where track changes, inline comments, and email circulation are built in; if the formatting drifts after several reviewers, the finalised text can be pasted back into the markdown and re-rendered into a clean .docx for sign-off. Clinicians comfortable with markdown can instead edit the .md source directly and re-run the pandoc command — markdown fits naturally into version control and can be re-rendered to PDF or any other format pandoc supports."
           }
         },
         {
           "@type": "Question",
-          "name": "How does the AI transparency disclaimer work in clinical protocol reviews?",
+          "name": "Can this produce PDFs instead of Word?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Every review includes a section disclosing that AI was used for evidence synthesis, naming the specific model and skill version, and providing a 'Reviewed and approved by' line left blank for the clinician. The clinician fills in their name and title after reviewing the document. This creates an audit trail: any review can be traced back to the exact skill version and model that produced it."
+            "text": "Pandoc supports PDF output via LaTeX or other engines, so it is technically possible. However, protocol committees in the NHS universally work with Word documents — they need to track changes, add comments, and circulate annotated versions, so Word is the practical output format for this workflow. The markdown source can be converted to any format pandoc supports if needed for other purposes."
           }
         },
         {
           "@type": "Question",
-          "name": "How long does an AI-assisted clinical protocol review take?",
+          "name": "How long does the full review process take?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "The evidence gathering phase typically completes in 15-30 minutes. The cross-referencing and document generation phase adds another 15-20 minutes. A complete protocol review takes 30-50 minutes of compute time plus clinician review time, compared to 1-2 days of manual work."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Can the protocol review tool produce PDFs instead of Word documents?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Pandoc supports PDF output, so it is technically possible. However, protocol committees in the NHS universally work with Word documents for track changes, comments, and annotated circulation. Word is the practical output format. The markdown source can be converted to any format pandoc supports if needed."
+            "text": "The evidence gathering phase (literature-search skill) typically completes in 15-30 minutes. The cross-referencing and document generation phase (protocol-reviewer skill) adds another 15-20 minutes, depending on the number of protocol sections. A complete protocol review, from uploading the document to receiving the .docx, takes 30-50 minutes of compute time plus the clinician's review time afterward — compared to 1-2 days of manual work."
           }
         }
       ]
