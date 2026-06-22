@@ -1,7 +1,7 @@
 ---
 title: "Kidney Watch: 19 June 2026"
 date: "2026-06-19"
-categories: [kidney, weekly briefing]
+categories: [kidney, immunosuppression, tolerance, rejection, donor utilisation, access, paediatric]
 description: "Tolerance induction without irradiation, a European paediatric immunosuppression guideline, DSA risk clustering, and evidence against routine procurement biopsy headline this week's kidney transplant literature."
 ---
 

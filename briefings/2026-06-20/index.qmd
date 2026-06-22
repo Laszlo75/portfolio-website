@@ -1,7 +1,7 @@
 ---
 title: "Kidney Watch: 20 June 2026"
 date: "2026-06-20"
-categories: [kidney, weekly briefing]
+categories: [kidney, cardiometabolic, immunosuppression, rejection, pharmacology, living donation, "AI / machine learning"]
 description: "SGLT2 inhibition and metabolic risk, risk-stratified rituximab and pharmacogenetics, donor-pool expansion, and prognostic modelling in kidney transplantation."
 ---
 

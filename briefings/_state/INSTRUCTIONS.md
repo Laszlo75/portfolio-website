@@ -71,10 +71,36 @@ Front matter:
 ---
 title: "Kidney Watch: LONGDATE"
 date: "DATE"
-categories: [kidney, weekly briefing]
+categories: [kidney, <3–6 topic tags from the closed vocabulary below>]
 description: "One-line summary of this issue's notable kidney transplantation literature."
 ---
 ```
+
+### Topic tags (`categories`) — choose from a CLOSED vocabulary
+
+The front-matter `categories` powers the reader's topic filter on the Kidney Watch
+listing page, so the strings must be **identical across issues** or the filter
+fragments into useless singletons. Build the list as:
+
+1. Always start with `kidney` (the series anchor).
+2. Then add **3–6 topic tags** capturing this issue's PRINCIPAL themes — the same
+   themes you name in the Overview, **not** every paper's sub-topic.
+
+Choose those topic tags **only** from this closed vocabulary, copied **verbatim**
+(exact spelling, all lowercase, singular, no `&`):
+
+`immunosuppression` · `rejection` · `tolerance` · `infection` · `cardiometabolic` ·
+`pharmacology` · `biomarkers` · `AI / machine learning` · `donor utilisation` ·
+`living donation` · `machine perfusion` · `desensitisation` · `perioperative` ·
+`graft survival` · `access` · `health economics` · `paediatric`
+
+Rules:
+- Tag only the issue's headline themes (3–6). Tagging every sub-topic makes the filter
+  meaningless once there are dozens of issues; the value is in the rarer, specific tags.
+- Every topic tag must correspond to a theme you actually named in the Overview.
+- Use the strings EXACTLY as listed — do not pluralise, rephrase, or invent. If a
+  relevant theme is not on the list, leave it untagged rather than coin a new tag.
+- Never use `weekly briefing` or any free-form keyword.
 
 Body (in this exact order):
 
