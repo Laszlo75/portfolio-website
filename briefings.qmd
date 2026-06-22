@@ -12,8 +12,26 @@ listing:
   feed: true
 page-layout: full
 title-block-banner: true
+comments:
+  giscus:
+    repo: Laszlo75/portfolio-comments
+    repo-id: "R_kgDOTBgU3A"
+    category: "Announcements"
+    category-id: "DIC_kwDOTBgU3M4C_pFp"
+    mapping: pathname
+    reactions-enabled: true
+    input-position: bottom
+    theme: noborder_light
+    language: en
+    loading: lazy
 ---
 
-These briefings are generated automatically each week and are provided as a free example of an AI-assisted literature surveillance workflow. They are not a substitute for reading the primary sources. Always verify against the original publication.
+I started Kidney Watch to keep myself up to date. Kidney transplantation moves quickly, and staying current is a job that never quite finishes. What you see below is the first pass I built for my own reading — made public because what helps me keep up is, I suspect, useful to other clinicians trying to do the same.
 
-Want this tuned to your own sub-specialty or query? [Register interest](mailto:laszlo.szabo@wales.nhs.uk?subject=Personalised%20transplant%20briefing).
+Every week, [Claude](https://claude.ai) searches PubMed for kidney transplantation research from the previous 14 days and shortlists up to eight papers — the trials, registry and cohort studies, guideline updates, and reviews I judge most worth a UK transplant clinician's time. Each gets a plain-language summary, and every citation is checked against PubMed before I review the issue and publish it.
+
+It is a deliberately small, curated first pass — not a complete index, and not a substitute for reading the primary sources. Always verify against the original publication before relying on anything here.
+
+Curious how it runs unattended? I wrote up the whole pipeline — the weekly schedule, the citation-verification step, and what keeps AI-generated clinical content safe to publish — in [From a literature-search skill to a self-running evidence digest](/posts/automated-literature-watch/).
+
+**Found this useful?** Leave a comment below — here for general feedback, or under any individual issue. You can follow new issues via the [RSS feed](/briefings.xml) now, with an email subscription to come. And if you'd like a digest tuned to your own sub-specialty or search query, [register your interest](mailto:laszlo.szabo@wales.nhs.uk?subject=Personalised%20transplant%20briefing).
