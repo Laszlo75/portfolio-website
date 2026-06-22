@@ -6,3 +6,17 @@ freeze: true
 
 # Enable banner style title blocks
 title-block-banner: true
+
+# Reader comments via giscus (GitHub Discussions in Laszlo75/portfolio-comments)
+comments:
+  giscus:
+    repo: Laszlo75/portfolio-comments
+    repo-id: "R_kgDOTBgU3A"
+    category: "Announcements"
+    category-id: "DIC_kwDOTBgU3M4C_pFp"
+    mapping: pathname
+    reactions-enabled: true
+    input-position: bottom
+    theme: light
+    language: en
+    loading: lazy
