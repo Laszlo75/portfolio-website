@@ -17,6 +17,6 @@ comments:
     mapping: pathname
     reactions-enabled: true
     input-position: bottom
-    theme: light
+    theme: noborder_light
     language: en
     loading: lazy
