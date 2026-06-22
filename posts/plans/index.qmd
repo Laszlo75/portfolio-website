@@ -72,3 +72,8 @@ The bit I'm most pleased with is the data-driven CV. Six CSV files in a `data/` 
 It is a small thing, but it solves a real problem. Every academic has had the experience of updating their CV in one place and forgetting to update it in three others. This approach makes that impossible.
 
 Right, that is enough for a first post. Time to go and actually write something worth reading.
+
+## More posts {.unlisted}
+
+:::{#more-posts}
+:::

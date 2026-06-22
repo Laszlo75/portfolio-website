@@ -7,7 +7,8 @@ image: images/profile_pic.jpeg
 image-alt: "Photo of Laszlo Szabo, Consultant Transplant Surgeon"
 format:
   html:
-    pagetitle: "Consultant Transplant Surgeon, Cardiff"
+    pagetitle: "Laszlo Szabo — Consultant Transplant Surgeon, Cardiff"
+    title-prefix: ""
     include-in-header: assets/schema-person.html
 about:
   template: trestles

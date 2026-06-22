@@ -172,6 +172,12 @@ For each abstract I paste, produce a structured summary with:
 Return as a markdown table.
 ```
 
+## How Do I Connect Claude to PubMed?
+
+To connect Claude to PubMed, open [claude.ai](https://claude.ai) or the Claude desktop app, go to **Settings → Connectors**, and enable **PubMed**. Once active, Claude queries the live PubMed API during a conversation and returns verified PMIDs, titles, and abstracts — citations that come from the database, not from the model's memory, so they are real and checkable.
+
+For the full setup, example prompts, and a verification routine, see the dedicated walkthrough: [How to connect Claude to PubMed (step-by-step setup)](/posts/claude-pubmed-connector/).
+
 ## How Do Claude's PubMed, Scholar Gateway and bioRxiv Connectors Work?
 
 This is where the workflow becomes genuinely powerful. [Claude](https://claude.ai) on claude.ai supports native integrations through **MCP (Model Context Protocol) connectors**, giving Claude real-time tool access to external databases. The connectors relevant to medical literature search are:
@@ -323,3 +329,8 @@ Used well, it changes how you work. Used naively, it will invent a landmark tria
 The MCP connectors, particularly the native PubMed integration, are what make the difference. They transform an LLM from a pattern-completion engine into a grounded, database-backed research tool. Enable them, use them, and combine them with the prompt discipline above.
 
 Your [publications](/publications.qmd) and systematic reviews will thank you.
+
+## More posts {.unlisted}
+
+:::{#more-posts}
+:::

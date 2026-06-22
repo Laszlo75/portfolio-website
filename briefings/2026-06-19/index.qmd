@@ -58,3 +58,10 @@ This national database study used intention-to-treat (ITT) survival — which in
 ---
 
 *Generated 2026-06-19 from PubMed search results for kidney transplantation published 2026-06-05 to 2026-06-19. Articles already recorded in prior issues were excluded. PubMed is the source of all metadata and abstracts.*
+
+*How this digest is made: [From a literature-search skill to a self-running evidence digest](/posts/automated-literature-watch/).*
+
+## More issues {.unlisted}
+
+:::{#previous-issues}
+:::

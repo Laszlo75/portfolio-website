@@ -8,7 +8,7 @@ author:
 date: 2026-04-04
 date-modified: 2026-04-04
 categories: [AI, research methods, clinical governance, Claude]
-canonical-url: https://lszabo.me/posts/protocol-reviewer-1/
+canonical-url: https://lszabo.me/posts/literature-review-skill/
 image: hero.jpg
 draft: false
 format:
@@ -305,3 +305,8 @@ When tested on GPT-4o, 56% of AI-generated medical citations were fabricated or 
 ### How do I know the output is trustworthy?
 
 Every review document includes a mandatory transparency disclaimer disclosing AI involvement. The reference ledger provides a complete audit trail: every citation maps to a specific PMID retrieved during the search phase and verified against PubMed metadata. The skill cannot cite a paper it did not retrieve, and it cannot fabricate a DOI. This makes the output auditable, reproducible, and defensible.
+
+## More posts {.unlisted}
+
+:::{#more-posts}
+:::

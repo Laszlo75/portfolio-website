@@ -58,3 +58,10 @@ This retrospective cohort study developed and internally validated machine-learn
 ---
 
 *Generated 2026-06-20 from PubMed search results for kidney transplantation published 2026-06-06 to 2026-06-20. Articles already recorded in prior issues were excluded. PubMed is the source of all metadata and abstracts.*
+
+*How this digest is made: [From a literature-search skill to a self-running evidence digest](/posts/automated-literature-watch/).*
+
+## More issues {.unlisted}
+
+:::{#previous-issues}
+:::

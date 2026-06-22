@@ -215,3 +215,8 @@ Yes. Nothing in the architecture is kidney-specific. The scope, audience, and se
 ### How does it avoid repeating papers week to week?
 
 A small `seen.json` file records the PMID of every paper ever covered, and each run excludes everything already on that list. That lets the search use a deliberately overlapping 14-day window on a weekly cadence, so papers PubMed indexes late are still caught — without the overlap ever producing a duplicate in the published feed.
+
+## More posts {.unlisted}
+
+:::{#more-posts}
+:::

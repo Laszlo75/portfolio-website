@@ -1,0 +1,118 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BlogPosting",
+      "@id": "https://lszabo.me/posts/claude-pubmed-connector/#article",
+      "headline": "How to Connect Claude to PubMed (Step-by-Step Setup)",
+      "description": "Set up the PubMed connector in Claude for verified medical literature search — enable it, query it, and check every PMID so citations are real, not hallucinated.",
+      "datePublished": "2026-06-22",
+      "dateModified": "2026-06-22",
+      "author": {
+        "@id": "https://lszabo.me/#person"
+      },
+      "publisher": {
+        "@id": "https://lszabo.me/#person"
+      },
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://lszabo.me/posts/claude-pubmed-connector/hero.jpg",
+        "width": 1200,
+        "height": 675,
+        "caption": "A laptop showing PubMed search results connected to the Claude interface, representing a live database connector"
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://lszabo.me/posts/claude-pubmed-connector/"
+      },
+      "wordCount": 1350,
+      "articleSection": "AI",
+      "keywords": ["Claude PubMed connector", "connect Claude to PubMed", "PubMed MCP connector", "medical literature search", "Claude", "hallucinated citations", "PMID verification"],
+      "inLanguage": "en-GB"
+    },
+    {
+      "@type": "Person",
+      "@id": "https://lszabo.me/#person",
+      "name": "Laszlo Szabo",
+      "jobTitle": "Consultant Transplant Surgeon",
+      "url": "https://lszabo.me/",
+      "sameAs": [
+        "https://orcid.org/0000-0002-6881-1542",
+        "https://www.linkedin.com/in/drszabolaszlo/",
+        "https://x.com/drszabolaszlo",
+        "https://github.com/Laszlo75",
+        "https://www.researchgate.net/profile/Laszlo-Szabo-8"
+      ],
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Cardiff Transplant Unit",
+        "url": "https://cavuhb.nhs.wales/"
+      },
+      "knowsAbout": ["kidney transplantation", "pancreas transplantation", "organ utilisation", "data science", "R programming"]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://lszabo.me/posts/claude-pubmed-connector/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://lszabo.me/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Posts",
+          "item": "https://lszabo.me/posts.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "How to Connect Claude to PubMed (Step-by-Step Setup)",
+          "item": "https://lszabo.me/posts/claude-pubmed-connector/"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://lszabo.me/posts/claude-pubmed-connector/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do I connect Claude to PubMed?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Open claude.ai, go to Settings, then Connectors, and toggle on PubMed. There is nothing to install and no API key to paste. Once enabled, Claude queries the live PubMed API during a conversation and returns verified PMIDs, titles, and abstracts."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need a paid Claude plan to use the PubMed connector?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. PubMed is a directory connector, and directory connectors including PubMed are available on every Claude plan, the free tier included. PubMed itself is a free public resource from the US National Library of Medicine, so there is no subscription to buy and no NCBI account to create. A Pro or Max plan adds higher usage limits and other connectors, not access to PubMed."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does the connector replace PubMed?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. The connector lets Claude query PubMed for you and reason over the results, but PubMed remains the source of truth. You should still verify PMIDs and statistics before citing, exactly as you would with any search tool."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why should I ask for PMIDs every time?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The PMID is the unique, checkable identifier for a paper. Requesting it for every citation gives you a fast way to confirm the reference is real and to pull the original abstract — the core safeguard against hallucinated references."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>

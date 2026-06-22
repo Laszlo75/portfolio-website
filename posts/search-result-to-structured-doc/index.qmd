@@ -185,3 +185,8 @@ Pandoc supports PDF output via LaTeX or other engines, so it is technically poss
 ### How long does the full review process take?
 
 The evidence gathering phase (literature-search skill) typically completes in 15--30 minutes. The cross-referencing and document generation phase (protocol-reviewer skill) adds another 15--20 minutes, depending on the number of protocol sections. A complete protocol review, from uploading the document to receiving the `.docx`, takes 30--50 minutes of compute time plus the clinician's review time afterward. This compares to 1--2 days of manual work for a thorough evidence review and document preparation.
+
+## More posts {.unlisted}
+
+:::{#more-posts}
+:::

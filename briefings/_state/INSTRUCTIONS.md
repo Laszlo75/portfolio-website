@@ -140,6 +140,13 @@ Summary as above.
 *Generated DATE from PubMed search results for kidney transplantation published START to
 END. Articles already recorded in prior issues were excluded. PubMed is the source of all
 metadata and abstracts.*
+
+*How this digest is made: [From a literature-search skill to a self-running evidence digest](/posts/automated-literature-watch/).*
+
+## More issues {.unlisted}
+
+:::{#previous-issues}
+:::
 ````
 
 Notes on layout (match exactly):
