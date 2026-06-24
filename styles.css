@@ -399,6 +399,76 @@ p:has(> .kw-ref) {
   margin: 0.15rem 0 0.6rem;
 }
 
+/* --- Kidney Watch email subscribe box --- */
+.kw-subscribe {
+  background: linear-gradient(135deg, var(--accent-lighter), var(--accent-light));
+  border: 1px solid var(--border-light);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 1.4rem 1.6rem;
+  margin: 2rem 0;
+}
+
+.kw-subscribe-title {
+  margin: 0 0 0.35rem;
+  font-size: 1.15rem;
+}
+
+.kw-subscribe-blurb {
+  margin: 0 0 1rem;
+  color: var(--heading-color);
+  font-size: 0.95rem;
+}
+
+.kw-subscribe-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  align-items: center;
+}
+
+.kw-subscribe-input {
+  flex: 1 1 260px;
+  padding: 0.6rem 0.85rem;
+  font-size: 0.95rem;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  background: #ffffff;
+}
+
+.kw-subscribe-input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-light);
+}
+
+.kw-subscribe-btn {
+  flex: 0 0 auto;
+  padding: 0.6rem 1.4rem;
+  font-size: 0.92rem;
+  font-weight: 600;
+  background-color: var(--accent);
+  border: 2px solid var(--accent);
+  color: #ffffff;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: var(--shadow-sm);
+}
+
+.kw-subscribe-btn:hover {
+  background-color: transparent;
+  color: var(--accent);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.kw-subscribe-fine {
+  margin: 0.85rem 0 0;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
 /* --- CV page (original resume.qmd) --- */
 .btn-cv-download {
   display: inline-flex;

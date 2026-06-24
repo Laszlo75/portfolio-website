@@ -18,6 +18,7 @@ He holds verified certificates in computer science (Harvard CS50) and AI (Anthro
 - CV: https://lszabo.me/resume.html — Full curriculum vitae with education, experience, qualifications, roles, and skills
 - Publications: https://lszabo.me/publications.html — Peer-reviewed publications on transplantation, organ preservation, donor risk stratification, and surgical outcomes
 - Blog: https://lszabo.me/posts.html — Posts on transplant surgery, clinical data science, R programming, and surgical decision-making tools
+- Kidney Watch: https://lszabo.me/briefings.html — Weekly, AI-assisted digest of notable kidney transplantation literature; every citation checked against PubMed before publication. Free email subscription and RSS available.
 
 ## Research Interests
 
@@ -32,4 +33,5 @@ He holds verified certificates in computer science (Harvard CS50) and AI (Anthro
 - ORCID: https://orcid.org/0000-0002-6881-1542
 - GitHub: https://github.com/Laszlo75
 - LinkedIn: https://www.linkedin.com/in/drszabolaszlo/
+- Kidney Watch RSS feed: https://lszabo.me/briefings.xml
 - Contact: laszlo.szabo@wales.nhs.uk

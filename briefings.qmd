@@ -9,7 +9,8 @@ listing:
   categories: true
   sort-ui: false
   filter-ui: false
-  feed: true
+  feed:
+    type: full
 page-layout: full
 title-block-banner: true
 comments:
@@ -34,4 +35,23 @@ It is a deliberately small, curated first pass — not a complete index, and not
 
 Curious how it runs unattended? I wrote up the whole pipeline — the weekly schedule, the citation-verification step, and what keeps AI-generated clinical content safe to publish — in [From a literature-search skill to a self-running evidence digest](/posts/automated-literature-watch/).
 
-**Found this useful?** Leave a comment below — here for general feedback, or under any individual issue. You can follow new issues via the [RSS feed](/briefings.xml) now, with an email subscription to come. And if you'd like a digest tuned to your own sub-specialty or search query, [register your interest](mailto:laszlo.szabo@wales.nhs.uk?subject=Personalised%20transplant%20briefing).
+**Found this useful?** Get each new issue by email (see below), or follow via the [RSS feed](/briefings.xml). Leave a comment below — here for general feedback, or under any individual issue. And if you'd like a digest tuned to your own sub-specialty or search query, [register your interest](mailto:laszlo.szabo@wales.nhs.uk?subject=Personalised%20transplant%20briefing).
+
+```{=html}
+<!-- Kidney Watch email signup — Buttondown embed form (username: mk9zhw7w28).
+     Double opt-in is on by default in Buttondown; per-issue sending is
+     configured via RSS-to-email in the dashboard (points at /briefings.xml). -->
+<div class="kw-subscribe">
+  <h3 class="kw-subscribe-title">Get Kidney Watch by email</h3>
+  <p class="kw-subscribe-blurb">Each new issue in your inbox the week it's published — no more than one email a week, unsubscribe any time.</p>
+  <form class="kw-subscribe-form embeddable-buttondown-form"
+        action="https://buttondown.com/api/emails/embed-subscribe/mk9zhw7w28"
+        method="post"
+        target="popupwindow"
+        onsubmit="window.open('https://buttondown.com/mk9zhw7w28', 'popupwindow')">
+    <input class="kw-subscribe-input" type="email" name="email" placeholder="you@example.com" aria-label="Email address" required />
+    <button class="kw-subscribe-btn" type="submit">Subscribe</button>
+  </form>
+  <p class="kw-subscribe-fine">You'll get a confirmation email (double opt-in). Your address is used only to send Kidney Watch.</p>
+</div>
+```
