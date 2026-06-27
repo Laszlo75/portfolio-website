@@ -20,6 +20,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v5
+        with:
+          fetch-depth: 0   # full history so we can detect newly added briefings
 
       - name: Make apt downloads resilient
         run: |
@@ -45,6 +47,40 @@ jobs:
 
       - name: Render site
         run: quarto render
+
+      # If this push added a new briefings/<date>/index.qmd, email that issue to
+      # the Buttondown list via the API (free plan). Scheduled a few minutes out so
+      # the deployed page is live by send time. Never blocks the deploy.
+      - name: Email new briefing to subscribers
+        if: github.event_name == 'push'
+        continue-on-error: true
+        env:
+          BUTTONDOWN_API_KEY: ${{ secrets.BUTTONDOWN_API_KEY }}
+          BEFORE_SHA: ${{ github.event.before }}
+          AFTER_SHA: ${{ github.sha }}
+        run: |
+          set -uo pipefail
+          if [ -z "${BUTTONDOWN_API_KEY:-}" ]; then
+            echo "BUTTONDOWN_API_KEY not set — skipping newsletter send."
+            exit 0
+          fi
+          if ! git rev-parse --quiet --verify "${BEFORE_SHA}^{commit}" >/dev/null 2>&1; then
+            echo "No valid 'before' commit (${BEFORE_SHA}) — skipping send."
+            exit 0
+          fi
+          NEW=$(git diff --name-status --diff-filter=A "$BEFORE_SHA" "$AFTER_SHA" \
+                | grep -E '^A[[:space:]]+briefings/[0-9]{4}-[0-9]{2}-[0-9]{2}/index\.qmd$' \
+                | awk '{print $2}' || true)
+          if [ -z "$NEW" ]; then
+            echo "No new briefing issue added in this push — nothing to email."
+            exit 0
+          fi
+          python3 -m pip install --quiet --disable-pip-version-check defusedxml
+          for f in $NEW; do
+            issue_date=$(basename "$(dirname "$f")")
+            echo "New issue detected: $issue_date — sending to Buttondown subscribers."
+            python3 .github/scripts/send_briefing.py "$issue_date"
+          done
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
