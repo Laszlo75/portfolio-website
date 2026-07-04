@@ -85,7 +85,8 @@ EMAIL_STYLE = """
   .kw-email .callout-icon-container,
   .kw-email .callout-title-container { display: none; }
   .kw-email .quarto-listing,
-  .kw-email #previous-issues { display: none; }
+  .kw-email #previous-issues,
+  .kw-email #more-issues { display: none; }
 </style>
 """
 
