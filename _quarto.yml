@@ -3,7 +3,6 @@ project:
   render:
     - "*.qmd"
     - "!cv.qmd"
-    - "!resume-old.qmd"
   resources:
     - robots.txt
   post-render:

@@ -18,16 +18,15 @@ This is a Quarto website (`project: type: website`) for an academic portfolio at
 
 ### Data-Driven CV (Single Source of Truth)
 
-Six CSV files in `data/` drive three different CV outputs:
+Six CSV files in `data/` drive two different CV outputs:
 
 ```
 data/*.csv
-  ├→ resume.qmd      — HTML CV (simple markdown via cv_entry())
-  ├→ resume-v2.qmd   — HTML CV (timeline visual via cv_entry_html())
-  └→ cv.qmd          — PDF CV (Typst via typstcv::resume_entry())
+  ├→ resume.qmd — HTML CV (timeline visual via cv_entry_html())
+  └→ cv.qmd     — PDF CV (Typst via typstcv::resume_entry())
 ```
 
-Update CSV data once → all three regenerate. CSV schemas:
+Update CSV data once → both regenerate. CSV schemas:
 - `education.csv`, `work.csv`: title, description, location, start, end
 - `qualifications.csv`: title, description, location, date, detail
 - `roles.csv`: title, organisation, date
@@ -49,7 +48,7 @@ Update CSV data once → all three regenerate. CSV schemas:
 
 ### R Dependencies
 
-- `glue` — used in resume.qmd and resume-v2.qmd for string interpolation
+- `glue` — used in resume.qmd for string interpolation
 - `bibtex` — used in publications.qmd to parse .bib file
 - `typstcv` — used in cv.qmd for Typst CV formatting (`format_date()`, `resume_entry()`)
 
