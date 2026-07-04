@@ -16,8 +16,10 @@ Env:   BUTTONDOWN_API_KEY (required to send; absent = no-op)
 import datetime
 import json
 import os
+import re
 import sys
 import urllib.error
+import urllib.parse
 import urllib.request
 
 from defusedxml.ElementTree import parse as parse_xml  # XXE/entity-safe XML parsing
@@ -25,6 +27,24 @@ from defusedxml.ElementTree import parse as parse_xml  # XXE/entity-safe XML par
 FEED_PATH = "_site/briefings.xml"
 API_URL = "https://api.buttondown.com/v1/emails"
 SEND_DELAY_MIN = 5  # schedule slightly ahead so the deployed page is live by send time
+
+
+def absolutize_links(html: str, base: str) -> str:
+    """Rewrite relative href/src URLs to absolute against the issue's URL.
+
+    Quarto's feed makes image src absolute but leaves <a href> relative (e.g.
+    the "More issues" list and cross-post links render as ../../...), which
+    breaks once the HTML is lifted into an email client. Resolve them so every
+    internal link points at the live site.
+    """
+
+    def repl(m: "re.Match[str]") -> str:
+        attr, url = m.group(1), m.group(2)
+        if url[:1] == "#" or url.split(":", 1)[0] in ("mailto", "tel", "data"):
+            return m.group(0)
+        return f'{attr}="{urllib.parse.urljoin(base, url)}"'
+
+    return re.sub(r'(href|src)="([^"]+)"', repl, html)
 
 
 def main() -> int:
@@ -60,6 +80,8 @@ def main() -> int:
     if not content.strip():
         print("Issue content is empty — skipping send.", file=sys.stderr)
         return 1
+
+    content = absolutize_links(content, link)  # internal links must work in email
 
     body = (
         f'<p style="margin:0 0 1.25rem"><a href="{link}">Read this issue on lszabo.me</a> '
