@@ -109,6 +109,23 @@ def absolutize_links(html: str, base: str) -> str:
     return re.sub(r'(href|src)="([^"]+)"', repl, html)
 
 
+def strip_more_issues(content: str) -> str:
+    """Drop the "More issues" heading and its previous-issues listing entirely.
+
+    CSS alone (display:none) isn't enough — Outlook's Word rendering engine
+    ignores embedded <style> blocks, so the heading and unstyled listing cards
+    reappeared there even though EMAIL_STYLE hides them. This section is
+    always the last thing in a rendered briefing (see briefings/_metadata.yml),
+    so cutting from the heading onward removes it for every client.
+    """
+    return re.sub(
+        r'<h2[^>]*\bid=["\']more-issues["\'][^>]*>.*',
+        "",
+        content,
+        flags=re.S,
+    )
+
+
 def main() -> int:
     args = sys.argv[1:]
     draft = "--draft" in args
@@ -147,6 +164,7 @@ def main() -> int:
         return 1
 
     content = absolutize_links(content, link)  # internal links must work in email
+    content = strip_more_issues(content)  # unstyled listing cruft, not worth emailing
 
     body = f"""\
 {EMAIL_STYLE}
