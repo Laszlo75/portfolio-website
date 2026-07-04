@@ -9,7 +9,10 @@ schedules it as a Buttondown email a few minutes out.
 Scheduling (status="scheduled" + publish_date) is on Buttondown's free plan and
 does not require the "live dangerously" send header. Stdlib only — no deps.
 
-Usage: python3 send_briefing.py <YYYY-MM-DD>
+Usage: python3 send_briefing.py <YYYY-MM-DD> [--draft]
+       --draft posts the email as a Buttondown draft instead of scheduling it,
+       so it never reaches subscribers — open it in the dashboard and use
+       "Send test email" to check rendering in real inboxes.
 Env:   BUTTONDOWN_API_KEY (required to send; absent = no-op)
 """
 
@@ -106,10 +109,13 @@ def absolutize_links(html: str, base: str) -> str:
 
 
 def main() -> int:
-    if len(sys.argv) < 2:
-        print("Usage: send_briefing.py <YYYY-MM-DD>", file=sys.stderr)
+    args = sys.argv[1:]
+    draft = "--draft" in args
+    args = [a for a in args if a != "--draft"]
+    if len(args) < 1:
+        print("Usage: send_briefing.py <YYYY-MM-DD> [--draft]", file=sys.stderr)
         return 2
-    issue_date = sys.argv[1]
+    issue_date = args[0]
 
     api_key = os.environ.get("BUTTONDOWN_API_KEY")
     if not api_key:
@@ -163,15 +169,18 @@ def main() -> int:
 </div>
 """
 
-    publish_at = datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(
-        minutes=SEND_DELAY_MIN
-    )
-    payload = {
-        "subject": subject,
-        "body": body,
-        "status": "scheduled",
-        "publish_date": publish_at.strftime("%Y-%m-%dT%H:%M:%SZ"),
-    }
+    if draft:
+        payload = {"subject": subject, "body": body, "status": "draft"}
+    else:
+        publish_at = datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(
+            minutes=SEND_DELAY_MIN
+        )
+        payload = {
+            "subject": subject,
+            "body": body,
+            "status": "scheduled",
+            "publish_date": publish_at.strftime("%Y-%m-%dT%H:%M:%SZ"),
+        }
 
     req = urllib.request.Request(
         API_URL,
@@ -185,10 +194,16 @@ def main() -> int:
     try:
         with urllib.request.urlopen(req, timeout=30) as resp:
             out = json.loads(resp.read().decode())
-        print(
-            f"Scheduled '{subject}' (id {out.get('id')}) for "
-            f"{out.get('publish_date')} — status {out.get('status')}."
-        )
+        if draft:
+            print(
+                f"Created draft '{subject}' (id {out.get('id')}) — open it in the "
+                "Buttondown dashboard and use \"Send test email\" to check rendering."
+            )
+        else:
+            print(
+                f"Scheduled '{subject}' (id {out.get('id')}) for "
+                f"{out.get('publish_date')} — status {out.get('status')}."
+            )
         return 0
     except urllib.error.HTTPError as exc:
         print(f"Buttondown API error {exc.code}: {exc.read().decode()[:500]}", file=sys.stderr)
