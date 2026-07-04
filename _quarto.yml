@@ -6,11 +6,13 @@ project:
     - "!resume-old.qmd"
   resources:
     - robots.txt
-    - llms.txt
+  post-render:
+    - cp llms.txt _site/llms.txt
 
 
 website:
   drafts: visible
+  llms-txt: true
   site-url: "https://lszabo.me"
   # google-analytics: "G-B84ES4BRHJ"
   title: "Laszlo Szabo"
