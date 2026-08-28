@@ -5,7 +5,10 @@ have checked out. Produce ONE new digest as a Quarto `.qmd` file and open a pull
 Use **only** the PubMed and Scholar-Gateway connectors for evidence. Work carefully. Do
 not fabricate anything. Follow these instructions exactly.
 
-**Scope:** kidney transplantation only (not pancreas or other organs).
+**Scope:** kidney transplantation only (not pancreas or other organs). Combined-organ
+transplants (e.g. bladder-kidney, heart-kidney, liver-kidney) ARE in scope when kidney is
+a co-primary outcome of the paper — summarise the kidney-specific findings and implication.
+Do not select a paper where kidney is incidental to another organ's primary outcome.
 **Audience:** a UK consultant transplant surgeon.
 **Window:** articles published in the **last 14 days** (a deliberate ~1-week overlap with
 the previous issue so late-indexed papers are not missed; the dedup in Step 1 guarantees
@@ -21,19 +24,49 @@ nothing already covered is repeated).
 
 ## Step 2 — Find recent papers
 
-- Search PubMed for kidney transplantation articles published in the last 14 days.
-- For each candidate, retrieve full metadata **and** the abstract (PMID, title, full
-  author list, journal, year, DOI, abstract).
-- Discard any article whose PMID is in the exclusion set.
+Two discovery channels feed one candidate pool. PubMed is the primary search; Scholar
+Gateway is a secondary, semantic discovery pass — every candidate, regardless of which
+channel found it, must end up with metadata pulled fresh from PubMed before it can be
+selected. Scholar Gateway is never itself a source of verbatim citation data.
+
+- **PubMed keyword/MeSH search (primary):** search PubMed for kidney transplantation
+  articles published in the last 14 days.
+- **Scholar Gateway semantic search (secondary):** run one `semanticSearch` query framed as
+  a full natural-language research question (not keywords), e.g. "What are the most
+  clinically significant recent developments in kidney transplantation — immunosuppression,
+  rejection, donor utilisation, graft survival — relevant to a UK consultant transplant
+  surgeon?". Scholar Gateway's `start_year`/`end_year` filter is year-level only, not
+  day-level — it is a coarse pre-filter, not the real recency check.
+  - **Known limitation:** Scholar Gateway's corpus freshness lags real time (check the
+    `content_freshness` disclosure in its response — as of August 2026 it was several months
+    stale). Most or all Scholar Gateway results may consequently fail the 14-day window below
+    and contribute nothing to a given issue. That is expected, not a bug — do not loosen the
+    window to compensate. Its yield should improve as the corpus catches up.
+  - Each Scholar Gateway result's citation metadata does not include a bare DOI field —
+    extract it from the `link` or `additionalMetadata.citationLine` field (a standard
+    `10.####/...` DOI pattern).
+  - Resolve every extracted DOI to a PMID using PubMed's ID-conversion tool. **Discard any
+    Scholar Gateway result that has no corresponding PubMed record** — PubMed is the sole
+    source of verbatim metadata, so an article that cannot be resolved to a PMID cannot be
+    verified and cannot be included, however relevant it looks.
+- For every candidate from either channel, retrieve full metadata **and** the abstract from
+  PubMed (PMID, title, full author list, journal, year, DOI, abstract), and confirm from
+  that PubMed record — not from Scholar Gateway's own date field — that its publication date
+  actually falls in the last 14 days. This is the one real window check, applied identically
+  regardless of which channel surfaced the candidate.
+- Merge both channels into one candidate pool, de-duplicating by PMID (a paper both searches
+  surface counts once).
+- Discard any article whose PMID is in the exclusion set from Step 1.
 
 ## Step 3 — Select the most significant
 
-- From the remaining NEW articles, read the abstracts and select **up to 8** that are most
-  clinically significant for UK kidney transplant practice: prioritise randomised trials,
-  large registry or cohort studies, major-journal papers, guideline updates, and
-  practice-changing reviews.
-- Only consider articles actually returned by THIS run's PubMed search. Never add papers
-  from memory or prior knowledge.
+- From the remaining NEW articles — regardless of which channel found them — read the
+  abstracts and select **up to 8** that are most clinically significant for UK kidney
+  transplant practice: prioritise randomised trials, large registry or cohort studies,
+  major-journal papers, guideline updates, and practice-changing reviews.
+- Only consider articles that were actually returned by THIS run's PubMed or Scholar Gateway
+  search **and** carry PubMed-verified metadata per Step 2. Never add papers from memory or
+  prior knowledge, and never include a Scholar Gateway result PubMed could not verify.
 
 ## Step 4 — Full text where it matters
 
@@ -46,6 +79,11 @@ nothing already covered is repeated).
 
 - Copy the **PMID, DOI, article title, full author list, journal, and year VERBATIM** from
   the PubMed metadata. Never reconstruct a DOI from memory — DOIs are opaque strings.
+- List **every** author from the PubMed metadata's author list, in order, however long.
+  Never truncate with "et al." — a superfluous "et al." after an already-complete list is
+  still wrong. Build each author's name from PubMed's structured `last_name` + `initials`
+  fields directly (e.g. "El Hennawy H"), not by re-parsing a rendered citation string —
+  compound and multi-part surnames split incorrectly if re-derived.
 - The article **title** is reproduced verbatim as the entry heading (standard citation).
   Everything else you write — the Overview and every summary — must be **entirely in your
   own words**: transformative prose, with **no verbatim abstract sentences** copied.
@@ -137,9 +175,9 @@ Summary as above.
 
 ---
 
-*Generated DATE from PubMed search results for kidney transplantation published START to
-END. Articles already recorded in prior issues were excluded. PubMed is the source of all
-metadata and abstracts.*
+*Generated DATE from PubMed and Scholar Gateway search results for kidney transplantation
+published START to END. Articles already recorded in prior issues were excluded. PubMed is
+the source of all metadata and abstracts.*
 
 *How this digest is made: [From a literature-search skill to a self-running evidence digest](/posts/automated-literature-watch/).*
 
