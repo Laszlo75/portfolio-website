@@ -215,5 +215,7 @@ Before `quarto render` and `git push`:
 ```bash
 quarto render
 git add -A && git commit -m "Post: [title]"
-git push               # Vercel auto-deploys from main
+git push               # GitHub Actions (.github/workflows/publish.yml) renders and deploys to GitHub Pages
 ```
+
+Site is served via GitHub Pages on the custom domain `lszabo.me`, fronted by Cloudflare.
