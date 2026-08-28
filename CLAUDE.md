@@ -94,7 +94,10 @@ assets/
 | `plans` | Why a transplant surgeon built an academic site with Quarto | 8 Feb 2026 |
 | `ai-literature-search` | Claude for medical literature search: Avoid hallucinations | 3 Mar 2026 |
 | `literature-review-skill` | From manual search to automated evidence pipeline | 4 Apr 2026 |
-| `search-result-to-structured-doc` | From search results to structured document | 28 Apr 2026 (draft) |
+| `search-result-to-structured-doc` | From search results to structured document | 28 Apr 2026 |
+| `automated-literature-watch` | From a literature-search skill to a self-running evidence digest | 19 Jun 2026 |
+| `claude-pubmed-connector` | How to connect Claude to PubMed (step-by-step setup) | 22 Jun 2026 |
+| `evaluating-kidney-watch` | How to evaluate an AI workflow after it ships | 28 Aug 2026 |
 
 **Title style**: sentence case (capitalise first word, proper nouns, and the first word after a colon — everything else lowercase).
 
@@ -200,6 +203,27 @@ Before `quarto render` and `git push`:
 - [ ] Quarto renders without warnings
 - [ ] Content Pipeline note updated in Obsidian
 - [ ] Daily note logged in Obsidian with `#blog`
+
+## Kidney Watch Newsletter
+
+A weekly, AI-generated literature-surveillance digest — separate from `posts/`, live at
+[`/briefings.qmd`](briefings.qmd). Not part of the three blog pillars above; documented here
+because it has its own spec, its own automation, and its own review cadence.
+
+- `briefings/YYYY-MM-DD/index.qmd` — one issue per week, up to 8 papers each.
+- `briefings/_state/INSTRUCTIONS.md` — the versioned spec the generation routine follows
+  exactly. This is the single place to tune scope, search behaviour, selection criteria,
+  citation-verification rules, and output format — edit this file, not the automation.
+- `briefings/_state/seen.json` — dedup ledger (PMIDs already covered).
+- `briefings/_state/AUDIT-METHODOLOGY.md` — the checklist for periodically auditing the
+  pipeline against its own spec and against live PubMed. Re-run roughly every 10 weeks.
+- Generation is a scheduled Claude Routine ("weekly transplant briefing", Saturdays 01:00
+  UTC) with PubMed and Scholar Gateway connectors, which opens a PR — never pushes to
+  `main` — for human review before an issue goes live.
+- Background and worked examples: [From a literature-search skill to a self-running
+  evidence digest](posts/automated-literature-watch/index.qmd) (how it's built) and [How to
+  evaluate an AI workflow after it ships](posts/evaluating-kidney-watch/index.qmd) (how it's
+  audited).
 
 ## Conventions
 
