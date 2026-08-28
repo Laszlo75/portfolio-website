@@ -1,0 +1,130 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BlogPosting",
+      "@id": "https://lszabo.me/posts/evaluating-kidney-watch/#article",
+      "headline": "How to evaluate an AI workflow after it ships",
+      "description": "An 11-issue audit against live PubMed: 88/88 citations checked, real bugs found and fixed, and a reusable checklist for evaluating any AI workflow.",
+      "datePublished": "2026-08-28",
+      "dateModified": "2026-08-28",
+      "author": {
+        "@id": "https://lszabo.me/#person"
+      },
+      "publisher": {
+        "@id": "https://lszabo.me/#person"
+      },
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://lszabo.me/posts/evaluating-kidney-watch/hero.png",
+        "width": 1200,
+        "height": 675
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://lszabo.me/posts/evaluating-kidney-watch/"
+      },
+      "wordCount": 2800,
+      "articleSection": "AI",
+      "keywords": ["AI", "Claude", "AI evaluation", "AI workflow audit", "citation verification", "PubMed", "kidney transplantation", "Quarto", "Scholar Gateway", "evidence quality"],
+      "inLanguage": "en-GB",
+      "isPartOf": {
+        "@type": "BlogPosting",
+        "@id": "https://lszabo.me/posts/automated-literature-watch/#article"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://lszabo.me/#person",
+      "name": "Laszlo Szabo",
+      "jobTitle": "Consultant Transplant Surgeon",
+      "url": "https://lszabo.me/",
+      "sameAs": [
+        "https://orcid.org/0000-0002-6881-1542",
+        "https://www.linkedin.com/in/drszabolaszlo/",
+        "https://x.com/drszabolaszlo",
+        "https://github.com/Laszlo75",
+        "https://www.researchgate.net/profile/Laszlo-Szabo-8",
+        "https://scholar.google.com/citations?user=CTU8nq4AAAAJ"
+      ],
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Cardiff Transplant Unit",
+        "url": "https://cavuhb.nhs.wales/"
+      },
+      "knowsAbout": ["kidney transplantation", "pancreas transplantation", "organ utilisation", "data science", "R programming", "clinical AI governance"]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://lszabo.me/posts/evaluating-kidney-watch/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://lszabo.me/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Posts",
+          "item": "https://lszabo.me/posts.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "How to evaluate an AI workflow after it ships",
+          "item": "https://lszabo.me/posts/evaluating-kidney-watch/"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://lszabo.me/posts/evaluating-kidney-watch/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do you audit an AI workflow that's already in production?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Check it against its own stated contract — a spec file, a prompt, whatever the system promises — not against a generic standard. Start with what's cheap to verify exhaustively (structure, bookkeeping, internal consistency) across every output, not a sample, then spend the expensive verification (fact-checking against a primary source) on the claim that actually matters most if it's wrong."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is verifying 100% of outputs realistic, or do you have to sample?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It depends entirely on whether the verification tooling batches. Checking all 88 Kidney Watch citations against live PubMed cost five API calls, not eighty-eight, because the metadata tool accepts batches of up to 20 IDs at once. When the cost of checking everything is close to the cost of checking a sample, there is no reason to sample."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What's the biggest risk in an automated audit itself?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "That the audit's own tooling has bugs, and those bugs get reported as findings about the system being audited. This audit's first pass flagged three false compliance errors that were entirely parser bugs — a DOI containing an embedded parenthesis, a cosmetic YAML-quoting difference — caught only by re-reading the actual source file before trusting the automated result."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do you decide whether a connected-but-unused tool should be removed or actually used?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Test it first. Call it with a realistic query and look at what comes back, not what it's documented to return. In this case testing surfaced a real limitation — a stale content corpus — that would not have been visible from the spec or the tool's description alone, and that finding changed the design of the fix."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How often should a working AI pipeline be re-audited?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Often enough that drift is caught before it compounds, and against a written methodology rather than reinvented each time. This project settled on every 10 weeks, run as a scheduled task against a standing checklist, specifically so each review builds on the last one instead of starting over."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
