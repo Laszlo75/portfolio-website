@@ -1,3 +1,8 @@
 # The BibTeX publication list is data, not code - keep it out of the
 # repo language stats (it made GitHub label the repo as TeX).
 *.bib linguist-detectable=false
+
+# Quarto sources are the real code of this site, but GitHub classes .qmd as
+# "prose" (RMarkdown) and skips it, leaving small HTML snippets as the top
+# language. Count it so the repo shows as RMarkdown (GitHub's name for .qmd).
+*.qmd linguist-detectable=true
