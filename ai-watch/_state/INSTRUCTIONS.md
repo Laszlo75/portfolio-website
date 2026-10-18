@@ -30,8 +30,10 @@ Let `START` = today minus 21 days and `END` = today, both as `YYYY/MM/DD`. **Alw
 both `date_from` and `date_to`** to the PubMed search — a `date_from` on its own is
 silently ignored and returns the journal's entire back catalogue.
 
-Run these searches (publication date, `pdat`), retrieving enough results to see every
-hit in the window:
+Run these searches by **entry date** (`datetype: edat` — when the paper was added to
+PubMed), retrieving enough results to see every hit in the window. Entry date catches
+online-first papers whose formal publication date is a later print issue; publication
+date alone missed about a quarter of the AI-journal papers in testing.
 
 1. **Dedicated AI journals — everything they publish in the window:**
    `"NEJM AI"[Journal] OR "Lancet Digit Health"[Journal] OR "NPJ Digit Med"[Journal]`
@@ -57,7 +59,8 @@ OR "artificial intelligence"[Title/Abstract] OR "machine learning"[Title/Abstrac
 OR "deep learning"[Title/Abstract] OR "large language model"[Title/Abstract]
 OR "large language models"[Title/Abstract] OR "neural network"[Title/Abstract])`
 
-For each candidate, retrieve full metadata **and** the abstract (PMID, title, full author
+For each candidate, retrieve full metadata **and** the abstract, in batches of **at most
+20 PMIDs** per metadata call (larger batches silently drop the last few records) (PMID, title, full author
 list, journal, year, DOI, abstract, publication type). Discard any article whose PMID is
 in the exclusion set, and anything that is an erratum, a reply, or has no abstract.
 
