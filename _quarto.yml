@@ -30,8 +30,12 @@ website:
         href: publications.qmd
       - text: Posts
         href: posts.qmd
-      - text: Kidney Watch
-        href: briefings.qmd
+      - text: Newsletters
+        menu:
+          - text: Kidney Watch
+            href: briefings.qmd
+          - text: AI in Medicine Watch
+            href: ai-watch.qmd
 
     right:
       - text: "{{< fa brands github >}}"

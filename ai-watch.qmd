@@ -1,0 +1,59 @@
+---
+title: "AI in Medicine Watch"
+subtitle: "A fortnightly watch on clinical AI research"
+description: "A fortnightly, AI-assisted digest of notable clinical AI research from NEJM AI, Lancet Digital Health, npj Digital Medicine and the major general journals. Every citation checked against PubMed."
+listing:
+  contents: ai-watch
+  sort: "date desc"
+  type: default
+  categories: true
+  sort-ui: false
+  filter-ui: false
+  feed:
+    type: full
+page-layout: full
+title-block-banner: true
+comments:
+  giscus:
+    repo: Laszlo75/portfolio-comments
+    repo-id: "R_kgDOTBgU3A"
+    category: "Announcements"
+    category-id: "DIC_kwDOTBgU3M4C_pFp"
+    mapping: pathname
+    reactions-enabled: true
+    input-position: bottom
+    theme: noborder_light
+    language: en
+    loading: lazy
+---
+
+Clinical AI now has journals of its own. *NEJM AI*, *The Lancet Digital Health* and *npj Digital Medicine* publish every week, JAMA curates its AI work in JAMA+ AI, and *Nature Medicine* carries a steady stream of model evaluations. Most of it is retrospective and single-site. The papers that should change what we do — prospective trials, honest external validations, rigorous tests of large language models against clinicians — are easy to miss among the rest.
+
+Every two weeks, [Claude](https://claude.ai) searches PubMed across those dedicated AI journals, the major general journals, and the transplantation and nephrology journals I read anyway. It shortlists up to eight papers and summarises each one in plain language: what the tool was, what it was measured against, and whether the result holds outside the development data. Every citation is checked against PubMed before I review the issue and publish it.
+
+It is a deliberately small, curated first pass, not a complete index, and no substitute for reading the primary sources. Always verify against the original publication before relying on anything here.
+
+The pipeline is the same one that runs [Kidney Watch](/briefings.qmd), my weekly kidney transplantation digest. I described how it works in [From a literature-search skill to a self-running evidence digest](/posts/automated-literature-watch/).
+
+**Found this useful?** Get each new issue by email (see below), or follow via the [RSS feed](/ai-watch.xml). Leave a comment below, here for general feedback or under any individual issue.
+
+```{=html}
+<!-- AI in Medicine Watch email signup — same Buttondown account as Kidney Watch
+     (username: mk9zhw7w28). The hidden "tag" input marks these subscribers
+     "ai-watch" so .github/scripts/send_briefing.py sends each list only its own
+     newsletter. Requires Tags to be enabled in Buttondown settings. -->
+<div class="kw-subscribe">
+  <h3 class="kw-subscribe-title">Get AI in Medicine Watch by email</h3>
+  <p class="kw-subscribe-blurb">Each new issue in your inbox the day it's published — one email a fortnight, unsubscribe any time.</p>
+  <form class="kw-subscribe-form embeddable-buttondown-form"
+        action="https://buttondown.com/api/emails/embed-subscribe/mk9zhw7w28"
+        method="post"
+        target="popupwindow"
+        onsubmit="window.open('https://buttondown.com/mk9zhw7w28', 'popupwindow')">
+    <input type="hidden" name="tag" value="ai-watch" />
+    <input class="kw-subscribe-input" type="email" name="email" placeholder="you@example.com" aria-label="Email address" required />
+    <button class="kw-subscribe-btn" type="submit">Subscribe</button>
+  </form>
+  <p class="kw-subscribe-fine">You'll get a confirmation email (double opt-in). Your address is used only to send AI in Medicine Watch.</p>
+</div>
+```
