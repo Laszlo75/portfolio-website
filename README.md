@@ -101,7 +101,7 @@ The generated website will be in the `_site/` directory. The PDF CV is excluded 
 
 ## Deployment
 
-Every push to `main` triggers `.github/workflows/publish.yml`, which renders the site and deploys it to GitHub Pages at [lszabo.me](https://lszabo.me). If a push adds a new `briefings/<date>/index.qmd` or `ai-watch/<date>/index.qmd`, the workflow also schedules that issue as an email via Buttondown. Both newsletters share one Buttondown account; each signup form tags its subscribers (`kidney-watch` / `ai-watch`) and every email is filtered by tag, so readers get only the newsletter they signed up for.
+Every push to `main` triggers `.github/workflows/publish.yml`, which renders the site and deploys it to GitHub Pages at [lszabo.me](https://lszabo.me). If a push adds a new `briefings/<date>/index.qmd` or `ai-watch/<date>/index.qmd`, the workflow also schedules that issue as an email via Buttondown. Each newsletter has its own Buttondown account and API key secret (`BUTTONDOWN_API_KEY` for Kidney Watch, `BUTTONDOWN_API_KEY_AI` for AI in Medicine Watch), so readers get only the newsletter they signed up for.
 
 ## Customization
 

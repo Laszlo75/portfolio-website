@@ -49,22 +49,21 @@ jobs:
         run: quarto render
 
       # If this push added a new briefings/<date>/index.qmd (Kidney Watch) or
-      # ai-watch/<date>/index.qmd (AI in Medicine Watch), email that issue to its
-      # own Buttondown subscribers via the API. Scheduled a few minutes out so the
-      # deployed page is live by send time. Never blocks the deploy.
+      # ai-watch/<date>/index.qmd (AI in Medicine Watch), email that issue via
+      # its own Buttondown account (a missing API key skips that series).
+      # Issues with 'email: false' in their front matter are site-only.
+      # Scheduled a few minutes out so the deployed page is live by send time.
+      # Never blocks the deploy.
       - name: Email new issues to subscribers
         if: github.event_name == 'push'
         continue-on-error: true
         env:
-          BUTTONDOWN_API_KEY: ${{ secrets.BUTTONDOWN_API_KEY }}
+          BUTTONDOWN_API_KEY: ${{ secrets.BUTTONDOWN_API_KEY }}        # Kidney Watch account
+          BUTTONDOWN_API_KEY_AI: ${{ secrets.BUTTONDOWN_API_KEY_AI }}  # AI in Medicine Watch account
           BEFORE_SHA: ${{ github.event.before }}
           AFTER_SHA: ${{ github.sha }}
         run: |
           set -uo pipefail
-          if [ -z "${BUTTONDOWN_API_KEY:-}" ]; then
-            echo "BUTTONDOWN_API_KEY not set — skipping newsletter send."
-            exit 0
-          fi
           if ! git rev-parse --quiet --verify "${BEFORE_SHA}^{commit}" >/dev/null 2>&1; then
             echo "No valid 'before' commit (${BEFORE_SHA}) — skipping send."
             exit 0
