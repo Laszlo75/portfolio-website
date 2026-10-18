@@ -48,10 +48,11 @@ jobs:
       - name: Render site
         run: quarto render
 
-      # If this push added a new briefings/<date>/index.qmd, email that issue to
-      # the Buttondown list via the API (free plan). Scheduled a few minutes out so
-      # the deployed page is live by send time. Never blocks the deploy.
-      - name: Email new briefing to subscribers
+      # If this push added a new briefings/<date>/index.qmd (Kidney Watch) or
+      # ai-watch/<date>/index.qmd (AI in Medicine Watch), email that issue to its
+      # own Buttondown subscribers via the API. Scheduled a few minutes out so the
+      # deployed page is live by send time. Never blocks the deploy.
+      - name: Email new issues to subscribers
         if: github.event_name == 'push'
         continue-on-error: true
         env:
@@ -69,17 +70,21 @@ jobs:
             exit 0
           fi
           NEW=$(git diff --name-status --diff-filter=A "$BEFORE_SHA" "$AFTER_SHA" \
-                | grep -E '^A[[:space:]]+briefings/[0-9]{4}-[0-9]{2}-[0-9]{2}/index\.qmd$' \
+                | grep -E '^A[[:space:]]+(briefings|ai-watch)/[0-9]{4}-[0-9]{2}-[0-9]{2}/index\.qmd$' \
                 | awk '{print $2}' || true)
           if [ -z "$NEW" ]; then
-            echo "No new briefing issue added in this push — nothing to email."
+            echo "No new Kidney Watch or AI Watch issue in this push — nothing to email."
             exit 0
           fi
           python3 -m pip install --quiet --disable-pip-version-check defusedxml
           for f in $NEW; do
             issue_date=$(basename "$(dirname "$f")")
-            echo "New issue detected: $issue_date — sending to Buttondown subscribers."
-            python3 .github/scripts/send_briefing.py "$issue_date"
+            case "$f" in
+              ai-watch/*) series=ai ;;
+              *)          series=kidney ;;
+            esac
+            echo "New $series issue detected: $issue_date — sending to Buttondown subscribers."
+            python3 .github/scripts/send_briefing.py "$issue_date" --series "$series"
           done
 
       - name: Upload artifact

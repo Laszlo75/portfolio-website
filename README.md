@@ -39,6 +39,8 @@ Mr. Laszlo Szabo is a Consultant Transplant Surgeon with a clinical and research
 │   └── _metadata.yml         # Posts metadata
 ├── briefings.qmd             # Kidney Transplant Watch listing
 ├── briefings/                # Weekly briefings, one folder per issue (YYYY-MM-DD/)
+├── ai-watch.qmd              # AI in Medicine Watch listing
+├── ai-watch/                 # Fortnightly AI digests, one folder per issue (YYYY-MM-DD/)
 ├── data/                     # CSV files driving both the HTML and PDF CV
 ├── assets/
 │   ├── my-publication-list.bib  # Publication list (Better BibTeX export)
@@ -99,7 +101,7 @@ The generated website will be in the `_site/` directory. The PDF CV is excluded 
 
 ## Deployment
 
-Every push to `main` triggers `.github/workflows/publish.yml`, which renders the site and deploys it to GitHub Pages at [lszabo.me](https://lszabo.me). If a push adds a new `briefings/<date>/index.qmd`, the workflow also schedules that issue as an email to the Kidney Transplant Watch subscribers via Buttondown.
+Every push to `main` triggers `.github/workflows/publish.yml`, which renders the site and deploys it to GitHub Pages at [lszabo.me](https://lszabo.me). If a push adds a new `briefings/<date>/index.qmd` or `ai-watch/<date>/index.qmd`, the workflow also schedules that issue as an email via Buttondown. Both newsletters share one Buttondown account; each signup form tags its subscribers (`kidney-watch` / `ai-watch`) and every email is filtered by tag, so readers get only the newsletter they signed up for.
 
 ## Customization
 
@@ -107,6 +109,7 @@ Every push to `main` triggers `.github/workflows/publish.yml`, which renders the
 
 - **Blog Posts**: Add a new folder in `posts/` with an `index.qmd`
 - **Briefings**: Add a new `briefings/YYYY-MM-DD/index.qmd`
+- **AI in Medicine Watch**: Add a new `ai-watch/YYYY-MM-DD/index.qmd` (generation steps in `ai-watch/_state/INSTRUCTIONS.md`)
 - **Pages**: Create new `.qmd` files in the root directory and update `_quarto.yml`
 - **Publications**: Replace `assets/my-publication-list.bib` with a fresh Better BibTeX export
 - **CV**: Edit the CSV files in `data/`; both `resume.qmd` and `cv.qmd` read from them
