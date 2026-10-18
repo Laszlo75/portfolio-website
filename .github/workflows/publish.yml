@@ -79,6 +79,10 @@ jobs:
           python3 -m pip install --quiet --disable-pip-version-check defusedxml
           for f in $NEW; do
             issue_date=$(basename "$(dirname "$f")")
+            if grep -qE '^email:[[:space:]]*false' "$f"; then
+              echo "$f has 'email: false' — published on the site only, not emailed."
+              continue
+            fi
             case "$f" in
               ai-watch/*) series=ai ;;
               *)          series=kidney ;;
