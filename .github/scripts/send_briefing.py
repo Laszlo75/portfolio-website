@@ -7,13 +7,10 @@ or ai-watch/<date>/index.qmd is published. Reads the freshly rendered feed
 carries the whole issue), finds the item for the given date, and schedules it as
 a Buttondown email a few minutes out.
 
-Both newsletters share one Buttondown account. Subscribers are told apart by the
-tag their signup form adds ("kidney-watch" / "ai-watch"), and each email carries
-a recipient filter so a list only ever gets its own newsletter:
-  - AI in Medicine Watch goes only to subscribers tagged "ai-watch".
-  - Kidney Watch goes to subscribers tagged "kidney-watch" OR not tagged
-    "ai-watch" — the second clause keeps everyone who signed up before tagging
-    existed, so no existing subscriber is dropped.
+Each newsletter has its own Buttondown account (free plan; tags are a paid
+add-on), so each API key can only ever reach its own subscribers:
+  - Kidney Watch: account mk9zhw7w28, key in BUTTONDOWN_API_KEY
+  - AI in Medicine Watch: account ai-in-medicine, key in BUTTONDOWN_API_KEY_AI
 
 Scheduling (status="scheduled" + publish_date) is on Buttondown's free plan and
 does not require the "live dangerously" send header. Stdlib only — no deps.
@@ -23,7 +20,7 @@ Usage: python3 send_briefing.py <YYYY-MM-DD> [--series kidney|ai] [--draft]
        --draft posts the email as a Buttondown draft instead of scheduling it,
        so it never reaches subscribers — open it in the dashboard and use
        "Send test email" to check rendering in real inboxes.
-Env:   BUTTONDOWN_API_KEY (required to send; absent = no-op)
+Env:   BUTTONDOWN_API_KEY / BUTTONDOWN_API_KEY_AI, per series (absent = no-op)
 """
 
 import datetime
@@ -39,15 +36,12 @@ import urllib.request
 from defusedxml.ElementTree import parse as parse_xml  # XXE/entity-safe XML parsing
 
 API_URL = "https://api.buttondown.com/v1/emails"
-TAGS_URL = "https://api.buttondown.com/v1/tags"
 SEND_DELAY_MIN = 5  # schedule slightly ahead so the deployed page is live by send time
-
-KIDNEY_TAG = "kidney-watch"
-AI_TAG = "ai-watch"
 
 SERIES = {
     "kidney": {
         "feed": "_site/briefings.xml",
+        "key_env": "BUTTONDOWN_API_KEY",
         "path": "briefings",
         "name": "Kidney Watch",
         "masthead": "Kidney Transplant Watch",
@@ -55,6 +49,7 @@ SERIES = {
     },
     "ai": {
         "feed": "_site/ai-watch.xml",
+        "key_env": "BUTTONDOWN_API_KEY_AI",
         "path": "ai-watch",
         "name": "AI in Medicine Watch",
         "masthead": "AI in Medicine Watch",
@@ -156,41 +151,6 @@ def strip_more_issues(content: str) -> str:
     )
 
 
-def tag_ids(api_key: str) -> dict:
-    """Map tag name -> Buttondown tag id (email filters take ids, not names)."""
-    ids, url = {}, TAGS_URL
-    while url:
-        req = urllib.request.Request(url, headers={"Authorization": f"Token {api_key}"})
-        with urllib.request.urlopen(req, timeout=30) as resp:
-            page = json.loads(resp.read().decode())
-        ids.update({t["name"]: t["id"] for t in page.get("results", [])})
-        url = page.get("next")
-    return ids
-
-
-def recipient_filter(series: str, ids: dict):
-    """Buttondown filter limiting an email to its own newsletter's subscribers.
-
-    Returns None to send to everyone. Raises if the AI list can't be targeted —
-    better to skip a send than email the AI digest to the whole Kidney Watch list.
-    """
-
-    def has(tag, op="contains"):
-        return {"field": "subscriber.tags", "operator": op, "value": ids[tag]}
-
-    if series == "ai":
-        if AI_TAG not in ids:
-            raise RuntimeError(f"Buttondown tag '{AI_TAG}' not found — refusing to send to all.")
-        return {"predicate": "and", "groups": [], "filters": [has(AI_TAG)]}
-
-    if AI_TAG not in ids:
-        return None  # nobody has signed up for AI Watch yet, so everyone is Kidney Watch
-    clauses = [has(AI_TAG, "not_contains")]
-    if KIDNEY_TAG in ids:
-        clauses.append(has(KIDNEY_TAG))
-    return {"predicate": "or", "groups": [], "filters": clauses}
-
-
 def main() -> int:
     args = sys.argv[1:]
     draft = "--draft" in args
@@ -210,9 +170,9 @@ def main() -> int:
     cfg = SERIES[series]
     feed_path = cfg["feed"]
 
-    api_key = os.environ.get("BUTTONDOWN_API_KEY")
+    api_key = os.environ.get(cfg["key_env"])
     if not api_key:
-        print("BUTTONDOWN_API_KEY not set — skipping send.")
+        print(f"{cfg['key_env']} not set — skipping {cfg['name']} send.")
         return 0
 
     try:
@@ -275,14 +235,6 @@ def main() -> int:
             "status": "scheduled",
             "publish_date": publish_at.strftime("%Y-%m-%dT%H:%M:%SZ"),
         }
-
-    try:
-        filters = recipient_filter(series, tag_ids(api_key))
-    except (urllib.error.URLError, RuntimeError, KeyError, ValueError) as exc:
-        print(f"Could not resolve recipient tags — not sending: {exc}", file=sys.stderr)
-        return 1
-    if filters:
-        payload["filters"] = filters
 
     req = urllib.request.Request(
         API_URL,

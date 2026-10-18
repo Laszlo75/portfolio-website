@@ -39,10 +39,8 @@ Curious how it runs unattended? I wrote up the whole pipeline — the weekly sch
 
 ```{=html}
 <!-- Kidney Watch email signup — Buttondown embed form (username: mk9zhw7w28).
-     Double opt-in is on by default in Buttondown; per-issue sending is
-     configured via RSS-to-email in the dashboard (points at /briefings.xml).
-     The hidden "tag" input marks these subscribers "kidney-watch" so each list
-     gets only its own newsletter (see .github/scripts/send_briefing.py). -->
+     Double opt-in is on by default in Buttondown. Each new issue is emailed by
+     .github/workflows/publish.yml via the Buttondown API (no RSS-to-email). -->
 <div class="kw-subscribe">
   <h3 class="kw-subscribe-title">Get Kidney Watch by email</h3>
   <p class="kw-subscribe-blurb">Each new issue in your inbox the week it's published — no more than one email a week, unsubscribe any time.</p>
@@ -51,7 +49,6 @@ Curious how it runs unattended? I wrote up the whole pipeline — the weekly sch
         method="post"
         target="popupwindow"
         onsubmit="window.open('https://buttondown.com/mk9zhw7w28', 'popupwindow')">
-    <input type="hidden" name="tag" value="kidney-watch" />
     <input class="kw-subscribe-input" type="email" name="email" placeholder="you@example.com" aria-label="Email address" required />
     <button class="kw-subscribe-btn" type="submit">Subscribe</button>
   </form>

@@ -38,19 +38,18 @@ The pipeline is the same one that runs [Kidney Watch](/briefings.qmd), my weekly
 **Found this useful?** Get each new issue by email (see below), or follow via the [RSS feed](/ai-watch.xml). Leave a comment below, here for general feedback or under any individual issue.
 
 ```{=html}
-<!-- AI in Medicine Watch email signup — same Buttondown account as Kidney Watch
-     (username: mk9zhw7w28). The hidden "tag" input marks these subscribers
-     "ai-watch" so .github/scripts/send_briefing.py sends each list only its own
-     newsletter. Requires Tags to be enabled in Buttondown settings. -->
+<!-- AI in Medicine Watch email signup — its own Buttondown account
+     (username: ai-in-medicine), separate from Kidney Watch (mk9zhw7w28), so
+     each list only ever gets its own newsletter. Sends use the
+     BUTTONDOWN_API_KEY_AI secret (see .github/scripts/send_briefing.py). -->
 <div class="kw-subscribe">
   <h3 class="kw-subscribe-title">Get AI in Medicine Watch by email</h3>
   <p class="kw-subscribe-blurb">Each new issue in your inbox the day it's published — one email a fortnight, unsubscribe any time.</p>
   <form class="kw-subscribe-form embeddable-buttondown-form"
-        action="https://buttondown.com/api/emails/embed-subscribe/mk9zhw7w28"
+        action="https://buttondown.com/api/emails/embed-subscribe/ai-in-medicine"
         method="post"
         target="popupwindow"
-        onsubmit="window.open('https://buttondown.com/mk9zhw7w28', 'popupwindow')">
-    <input type="hidden" name="tag" value="ai-watch" />
+        onsubmit="window.open('https://buttondown.com/ai-in-medicine', 'popupwindow')">
     <input class="kw-subscribe-input" type="email" name="email" placeholder="you@example.com" aria-label="Email address" required />
     <button class="kw-subscribe-btn" type="submit">Subscribe</button>
   </form>
