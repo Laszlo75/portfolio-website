@@ -18,11 +18,14 @@ author:
     - icon: fa brands linkedin
       text: drszabolaszlo
       url: https://linkedin.com/in/drszabolaszlo
+date: today
+date-format: "DD MMMM YYYY"
 brand:
   typography:
     base: "SF Pro Text"
   color:
     primary: "#005EB8"
+    link: "#333333"
   defaults:
     awesomecv-typst:
       font-header: "SF Pro Text"
