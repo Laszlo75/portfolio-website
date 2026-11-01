@@ -18,10 +18,14 @@ author:
     - icon: fa brands linkedin
       text: drszabolaszlo
       url: https://linkedin.com/in/drszabolaszlo
-style:
-   color-accent: "005EB8"
-   font-header: "SF Pro Text"
-   font-text: "SF Pro Text"
+brand:
+  typography:
+    base: "SF Pro Text"
+  color:
+    primary: "#005EB8"
+  defaults:
+    awesomecv-typst:
+      font-header: "SF Pro Text"
 format: awesomecv-typst
 
 execute:

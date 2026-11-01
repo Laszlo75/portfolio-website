@@ -44,7 +44,7 @@ Update CSV data once → both regenerate. CSV schemas:
 ### Extensions
 
 - **fontawesome** (`quarto-ext/fontawesome` v1.3.0) — `{{< fa icon >}}` shortcodes
-- **awesomecv-typst** (`kazuyanagimoto/awesomecv` v0.1.0) — Typst CV template for `cv.qmd`
+- **awesomecv-typst** (`kazuyanagimoto/awesomecv` v0.3.3, needs Quarto ≥1.8; styled via `brand:` in cv.qmd) — Typst CV template for `cv.qmd`
 
 ### R Dependencies
 
