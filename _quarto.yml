@@ -7,6 +7,7 @@ project:
     - robots.txt
   post-render:
     - cp llms.txt _site/llms.txt
+    - cp cv.pdf _site/images/cv.pdf   # the CV download button links images/cv.pdf; cv.pdf (from quarto render cv.qmd) is the only copy
 
 
 website:
