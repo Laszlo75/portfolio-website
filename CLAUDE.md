@@ -97,7 +97,6 @@ assets/
 | `search-result-to-structured-doc` | From search results to structured document | 28 Apr 2026 |
 | `automated-literature-watch` | From a literature-search skill to a self-running evidence digest | 19 Jun 2026 |
 | `claude-pubmed-connector` | How to connect Claude to PubMed (step-by-step setup) | 22 Jun 2026 |
-| `evaluating-kidney-watch` | How to evaluate an AI workflow after it ships | 28 Aug 2026 |
 
 **Title style**: sentence case (capitalise first word, proper nouns, and the first word after a colon — everything else lowercase).
 
@@ -221,9 +220,7 @@ because it has its own spec, its own automation, and its own review cadence.
   UTC) with PubMed and Scholar Gateway connectors, which opens a PR — never pushes to
   `main` — for human review before an issue goes live.
 - Background and worked examples: [From a literature-search skill to a self-running
-  evidence digest](posts/automated-literature-watch/index.qmd) (how it's built) and [How to
-  evaluate an AI workflow after it ships](posts/evaluating-kidney-watch/index.qmd) (how it's
-  audited).
+  evidence digest](posts/automated-literature-watch/index.qmd) (how it's built).
 
 ## Conventions
 
