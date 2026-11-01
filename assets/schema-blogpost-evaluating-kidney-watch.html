@@ -6,7 +6,7 @@
       "@type": "BlogPosting",
       "@id": "https://lszabo.me/posts/evaluating-kidney-watch/#article",
       "headline": "How to evaluate an AI workflow after it ships",
-      "description": "An 11-issue audit against live PubMed: 88/88 citations checked, real bugs found and fixed, and a reusable checklist for evaluating any AI workflow.",
+      "description": "An 11-issue audit against live PubMed: 88/88 citations real (zero hallucinations), fine-print bugs fixed, and a reusable checklist for any AI workflow.",
       "datePublished": "2026-08-28",
       "dateModified": "2026-08-28",
       "author": {
@@ -25,7 +25,7 @@
         "@type": "WebPage",
         "@id": "https://lszabo.me/posts/evaluating-kidney-watch/"
       },
-      "wordCount": 2800,
+      "wordCount": 3550,
       "articleSection": "AI",
       "keywords": ["AI", "Claude", "AI evaluation", "AI workflow audit", "citation verification", "PubMed", "kidney transplantation", "Quarto", "Scholar Gateway", "evidence quality"],
       "inLanguage": "en-GB",
@@ -120,7 +120,23 @@
           "name": "How often should a working AI pipeline be re-audited?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Often enough that drift is caught before it compounds, and against a written methodology rather than reinvented each time. This project settled on every 10 weeks, run as a scheduled task against a standing checklist, specifically so each review builds on the last one instead of starting over."
+            "text": "Often enough that drift is caught before it compounds, and against a written methodology rather than reinvented each time. This project settled on every 10 weeks, run as a scheduled task against a standing checklist, specifically so each review builds on the last one instead of starting over. A fixed cadence is not the only trigger: changing the model, a connector, or the spec should force an immediate recheck, because the last clean result only certified the configuration it ran against. This pipeline moved from Opus 4.8 to Opus 5 straight after the audit, so the next issue gets rechecked immediately rather than in ten weeks."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does the audit prove the newsletter is useful, or just accurate?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Just accurate. It proves every citation is real and correctly transcribed, and that the week-to-week selection holds up against the candidate pool PubMed actually offered. Whether the digest is useful and relevant in practice is a different question, and not one an audit can answer from the inside, so it is being put to subscribers directly as a short reader survey."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is human review still needed once the AI stops hallucinating?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, but not the same review. The audit found zero fabricated citations in 88 papers, which means the mechanical checks (is the model good enough, is every DOI and PMID real) are largely handled by a capable model plus automated verification. What still needs a human is the judgment a source check cannot cover: whether the right papers were chosen, how good the underlying evidence is, and whether the topic mix serves the reader. Oversight shifts from verifying details to steering selection and quality."
           }
         }
       ]

@@ -1,7 +1,7 @@
 ---
 title: "How to evaluate an AI workflow after it ships"
 subtitle: "Auditing 11 issues of Kidney Watch: what held up, what didn't, and what changed"
-description: "An 11-issue audit against live PubMed: 88/88 citations checked, real bugs found and fixed, and a reusable checklist for evaluating any AI workflow."
+description: "An 11-issue audit against live PubMed: 88/88 citations real (zero hallucinations), fine-print bugs fixed, and a reusable checklist for any AI workflow."
 author:
   - name: Laszlo Szabo
     orcid: 0000-0002-6881-1542
@@ -20,15 +20,18 @@ citation: true
 
 ![](hero.png){fig-alt="Flat vector illustration of an AI workflow audit: a stack of published issues feeds a magnifying-glass checklist, which surfaces a small set of fixes, flowing into a published dashboard and a recurring recheck, in teal and coral"}
 
-Shipping an AI workflow is the easy part. [Kidney Watch](/briefings.qmd) had been running for eleven issues — 88 papers, verified citations, a clean pull-request history — before anyone actually checked whether it was still doing what its own spec promised. That gap is common and rarely closed: teams build the safeguards, watch the first few outputs closely, then quietly stop checking once nothing obviously breaks. Eleven issues in, we closed it. This is the audit, what it found, and the checklist behind it — usable for any AI workflow, not just this one.
+Shipping an AI workflow is the easy part. [Kidney Watch](/briefings.qmd) had been running for eleven issues — 88 papers, verified citations, a clean pull-request history — before anyone actually checked whether it was still doing what its own spec promised. That gap is common and rarely closed: teams build the safeguards, watch the first few outputs closely, then quietly stop checking once nothing obviously breaks. Eleven issues in, we closed it. The headline finding: all 88 published citations are real and check out against live PubMed — zero hallucinations, the failure mode this design is built to prevent — and the audit still surfaced a handful of fine-print bugs worth fixing. This is the audit, what it found, and the checklist behind it — usable for any AI workflow, not just this one.
 
 :::{.callout-tip}
 ## Key Takeaways
 
-- An 11-issue, 88-citation audit of Kidney Watch verified every single citation live against PubMed: 88/88 correct on PMID, DOI, journal, and year; 81/88 (92%) with zero discrepancy of any kind.
+- The headline result: zero hallucinated citations. An 11-issue, 88-citation audit of Kidney Watch verified every reference live against PubMed — 88/88 real and correct on PMID, DOI, journal, and year, 81/88 (92%) with zero discrepancy of any kind — which is exactly the fabricated-reference failure mode the design exists to prevent.
 - The audit found real, fixable bugs a casual read would miss: a superfluous "et al." dropped onto two already-complete author lists, two compound surnames mis-split, one dropped author, and a live tool (Scholar Gateway) that was connected but never actually used.
 - Verifying an AI workflow needs the same rigour as verifying its output — one finding here turned out to be a bug in the audit's own parser, not the newsletter, caught by re-checking against the source before reporting it.
 - Auditing isn't a one-off. It's now a scheduled recheck every 10 weeks, against a written methodology, so the next review doesn't start from zero.
+- The routine's model was upgraded from Claude Opus 4.8 to Opus 5 after the audit; because a clean result only certifies the exact configuration that was tested, next week's issue gets a full recheck rather than waiting for the 10-week mark.
+- Accuracy isn't usefulness. The audit shows every citation is real and the picks are defensible against the candidate pool; whether the digest is genuinely useful goes to subscribers next, in a short reader survey.
+- With fabrication off the table, the human's job shifts from checking mechanics — model, prompt, DOI and PMID accuracy — to editorial judgment: which papers matter, how strong the evidence is, whether the topic mix is right.
 :::
 
 
@@ -67,6 +70,8 @@ The one journal worth a second look wasn't AJT. Two other flagship journals — 
 
 Evidence quality told a similar story to journal sourcing: read one way it looks thin, read correctly it doesn't. PubMed's own publication-type tagging turned up just a single explicit randomised controlled trial across all 88 papers. Taken at face value that looks like a newsletter light on rigorous evidence — but PubMed doesn't tag "registry study" or "cohort study" as a distinct publication type at all, and a manual read of the actual issues shows large OPTN, UNOS, and SRTR-scale registry analyses running through nearly every one of them, exactly the evidence tier the spec asks the pipeline to prioritise. The lesson generalises: a metric that looks authoritative because it comes from a structured field can still be measuring the wrong thing, and the fix isn't a better metric, it's reading the actual content before trusting the tag.
 
+<!-- [UNIQUE INSIGHT] -->Every check in this section is still an internal one — the audit judging the selection against candidate pools it assembled itself. It can show the picks are defensible; it can't show they're *useful*, because usefulness is a judgment only the readers can make. So that question goes to them directly: the next issues carry a short survey asking subscribers how relevant and how useful they find the selections. Accuracy the audit can prove on its own. Relevance it can only ask about.
+
 
 ## The scope question the spec never quite answered
 
@@ -82,6 +87,24 @@ The cheap fix would have been to delete the unused mention and call the newslett
 First: Scholar Gateway returns semantic passage matches, not PubMed-style structured citations, so every result it surfaces still gets its DOI extracted and resolved to a PMID before it's allowed anywhere near a published issue — if PubMed can't confirm it exists, it's discarded, however relevant it reads, keeping the verified-citation guarantee identical regardless of which search found a paper. Second: Scholar Gateway's own date filter only works at year granularity, so the real 14-day recency check still has to run against PubMed's precise publication date after the fact, not against Scholar Gateway's coarser one. Third, and the one that would have been easy to miss without actually testing the integration before shipping it: Scholar Gateway's own response metadata self-reports its corpus as last updated several months prior to when this audit ran, which means most or all of its results will fail a 14-day recency check for the foreseeable future. That's now written into the spec explicitly, as an expected, temporary limitation rather than a bug for a future reader to rediscover and worry about.
 
 <!-- [UNIQUE INSIGHT] -->None of that would have surfaced from reading the spec alone. It took actually calling the tool with a real query and inspecting what came back — the same standard the newsletter itself is held to for every citation it publishes, just applied one layer up, to the tooling rather than the output.
+
+
+## A new model means the audit starts over
+
+Every one of the eleven issues audited here was generated on Claude Opus 4.8. Between the audit finishing and this post going out, the routine was moved to Opus 5 — the model changed underneath a pipeline whose "verified" standing rested entirely on the old one, and that upgrade does not inherit the clean result.
+
+<!-- [PERSONAL EXPERIENCE] -->The ten-week recheck schedule assumes the pipeline being checked is the same one that passed last time, and a model swap breaks that assumption harder than any single finding in this audit did. So next week's issue gets the full treatment straight away: the structural parse, every citation reverified against live PubMed, the journal and evidence-tier tallies rerun — this time on output the audit never saw. If the numbers hold, the ten-week clock restarts from there; if they don't, that is the methodology doing the job it was written for. The rule it leaves behind: changing the model, a connector, or the spec resets the recheck clock, because a verification result only ever describes the configuration it was run against.
+
+<!-- [UNIQUE INSIGHT] -->The next run also has to weigh something that cuts against this audit's own instinct. Anthropic's guidance for the Claude 5 generation is that a more capable model wants *less* prescriptive instruction, not more: the Claude Code team cut over 80% of its system prompt for Opus 5 and Fable 5 "with no measurable loss on our coding evaluations," trading rigid rules for model judgment and richer references like test suites and rubrics ([Shihipar, Anthropic, 2026](https://claude.com/blog/the-new-rules-of-context-engineering-for-claude-5-generation-models)). This audit went the other way — every slip became a new named rule in `INSTRUCTIONS.md`. On Opus 4.8 that was right. On Opus 5, some of those rules may be redundant or actively in the way, so the recheck has to ask not just whether the output held up but whether the spec can now be shorter.
+
+
+## What human oversight is still for
+
+Zero fabricated citations across 88 papers changes what the human in the loop is for. The things a person used to have to police — is the model capable enough, is the prompt tight enough, is every DOI and PMID real — are now the parts the pipeline does most reliably. A frontier model copying identifiers verbatim from PubMed, with an automated cross-check behind it, doesn't need someone reading citations line by line to catch inventions, because on this evidence there aren't any to catch.
+
+<!-- [UNIQUE INSIGHT] -->What's left is the part that was always harder and is now the whole job: which papers, and why. Is this the most important new transplant study of the week or just a well-formed one? Does the summary carry the clinical bottom line a busy reader needs, or a faithful restatement of the abstract? Is the topic mix right — three weeks of robotic surgery and nothing on immunosuppression? None of that is checkable against PubMed. It is editorial judgment, and it is exactly where a clinician's attention is worth the most.
+
+So oversight doesn't go away; it moves up a level. Less time confirming the machine isn't inventing sources — it isn't — and more spent on selection, on appraising how good a study actually is, on whether the digest covers what matters this month. That is also the dimension this audit couldn't score from the inside, which is why the next issues put the question to readers rather than to a checklist.
 
 
 ## A checklist that outlives this one newsletter
@@ -111,7 +134,15 @@ Test it first. Call it with a realistic query and look at what comes back — no
 
 ### How often should a working AI pipeline be re-audited?
 
-Often enough that drift is caught before it compounds, and against a written methodology rather than reinvented each time. This project settled on every 10 weeks, run as a scheduled task against a standing checklist, specifically so each review builds on the last one instead of starting over.
+Often enough that drift is caught before it compounds, and against a written methodology rather than reinvented each time. This project settled on every 10 weeks, run as a scheduled task against a standing checklist, specifically so each review builds on the last one instead of starting over. A fixed cadence isn't the only trigger: changing the model, a connector, or the spec should force an immediate recheck, because the last clean result only certified the configuration it ran against — this pipeline moved from Opus 4.8 to Opus 5 straight after the audit, so the next issue gets rechecked now rather than in ten weeks.
+
+### Does the audit prove the newsletter is useful, or just accurate?
+
+Just accurate. It proves every citation is real and correctly transcribed, and that the week-to-week selection holds up against the candidate pool PubMed actually offered. Whether the digest is useful and relevant in practice is a different question, and not one an audit can answer from the inside — so it's being put to subscribers directly, as a short reader survey.
+
+### Is human review still needed once the AI stops hallucinating?
+
+Yes, but not the same review. The audit found zero fabricated citations in 88 papers, which means the mechanical checks — is the model good enough, is every DOI and PMID real — are largely handled by a capable model plus automated verification. What still needs a human is the judgment a source check can't cover: whether the right papers were chosen, how good the underlying evidence is, and whether the topic mix serves the reader. Oversight shifts from verifying details to steering selection and quality.
 
 ## More posts {.unlisted}
 
