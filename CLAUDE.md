@@ -10,7 +10,7 @@ quarto preview         # Live preview with hot reload
 quarto render cv.qmd   # Render PDF CV separately (excluded from site build)
 ```
 
-The site build excludes `cv.qmd` (Typst PDF output) — it must be rendered independently.
+The site build excludes `cv.qmd` (Typst PDF output) — it must be rendered independently. Commit the resulting root `cv.pdf`: the site build's post-render step copies it to `_site/images/cv.pdf`, which is where the CV download button on `resume.qmd` points.
 
 ## Architecture
 
